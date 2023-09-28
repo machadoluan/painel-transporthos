@@ -15,3 +15,16 @@
     font-weight: bold;
     text-decoration: none;
 }
+
+@media (max-width: 768px) {
+
+    /* Suas regras de estilo para dispositivos móveis aqui */
+    .title h1 {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .content a {
+        font-size: 14px;
+    }
+}
