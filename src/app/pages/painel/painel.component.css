@@ -1,0 +1,17 @@
+.painel__container {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.content a {
+    font-weight: bold;
+    text-decoration: none;
+}
