@@ -1,8 +1,8 @@
 import { Data } from "@angular/router";
 
 export interface Dado {
-    data: string;
-    hora: string;
+    data: Date;
+    hora: Date;
     cliente: string
     qtd: number;
     peso: number;
