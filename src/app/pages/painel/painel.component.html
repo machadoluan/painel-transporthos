@@ -1,8 +1,53 @@
 <div class="painel__container">
-    <div class="title">
-        <h1>Aqui vai ficar o painel</h1>
+    <div class="painel__title">
+        <h1>PAINEL TRANSPORTHOS</h1>
     </div>
-    <div class="content">
-        <a [routerLink]="['']">VOLTAR</a>
+
+
+    <div class="painel__table">
+        <input type="text" [(ngModel)]="termoDeBusca" (input)="onInputChange()" placeholder="Pesquisar por nome"
+            autofocus>
+
+        <table>
+            <thead>
+                <tr class="painel-table__descricoes">
+                    <th>DATA</th>
+                    <th>HORA</th>
+                    <th>CLIENTE</th>
+                    <th>QUANTIDADE</th>
+                    <th>PESO</th>
+                    <th>PL CAVALO</th>
+                    <th>PLCARRETA</th>
+                    <th>MOTORISTA</th>
+                    <th>ORIGEM</th>
+                    <th>DESTINO</th>
+                    <th>AJUDANTES</th>
+                    <th>CONFERENTES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="painel-table__resultados" *ngFor="let item of usuariosFiltrados">
+                    <td>{{ item.data }}</td>
+                    <td>{{ item.hora }}</td>
+                    <td>{{ item.cliente }}</td>
+                    <td>{{ item.qtd }}</td>
+                    <td>{{ item.peso }}</td>
+                    <td>{{ item.plCavalo }}</td>
+                    <td>{{ item.plCarreta }}</td>
+                    <td>{{ item.motorista }}</td>
+                    <td>{{ item.origem }}</td>
+                    <td>{{ item.destino }}</td>
+                    <td>{{ item.ajudantes }}</td>
+                    <td>{{ item.conferentes }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
     </div>
 </div>

@@ -1,3 +1,8 @@
+.painel__table {
+    overflow-x: auto;
+    /* Adicione uma barra de rolagem horizontal quando necessário */
+}
+
 .painel__container {
     margin-top: 10px;
 
@@ -7,24 +12,46 @@
     align-items: center;
 }
 
-.content {
+.painel__table {
     margin-top: 10px;
 }
 
-.content a {
+.painel-table__descricoes th {
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
     font-weight: bold;
-    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid white;
+
 }
 
+.painel-table__resultados td {
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid white;
+}
+
+
+/* Estilo para dispositivos móveis com tela menor que 768px */
 @media (max-width: 768px) {
 
-    /* Suas regras de estilo para dispositivos móveis aqui */
-    .title h1 {
-        font-size: 21px;
-        text-align: center;
+    .painel__container {
+        margin-left: 90%;
+        margin-right: 90%;
     }
 
-    .content a {
-        font-size: 14px;
+    /* Suas regras de estilo para dispositivos móveis aqui */
+    .painel__title h1 {
+        font-size: 16px;
+    }
+
+    .painel-table__descricoes th {
+        font-size: 9px;
+        padding: 2px 7px 2px 7px;
+    }
+
+    .painel-table__resultados td {
+        font-size: 7px;
     }
 }
