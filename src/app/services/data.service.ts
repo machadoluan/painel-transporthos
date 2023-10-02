@@ -62,7 +62,8 @@ export class DataService {
       "destino": "São Paulo",
       "ajudantes": "MARIO",
       "conferentes": "LUCIO"
-    }, {
+    },
+    {
       "data": new Date(2023, 10, 17),
       "hora": new Date(2023, 10, 17, 11, 20),
       "cliente": "DIEGO SILVA",
@@ -89,6 +90,20 @@ export class DataService {
       "destino": "São Paulo",
       "ajudantes": "Alberto",
       "conferentes": "Sebastião"
+    },
+    {
+      "data": new Date(2023, 9, 15),
+      "hora": new Date(2023, 9, 15, 13, 8),
+      "cliente": "DIEGO SILVA",
+      "qtd": 2,
+      "peso": 200,
+      "plCavalo": "?????",
+      "plCarreta": "???",
+      "motorista": "INACIO",
+      "origem": "Rio de Janeiro",
+      "destino": "São Paulo",
+      "ajudantes": "MARIO",
+      "conferentes": "LUCIO"
     },
   ]
 
