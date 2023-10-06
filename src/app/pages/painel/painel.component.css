@@ -1,3 +1,7 @@
+.trans{
+    font-weight: bold;
+}
+
 .painel__table {
     overflow-x: auto;
     /* Adicione uma barra de rolagem horizontal quando necessário */
@@ -22,6 +26,8 @@
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid white;
+    color: #000;
+    background-color: #DADADA;
 
 }
 
@@ -33,6 +39,7 @@
     padding-left: 12px;
     padding-right: 12px;
 }
+
 
 
 /* Estilo para dispositivos móveis com tela menor que 768px */
