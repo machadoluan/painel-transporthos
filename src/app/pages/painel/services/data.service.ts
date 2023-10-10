@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Dado } from '../dataBase/dados';
+import { Dado } from '../../../dataBase/dados';
 import { HttpClient } from '@angular/common/http'
 
 @Injectable({
