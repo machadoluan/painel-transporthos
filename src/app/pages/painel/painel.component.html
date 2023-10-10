@@ -1,6 +1,9 @@
+
+
 <div class="painel__container">
-    <div class="painel__title">
+    <div class="painel__title" style="display: flex; align-items: center; justify-content: space-around;">
         <p>PAINEL <span class="trans">TRANSPORTHOS</span></p>
+        <img src="../../../assets/transporthos.png" alt="transporthos" style="height: 80px;">
     </div>
 
 
@@ -14,15 +17,19 @@
                     <th class="ref">DATA</th>
                     <th class="ref">HORA</th>
                     <th class="ref">CLIENTE</th>
-                    <th class="ref">QUANTIDADE</th>
-                    <th class="ref">PESO</th>
-                    <th class="ref">PL CAVALO</th>
-                    <th class="ref">PLCARRETA</th>
+                    <th class="ref">QTD</th>
+                    <th class="ref">DI</th>
+                    <th class="ref">DTA</th>
+                    <th class="ref">TIPO DE CARGA</th>
+                    <th class="ref">PROCESSO</th>
+                    <th class="ref">CAVALO</th>
+                    <th class="ref">CARRETA</th>
                     <th class="ref">MOTORISTA</th>
                     <th class="ref">ORIGEM</th>
                     <th class="ref">DESTINO</th>
                     <th class="ref">AJUDANTES</th>
                     <th class="ref">CONFERENTES</th>
+                    <th class="ref">STATUS</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +38,10 @@
                     <td>{{ formatarHora(item.hora)}}</td>
                     <td>{{ item.cliente }}</td>
                     <td>{{ item.qtd }}</td>
-                    <td>{{ item.peso }}</td>
+                    <td>{{ item.di }}</td>
+                    <td>{{ item.dta }}</td>
+                    <td>{{ item.tipodecarga }}</td>
+                    <td>{{ item.processo }}</td>
                     <td>{{ item.plCavalo }}</td>
                     <td>{{ item.plCarreta }}</td>
                     <td>{{ item.motorista }}</td>
@@ -39,10 +49,11 @@
                     <td>{{ item.destino }}</td>
                     <td>{{ item.ajudantes }}</td>
                     <td>{{ item.conferentes }}</td>
+                    <td>{{ item.status }}</td>
                 </tr>
             </tbody>
         </table>
-        <section class="Cores">
+        <!-- <section class="Cores">
             <div class="cor">
                 <span class="cor-verde"></span>
                 <p>Concluído</p>
@@ -59,6 +70,6 @@
                 <span class="cor-roxo"></span>
                 <p>Programado</p>
             </div>
-        </section>
+        </section> -->
     </div>
 </div>

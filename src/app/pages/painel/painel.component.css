@@ -1,3 +1,7 @@
+.painel__title > p, .trans{
+    font-size: 25px;
+}
+
 .trans{
     font-weight: bold;
 }
@@ -11,31 +15,32 @@
     padding: .5em 0 .5em;
 }
 
-.painel__container {
-    margin-top: 10px;
+.painel__title> p, .painel__title span {
+    color: black;
+}
 
+.painel__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .painel__table {
-    margin-top: 10px;
     display: flex;
     align-items: center;
-    gap: 2em;
-    justify-content: centerss;
+    justify-content: center;
 }
 
+
+
 .painel-table__descricoes th {
-    padding: 10px 20px 10px 20px;
-    font-size: 12px;
+    padding: 0 15px ;
+    font-size: 14px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 1px solid white;
-    color: #000;
-    background-color: #DADADA;
+    /* border: 1px solid white; */
+    color: black;
+    border: 1px solid black;
 
 }
 
@@ -43,17 +48,18 @@
     text-align: center;
     font-size: 12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 1px solid white;
-    padding-left: 12px;
-    padding-right: 12px;
+    /* border: 1px solid white; */
+
 }
 
 table{
     border-collapse: collapse;
+    
 }
 
-td:first-of-type {
-    border-right-color: transparent;
+td, th {
+    background-color: transparent;
+    color: black;
     padding: 10px;
     border: 0;
 }
