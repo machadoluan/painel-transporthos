@@ -1,9 +1,12 @@
+*{
+    color: black;
+}
+
 .home__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .title {
@@ -26,8 +29,22 @@
     width: 10%;
 }
 
+.login{
+    display: flex;
+    flex-direction: column;
+}
+
+.login > input{
+    width: 50vh;
+    height: 5vh;
+    outline: none;
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
 .content {
-    margin-top: 10px;
+    margin-top: 20px;
+    
 }
 
 .content a {
