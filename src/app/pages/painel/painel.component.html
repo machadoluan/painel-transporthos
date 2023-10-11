@@ -1,5 +1,3 @@
-
-
 <div class="painel__container">
     <div class="painel__title" style="display: flex; align-items: center; justify-content: space-around;">
         <p>PAINEL <span class="trans">TRANSPORTHOS</span></p>
@@ -33,23 +31,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="painel-table__resultados" *ngFor="let item of usuariosFiltrados">
-                    <td>{{ formatarData(item.data) }}</td>
-                    <td>{{ formatarHora(item.hora)}}</td>
-                    <td>{{ item.cliente }}</td>
-                    <td>{{ item.qtd }}</td>
-                    <td>{{ item.di }}</td>
-                    <td>{{ item.dta }}</td>
-                    <td>{{ item.tipodecarga }}</td>
-                    <td>{{ item.processo }}</td>
-                    <td>{{ item.plCavalo }}</td>
-                    <td>{{ item.plCarreta }}</td>
-                    <td>{{ item.motorista }}</td>
-                    <td>{{ item.origem }}</td>
-                    <td>{{ item.destino }}</td>
-                    <td>{{ item.ajudantes }}</td>
-                    <td>{{ item.conferentes }}</td>
-                    <td>{{ item.status }}</td>
+                <tr class="painel-table__resultados" *ngFor="let cliente of clientes">
+                    <td>{{ (cliente.data) }}</td>
+                    <td>{{ (cliente.hora)}}</td>
+                    <td>{{ cliente.cliente }}</td>
+                    <td>{{ cliente.qtd }}</td>
+                    <td>{{ cliente.di }}</td>
+                    <td>{{ cliente.dta }}</td>
+                    <td>{{ cliente.tipoDeCarga }}</td>
+                    <td>{{ cliente.processo }}</td>
+                    <td>{{ cliente.plCavalo }}</td>
+                    <td>{{ cliente.plCarreta }}</td>
+                    <td>{{ cliente.motorista }}</td>
+                    <td>{{ cliente.origem }}</td>
+                    <td>{{ cliente.destino }}</td>
+                    <td>{{ cliente.ajudantes }}</td>
+                    <td>{{ cliente.conferentes }}</td>
+                    <td [ngClass]="{
+                        'status-concluido': cliente.status.toLowerCase() === 'concluído',
+                        'status-andamento': cliente.status.toLowerCase() === 'em andamento',
+                        'status-programado': cliente.status.toLowerCase() === 'programado',
+                        'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
+                      }">{{ cliente.status }}</td>
                 </tr>
             </tbody>
         </table>
