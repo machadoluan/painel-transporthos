@@ -14,7 +14,7 @@ const routes: Routes = [
     component: PainelComponent
   },
   {
-    path: 'painel-cadastro',
+    path: 'cadastro',
     component: PainelCadastroComponent
   }
 ];

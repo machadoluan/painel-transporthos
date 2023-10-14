@@ -1,0 +1,78 @@
+*{
+    color: black;
+}
+
+.container__cadastro{
+
+}
+
+.header{
+    background-color: #BEBEBE;
+    height: 5vh;
+    align-items: center;
+    display: flex;
+    padding-left: 2vh;
+}
+
+.header span{
+    font-weight: bold;
+}
+
+.container__item{
+    background-color: rgb(255, 255, 255);
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item{
+    height: 80%;
+    width: 90%;
+    background-color: #CDCDCD;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.busca input{
+    padding: 5px 3px;
+    border-radius: 20px;
+    border: 1px solid black;
+    outline: none;
+    margin-top: 2em;
+    padding-left: 5px;
+}
+
+.crud{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.acoes{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+img {
+    height: 25px;
+}
+
+.cadastro_painel{
+ 
+    width: 87%;
+    background-color: #a7a7a7;
+    border-radius: 20px;
+}
