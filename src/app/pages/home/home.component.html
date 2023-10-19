@@ -10,19 +10,20 @@
             </div> -->
             <div class="login">
                 <label for="user">Usuário</label>
-                <input type="text" name="user" id="user">
+                <input type="text" name="user" id="user" [(ngModel)]="username">
             </div>
-        
+
             <div class="login">
                 <label class="paddin" for="pass">Senha</label>
-                <input type="password" name="pass" id="pass">
+                <input type="password" name="pass" id="pass" [(ngModel)]="password">
             </div>
-        
+
             <div class="content">
-                <a [routerLink]="['painel']">ENTRAR</a>
+                <button (click)="login()">ENTRAR</button>
+                <p class="error">{{ error }}</p>
             </div>
         </div>
-        
+
     </div>
-    
+
 </div>
