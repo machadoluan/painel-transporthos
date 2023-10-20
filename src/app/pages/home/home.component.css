@@ -78,6 +78,10 @@ label {
 
 }
 
+.content button:hover {
+    transform: scale(1.3);
+}
+
 .content button {
     background-color: #3800AC;
     text-align: center;
