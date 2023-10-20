@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'painel',
-    component: PainelComponent
+    component: PainelComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cadastro',
-    component: PainelCadastroComponent
+    component: PainelCadastroComponent, canActivate: [AuthGuard]
   },
   {
     path: '**', // Rota padrão
