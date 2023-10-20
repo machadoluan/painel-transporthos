@@ -6,23 +6,16 @@ import { AuthService } from './services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree {
-    const token = localStorage.getItem('token');
-    const tokenExpiration = localStorage.getItem('tokenExpiration');
-    if (token && tokenExpiration) {
-      const now = new Date().getTime();
-      if (now < parseInt(tokenExpiration, 10)) {
-        // Token válido, permita o acesso à rota
-        return true;
-      }
+    if (this.authService.isAuthenticated()) {
+      return true; // Permite o acesso à rota
     }
-
-    // Token expirado ou ausente, redirecione para a página de login
-    return this.router.parseUrl('/home');
+    // Você não precisa redirecionar aqui, apenas permita o acesso à rota.
+    return true;
   }
 }

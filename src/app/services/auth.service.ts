@@ -19,7 +19,7 @@ export class AuthService {
       map((response: any) => {
         if (response && response.token) {
           // Exibe a data/hora de expiração do token
-          console.log('Token expira em:', new Date(response.exp * 1000)); // Multiplica por 1000 para converter segundos em milissegundos
+
           localStorage.setItem('token', response.token);
           return true;
         } else {
