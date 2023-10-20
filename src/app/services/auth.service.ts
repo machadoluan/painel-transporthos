@@ -18,9 +18,13 @@ export class AuthService {
     return this.http.post(this.apiUrl, body, { headers }).pipe(
       map((response: any) => {
         if (response && response.token) {
-          // Exibe a data/hora de expiração do token
-
+          // Exiba a data/hora de expiração do token
+          const expirationDate = new Date();
+          expirationDate.setSeconds(expirationDate.getSeconds() + 1800); // Adapte para a expiração real do token (2 minutos)
+          console.log('Token expira em:', expirationDate);
           localStorage.setItem('token', response.token);
+          // Armazene a data/hora de expiração
+          localStorage.setItem('tokenExpiration', expirationDate.toString());
           return true;
         } else {
           return false;
@@ -34,19 +38,5 @@ export class AuthService {
         }
       })
     );
-  }
-
-  isAuthenticated(): boolean {
-    // Verifique se há um token no armazenamento local para determinar a autenticação.
-    const token = localStorage.getItem('token');
-    // Armazene a data/hora de expiração em algum lugar, por exemplo, no localStorage ou no estado da aplicação
-    const expirationDate = new Date().getTime() + (60 * 60 * 1000); // Exemplo: 1 hora de validade
-    localStorage.setItem('tokenExpiration', expirationDate.toString());
-    return !!token; // Retorna verdadeiro se houver um token no armazenamento local.
-  }
-
-  // Adicione uma função para obter o token, caso você precise usá-lo para outras solicitações.
-  getToken(): string | null {
-    return localStorage.getItem('token');
   }
 }
