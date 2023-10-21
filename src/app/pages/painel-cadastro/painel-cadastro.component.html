@@ -12,7 +12,7 @@
                 <div class="crud">
                     <div class="acoes">
                         <img src="../../../assets/adicionar.png" alt="">
-                        <p>Adicionar</p>
+                        <p (click)="mostrarFormularioCadastro()">Adicionar</p>
                     </div>
                     <div class="acoes">
                         <img src="../../../assets/editar.png" alt="">
@@ -29,7 +29,13 @@
                 </div>
             </nav>
             <section class="cadastro_painel">
-
+                <form *ngIf="formularioCadastroVisivel" (submit)="enviarCadastro()">
+                    <!-- Campos de cadastro -->
+                    <label>Data:</label>
+                    <input type="text" name="data" [(ngModel)]="cadastro.data">
+                    <!-- Outros campos de cadastro aqui -->
+                    <button type="submit">Enviar</button>
+                </form>
             </section>
         </div>
     </div>
