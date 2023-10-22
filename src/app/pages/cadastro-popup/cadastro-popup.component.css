@@ -1,0 +1,35 @@
+.home__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #969EFA, #2537FD);
+}
+
+.popup-container {
+    background-color: #fff;
+    height: 70%;
+    width: 70%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.popup-container h2 {
+    color: black;
+}
+
+.popup-container label {
+    color: black;
+}
+
+.popup-container button {
+    color: black;
+}
+
+.popup-container input {
+    color: black;
+}

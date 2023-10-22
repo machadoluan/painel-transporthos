@@ -1,0 +1,62 @@
+<div class="home__container">
+
+    <div class="popup-container">
+
+
+        <h2>Cadastro de Dados</h2>
+        <form (submit)="enviarCadastro()">
+            <label>Data:</label>
+            <input type="date" name="data" [(ngModel)]="data">
+
+            <label>Hora:</label>
+            <input type="time" name="hora" [(ngModel)]="hora">
+
+            <label>Cliente:</label>
+            <input type="text" name="cliente" [(ngModel)]="cliente">
+
+            <label>Quantidade:</label>
+            <input type="number" name="qtd" [(ngModel)]="qtd">
+
+            <label>DI:</label>
+            <input type="text" name="di" [(ngModel)]="di">
+
+            <label>DTA:</label>
+            <input type="text" name="dta" [(ngModel)]="dta">
+
+            <label>TIPO DE CARGA:</label>
+            <input type="text" name="tipo-de-carga" [(ngModel)]="tipo_de_carga">
+
+            <label>PROCESSO:</label>
+            <input type="text" name="processo" [(ngModel)]="processo">
+
+            <label>CAVALO:</label>
+            <input type="text" name="cavalo" [(ngModel)]="pl_cavalo">
+
+            <label>CARRETA:</label>
+            <input type="text" name="carreta" [(ngModel)]="pl_carreta">
+
+            <label>MOTORISTA:</label>
+            <input type="text" name="motorista" [(ngModel)]="motorista">
+
+            <label>ORIGEM:</label>
+            <input type="text" name="origem" [(ngModel)]="origem">
+
+            <label>DESTINO:</label>
+            <input type="text" name="destino" [(ngModel)]="destino">
+
+            <label>AJUDANTES:</label>
+            <input type="text" name="ajudantes" [(ngModel)]="ajudantes">
+
+            <label>CONFERENTE:</label>
+            <input type="text" name="confente" [(ngModel)]="conferente">
+
+            <label>STATUS:</label>
+            <input type="text" name="status" [(ngModel)]="status">
+
+            <!-- Outros campos de cadastro aqui -->
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+</div>

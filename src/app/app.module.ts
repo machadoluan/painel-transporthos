@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DateFormatDirective } from './pages/painel-cadastro/date-format.directive';
+import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,14 +23,18 @@ import { DateFormatDirective } from './pages/painel-cadastro/date-format.directi
     PainelComponent,
     PainelCadastroComponent,
     DateFormatDirective,
+    CadastroPopupComponent,
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    TextMaskModule
+    TextMaskModule,
+
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

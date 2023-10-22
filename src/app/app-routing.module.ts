@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PainelComponent } from './pages/painel/painel.component';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
 import { AuthGuard } from './auth.guard';
+import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
 
 const routes: Routes = [
   {
@@ -12,12 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'painel',
-    component: PainelComponent, canActivate: [AuthGuard]
+    component: PainelCadastroComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cadastro',
-    component: PainelCadastroComponent, canActivate: [AuthGuard]
+    component: CadastroPopupComponent, canActivate: [AuthGuard]
   },
+
   {
     path: '**', // Rota padrão
     redirectTo: '' // Redireciona para a página inicial ('home')
