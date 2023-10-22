@@ -74,3 +74,20 @@ img {
     background-color: #a7a7a7;
     border-radius: 20px;
 }
+
+.cadastro_painel form {
+    padding: 8px;
+}
+
+.cadastro_painel form input {
+    margin-left: 2px;
+    margin-right: 5px;
+}
+
+.input__data {
+    width: 80px;
+}
+
+.input__hora {
+    width: 70px;
+}

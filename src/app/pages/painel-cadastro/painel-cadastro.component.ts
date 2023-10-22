@@ -25,6 +25,15 @@ export class PainelCadastroComponent implements OnInit {
   }
 
 
+  formatDateInput() {
+    let value = this.cadastro.data;
+    value = value.replace(/\D/g, ''); // Remova todos os caracteres não numéricos
+    if (value.length >= 2) {
+      value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+    }
+    this.cadastro.data = value;
+  }
+
   constructor() {
 
   }

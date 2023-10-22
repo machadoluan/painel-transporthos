@@ -7,19 +7,27 @@ import { HomeComponent } from './pages/home/home.component';
 import { PainelComponent } from './pages/painel/painel.component';
 import { FormsModule } from '@angular/forms';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
+import { TextMaskModule } from 'angular2-text-mask';
+import { DateFormatDirective } from './pages/painel-cadastro/date-format.directive';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PainelComponent,
-    PainelCadastroComponent
+    PainelCadastroComponent,
+    DateFormatDirective,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
