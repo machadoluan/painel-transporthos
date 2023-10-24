@@ -46,3 +46,35 @@ body {
     margin: 10px;
     color: black;
 }
+
+@media (max-width: 568px) {
+
+    .popup-container h2 {
+        color: black;
+        font-size: 40px;
+        margin-bottom: 5px;
+    }
+
+    .popup-container {
+        height: 93%;
+        width: 77%;
+    }
+
+    .home__container {
+        margin: 0px;
+        height: 1679px;
+    }
+
+
+    .popup-container label {
+        font-size: 34px;
+    }
+
+    .popup-container input {
+        font-size: 29px;
+    }
+
+
+    /* Suas regras de estilo para dispositivos móveis aqui */
+
+}
