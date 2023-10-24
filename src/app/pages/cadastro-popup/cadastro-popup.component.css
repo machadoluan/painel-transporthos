@@ -47,12 +47,13 @@ body {
     color: black;
 }
 
-@media (max-width: 568px) {
+@media (max-width: 377px) {
 
     .popup-container h2 {
         color: black;
         font-size: 27px;
-        margin-bottom: 5px;
+        margin-bottom: 30px;
+        margin-top: -60px;
     }
 
     .popup-container {
@@ -75,7 +76,7 @@ body {
     }
 
     .popup-container button {
-        margin-left: 103px;
+        margin-left: 113px;
         margin-top: 10px;
         font-size: 20px;
     }
