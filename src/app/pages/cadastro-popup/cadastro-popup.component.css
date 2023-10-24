@@ -51,7 +51,7 @@ body {
 
     .popup-container h2 {
         color: black;
-        font-size: 40px;
+        font-size: 27px;
         margin-bottom: 5px;
     }
 
@@ -62,16 +62,22 @@ body {
 
     .home__container {
         margin: 0px;
-        height: 1679px;
+        height: 1541px;
     }
 
 
     .popup-container label {
-        font-size: 34px;
+        font-size: 23px;
     }
 
     .popup-container input {
-        font-size: 29px;
+        font-size: 20px;
+    }
+
+    .popup-container button {
+        margin-left: 93px;
+        margin-top: 10px;
+        font-size: 20px;
     }
 
 
