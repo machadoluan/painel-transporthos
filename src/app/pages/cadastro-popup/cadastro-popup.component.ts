@@ -39,8 +39,8 @@ export class CadastroPopupComponent {
 
 
     const data = {
-      data: dataFormatada,
-      hora: this.hora,
+      dataAbreviada: dataFormatada,
+      horaAbreviada: this.hora,
       cliente: this.cliente,
       quantidade: this.qtd,
       di: this.di,
@@ -58,8 +58,8 @@ export class CadastroPopupComponent {
       // ...
     };
 
-    console.log(data.data)
-    console.log(this.hora)
+    console.log(data.dataAbreviada)
+    console.log(data.horaAbreviada)
 
     // Faça uma solicitação HTTP POST para a API
     this.http.post('https://transporthos-painel-backend.vercel.app/clientes', data).subscribe(

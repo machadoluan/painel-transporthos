@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'cadastro',
     component: CadastroPopupComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'listagem',
+    component: PainelComponent, canActivate: [AuthGuard]
+  },
 
   {
     path: '**', // Rota padrão

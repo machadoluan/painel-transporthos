@@ -1,4 +1,15 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .home__container {
+    margin: 10px;
+    height: 300px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,9 +19,9 @@
 
 .popup-container {
     background-color: #fff;
-    height: 70%;
-    width: 70%;
-    border-radius: 20px;
+    height: 90%;
+    width: 86%;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,6 +34,7 @@
 }
 
 .popup-container label {
+    margin-left: 7px;
     color: black;
 }
 
@@ -31,5 +43,6 @@
 }
 
 .popup-container input {
+    margin: 10px;
     color: black;
 }

@@ -47,7 +47,7 @@ export class PainelCadastroComponent implements OnInit {
     const url = '/cadastro';
 
     // Configuração da janela pop-up (tamanho, nome, etc.)
-    const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1000, height=200';
+    const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1300, height=350';
 
     // Abra a janela pop-up
     window.open(url, 'CadastroPopup', configuracao);
@@ -55,10 +55,10 @@ export class PainelCadastroComponent implements OnInit {
 
 
 
-  abrirNovaJanela() {
+  abrirJanelaDoPainel() {
     // Especifique a URL da página do componente CadastroPopupComponent
     const token = localStorage.getItem('token');
-    const url = '/cadastro?token=${token}';
+    const url = '/listagem?token=${token}';
 
     // Abra uma nova guia no navegador
 

@@ -24,30 +24,14 @@
                     </div>
                     <div class="acoes">
                         <img src="../../../assets/Finalizar.png" alt="">
-                        <p>Finalizar</p>
+                        <p (click)="abrirJanelaDoPainel()">Painel</p>
                     </div>
                 </div>
             </nav>
             <section class="cadastro_painel">
-                <form *ngIf="formularioCadastroVisivel" (submit)="enviarCadastro()">
-                    <!-- Campos de cadastro -->
-                    <label>Data:</label>
-                    <input type="text" name="data" class="input__data" [(ngModel)]="cadastro.data" appDateFormat>
-                    <label>Hora:</label>
-                    <input type="text" name="data" class="input__hora" [(ngModel)]="cadastro.hora">
-                    <label>Cliente:</label>
-                    <input type="text" name="data" [(ngModel)]="cadastro.cliente">
-                    <label>Quantidade:</label>
-                    <input type="text" name="data" [(ngModel)]="cadastro.qtd">
-                    <label>DI:</label>
-                    <input type="text" name="data" [(ngModel)]="cadastro.di">
-                    <!-- Outros campos de cadastro aqui -->
-                    <button type="submit">Enviar</button>
-                </form>
+
             </section>
         </div>
     </div>
 
 </div>
-
-<app-painel></app-painel>
