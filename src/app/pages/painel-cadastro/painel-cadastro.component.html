@@ -16,7 +16,7 @@
                     </div>
                     <div class="acoes">
                         <img src="../../../assets/editar.png" alt="">
-                        <p>Editar</p>
+                        <p (click)="abrirPopupEditarCadastro()">Editar</p>
                     </div>
                     <div class="acoes">
                         <img src="../../../assets/remover.png" alt="">
@@ -29,7 +29,53 @@
                 </div>
             </nav>
             <section class="cadastro_painel">
-
+                <table>
+                    <thead>
+                        <tr class="painel-table__descricoes">
+                            <th class="ref">DATA</th>
+                            <th class="ref">HORA</th>
+                            <th class="ref">CLIENTE</th>
+                            <th class="ref">QTD</th>
+                            <th class="ref">DI</th>
+                            <th class="ref">DTA</th>
+                            <th class="ref">TIPO DE CARGA</th>
+                            <th class="ref">PROCESSO</th>
+                            <th class="ref">CAVALO</th>
+                            <th class="ref">CARRETA</th>
+                            <th class="ref">MOTORISTA</th>
+                            <th class="ref">ORIGEM</th>
+                            <th class="ref">DESTINO</th>
+                            <th class="ref">AJUDANTES</th>
+                            <th class="ref">CONFERENTES</th>
+                            <th class="ref">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="painel-table__resultados" *ngFor="let cliente of clientes">
+                            <td>{{ (cliente.data) }}</td>
+                            <td>{{ (cliente.hora)}}</td>
+                            <td>{{ cliente.cliente }}</td>
+                            <td>{{ cliente.qtd }}</td>
+                            <td>{{ cliente.di }}</td>
+                            <td>{{ cliente.dta }}</td>
+                            <td>{{ cliente.tipoDeCarga }}</td>
+                            <td>{{ cliente.processo }}</td>
+                            <td>{{ cliente.plCavalo }}</td>
+                            <td>{{ cliente.plCarreta }}</td>
+                            <td>{{ cliente.motorista }}</td>
+                            <td>{{ cliente.origem }}</td>
+                            <td>{{ cliente.destino }}</td>
+                            <td>{{ cliente.ajudantes }}</td>
+                            <td>{{ cliente.conferentes }}</td>
+                            <td [ngClass]="{
+                                'status-concluido': cliente.status.toLowerCase() === 'concluído',
+                                'status-andamento': cliente.status.toLowerCase() === 'em andamento',
+                                'status-programado': cliente.status.toLowerCase() === 'programado',
+                                'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
+                              }">{{ cliente.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </div>
     </div>

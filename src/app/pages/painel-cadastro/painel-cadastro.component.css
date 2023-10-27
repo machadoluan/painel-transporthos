@@ -91,3 +91,36 @@ img {
 .input__hora {
     width: 70px;
 }
+
+.painel-table__descricoes th {
+    font-size: 14px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.painel-table__resultados td {
+    font-size: 10px;
+    padding: 5px;
+    text-align: center;
+
+}
+
+*Mudando a cor da celula de acordo com o STATUS*/ .status-concluido {
+    background-color: green;
+    color: white;
+}
+
+.status-andamento {
+    background-color: rgb(197, 181, 8);
+    color: white;
+}
+
+.status-programado {
+    background-color: rgb(70, 7, 95);
+    color: white;
+}
+
+.status-aguardando {
+    background-color: rgb(149, 30, 6);
+    color: white;
+}

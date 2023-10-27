@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-cadastro-popup',
@@ -63,15 +64,42 @@ export class CadastroPopupComponent {
 
     // Faça uma solicitação HTTP POST para a API
     this.http.post('https://transporthos-painel-backend.vercel.app/clientes', data).subscribe(
-      (response) => {
+      (response: any) => {
         // Lidar com a resposta da API
         console.log('Cadastro enviado com sucesso', response);
+        window.alert(response.Mensagem)
+
+        // Limpar os campos do formulário
+        this.resetForm();
+
       },
       (error) => {
         // Lidar com erros
+        console.log(error.error)
+        window.alert(error.error.Mensagem)
         console.error('Erro ao enviar cadastro', error);
       }
     );
+  }
+
+  resetForm() {
+    // Método para limpar os campos do formulário
+    this.data = '';
+    this.hora = '';
+    this.cliente = '';
+    this.qtd = '';
+    this.di = '';
+    this.dta = '';
+    this.tipo_de_carga = '';
+    this.processo = '';
+    this.pl_cavalo = '';
+    this.pl_carreta = '';
+    this.motorista = '';
+    this.origem = '';
+    this.destino = '';
+    this.ajudantes = '';
+    this.conferente = '';
+    this.status = '';
   }
 }
 
