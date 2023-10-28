@@ -17,7 +17,7 @@ export class PainelCadastroComponent implements OnInit {
   clientes: any[] = [];
   termoDeBusca: string = '';
   currentPage: number = 1;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 10;
   totalItems: number = 0;
   alternarCores: boolean = true;
 
