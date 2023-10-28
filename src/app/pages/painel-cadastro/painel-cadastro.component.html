@@ -7,7 +7,7 @@
         <div class="item">
             <nav class="navbar">
                 <div class="busca">
-                    <input type="text" name="busca" id="busca" placeholder="Buscar">
+                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()">
                 </div>
                 <div class="crud">
                     <div class="acoes">
@@ -51,29 +51,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="painel-table__resultados" *ngFor="let cliente of clientes">
-                            <td>{{ (cliente.data) }}</td>
-                            <td>{{ (cliente.hora)}}</td>
-                            <td>{{ cliente.cliente }}</td>
-                            <td>{{ cliente.qtd }}</td>
-                            <td>{{ cliente.di }}</td>
-                            <td>{{ cliente.dta }}</td>
-                            <td>{{ cliente.tipoDeCarga }}</td>
-                            <td>{{ cliente.processo }}</td>
-                            <td>{{ cliente.plCavalo }}</td>
-                            <td>{{ cliente.plCarreta }}</td>
-                            <td>{{ cliente.motorista }}</td>
-                            <td>{{ cliente.origem }}</td>
-                            <td>{{ cliente.destino }}</td>
-                            <td>{{ cliente.ajudantes }}</td>
-                            <td>{{ cliente.conferentes }}</td>
-                            <td [ngClass]="{
+                        <ng-container *ngFor="let cliente of clientes; let i = index">
+                            <tr class="painel-table__resultados"
+                                [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'">
+                                <td>{{ (cliente.data) }}</td>
+                                <td>{{ (cliente.hora)}}</td>
+                                <td>{{ cliente.cliente }}</td>
+                                <td>{{ cliente.qtd }}</td>
+                                <td>{{ cliente.di }}</td>
+                                <td>{{ cliente.dta }}</td>
+                                <td>{{ cliente.tipoDeCarga }}</td>
+                                <td>{{ cliente.processo }}</td>
+                                <td>{{ cliente.pl_cavalo }}</td>
+                                <td>{{ cliente.pl_carreta }}</td>
+                                <td>{{ cliente.motorista }}</td>
+                                <td>{{ cliente.origem }}</td>
+                                <td>{{ cliente.destino }}</td>
+                                <td>{{ cliente.ajudantes }}</td>
+                                <td>{{ cliente.conferente }}</td>
+                                <td [ngClass]="{
                                 'status-concluido': cliente.status.toLowerCase() === 'concluído',
                                 'status-andamento': cliente.status.toLowerCase() === 'em andamento',
                                 'status-programado': cliente.status.toLowerCase() === 'programado',
                                 'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
                               }">{{ cliente.status }}</td>
-                        </tr>
+                            </tr>
+                        </ng-container>
                     </tbody>
                 </table>
             </section>

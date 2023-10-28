@@ -102,10 +102,27 @@ img {
     font-size: 10px;
     padding: 5px;
     text-align: center;
+    color: white;
 
 }
 
-*Mudando a cor da celula de acordo com o STATUS*/ .status-concluido {
+/*Mudando a cor da Linha da tabela*/
+
+.linha-azul {
+    background-color: blue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+.linha-azul-escuro {
+    background-color: darkblue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+
+/*Mudando a cor conforme o STATUS*/
+.status-concluido {
     background-color: green;
     color: white;
 }

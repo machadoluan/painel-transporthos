@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { CadastroPopupComponent } from '../cadastro-popup/cadastro-popup.component';
 import { DataApiService } from 'src/app/services/data-api.service';
+import { HttpClient } from '@angular/common/http';
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-painel-cadastro',
@@ -13,11 +15,23 @@ import { DataApiService } from 'src/app/services/data-api.service';
 export class PainelCadastroComponent implements OnInit {
 
   clientes: any[] = [];
+  termoDeBusca: string = '';
 
 
-  constructor(private clienteService: DataApiService) {
+
+  constructor(private clienteService: DataApiService, private http: HttpClient) {
+
 
   }
+
+  buscarClientes() {
+    const params = { busca: this.termoDeBusca };
+    this.http.get<any[]>('https://transporthos-painel-backend.vercel.app/buscar', { params }).subscribe((response) => {
+      this.clientes = response;
+    });
+  }
+
+
 
 
   abrirPopupCadastro() {
@@ -58,10 +72,14 @@ export class PainelCadastroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.clienteService.listarClientes().subscribe((data: any) => {
-      this.clientes = data;
-    });
+    // this.clienteService.listarClientes().subscribe((data: any) => {
+    //   this.clientes = data;
+    // });
 
   }
+
+
+
+
 
 }

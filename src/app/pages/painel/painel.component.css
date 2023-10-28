@@ -49,6 +49,7 @@
 .painel-table__resultados td {
     text-align: center;
     font-size: 12px;
+    color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* border: 1px solid white; */
 
@@ -112,6 +113,21 @@ th {
 .cor>p {
     font-size: 12px;
 }
+
+/*Mudando a cor da Linha da tabela*/
+
+.linha-azul {
+    background-color: blue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+.linha-azul-escuro {
+    background-color: darkblue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
 
 /*Mudando a cor da celula de acordo com o STATUS*/
 
