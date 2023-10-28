@@ -7,7 +7,8 @@
         <div class="item">
             <nav class="navbar">
                 <div class="busca">
-                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()">
+                    <label class="label__input">BUSCAR:</label>
+                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()" placeholder="BUSCAR">
                 </div>
                 <div class="crud">
                     <div class="acoes">
@@ -51,7 +52,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <ng-container *ngFor="let cliente of clientes; let i = index">
+                        <ng-container
+                            *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems } let i = index">
                             <tr class="painel-table__resultados"
                                 [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'">
                                 <td>{{ (cliente.data) }}</td>
@@ -78,8 +80,14 @@
                             </tr>
                         </ng-container>
                     </tbody>
+
                 </table>
+                <div class="pagination-row">
+                    <pagination-controls (pageChange)="paginaAlterada($event)"></pagination-controls>
+                </div>
             </section>
+
+
         </div>
     </div>
 

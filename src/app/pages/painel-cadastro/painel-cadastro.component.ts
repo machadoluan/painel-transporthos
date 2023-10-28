@@ -16,6 +16,11 @@ export class PainelCadastroComponent implements OnInit {
 
   clientes: any[] = [];
   termoDeBusca: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: number = 0;
+  alternarCores: boolean = true;
+
 
 
 
@@ -24,10 +29,23 @@ export class PainelCadastroComponent implements OnInit {
 
   }
 
+  paginaAlterada(event: any): void {
+    this.currentPage = event;
+    this.buscarClientes(); // Atualize a lista de clientes ao mudar de página
+  }
+
+
   buscarClientes() {
-    const params = { busca: this.termoDeBusca };
+    const params = {
+      busca: this.termoDeBusca,
+      page: this.currentPage,
+      pageSize: this.itemsPerPage
+    };
+
     this.http.get<any[]>('https://transporthos-painel-backend.vercel.app/buscar', { params }).subscribe((response) => {
       this.clientes = response;
+      this.totalItems = response.length; // Atualize o total de itens
+      this.alternarCores = !this.alternarCores; // Alternar as cores
     });
   }
 
@@ -70,12 +88,8 @@ export class PainelCadastroComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-
-    // this.clienteService.listarClientes().subscribe((data: any) => {
-    //   this.clientes = data;
-    // });
-
+  ngOnInit() {
+    this.buscarClientes();
   }
 
 

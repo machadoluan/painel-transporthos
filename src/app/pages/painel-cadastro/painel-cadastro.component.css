@@ -40,12 +40,18 @@
     gap: 2em;
 }
 
+.label__input {
+    text-transform: uppercase;
+    display: flex;
+    padding: 5px;
+}
+
 .busca input {
     padding: 5px 3px;
     border-radius: 20px;
     border: 1px solid black;
     outline: none;
-    margin-top: 2em;
+    margin-top: 0em;
     padding-left: 5px;
 }
 
@@ -105,6 +111,16 @@ img {
     color: white;
 
 }
+
+.pagination-row {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.pagination-row .ngx-pagination {
+    display: inline-block;
+}
+
 
 /*Mudando a cor da Linha da tabela*/
 

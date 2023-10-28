@@ -12,6 +12,7 @@ import { DateFormatDirective } from './pages/painel-cadastro/date-format.directi
 import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -33,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     TextMaskModule,
-
+    NgxPaginationModule,
     BrowserAnimationsModule
   ],
   providers: [],
