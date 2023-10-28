@@ -19,8 +19,8 @@ body {
 
 .popup-container {
     background-color: #fff;
-    height: 90%;
-    width: 86%;
+    height: 224px;
+    width: 1104px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ body {
     color: black;
 }
 
-@media (max-width: 377px) {
+@media (max-width: 576px) {
 
     .popup-container h2 {
         color: black;
@@ -57,8 +57,8 @@ body {
     }
 
     .popup-container {
-        height: 93%;
-        width: 77%;
+        height: 1443px;
+        width: 279px;
     }
 
     .home__container {
@@ -69,6 +69,7 @@ body {
 
     .popup-container label {
         font-size: 23px;
+        margin-left: 17px;
     }
 
     .popup-container input {
@@ -76,8 +77,8 @@ body {
     }
 
     .popup-container button {
-        margin-left: 113px;
-        margin-top: 10px;
+        margin-left: 107px;
+        margin-top: 14px;
         font-size: 20px;
     }
 
