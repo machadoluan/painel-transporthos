@@ -33,6 +33,7 @@
                 <table>
                     <thead>
                         <tr class="painel-table__descricoes">
+                            <th class="ref">ID</th>
                             <th class="ref">DATA</th>
                             <th class="ref">HORA</th>
                             <th class="ref">CLIENTE</th>
@@ -54,8 +55,12 @@
                     <tbody>
                         <ng-container
                             *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems } let i = index">
-                            <tr class="painel-table__resultados"
-                                [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'">
+                            <tr class="painel-table__resultados linha-selecionavel" [ngClass]="{
+                                 'linha-azul': i % 2 === 0,
+                                 'linha-azul-escuro': i % 2 !== 0,
+                                 'selecionada': selectedRow === cliente
+                                }" (click)="selecionarLinha(cliente)">
+                                <td>{{cliente.id}}</td>
                                 <td>{{ (cliente.data) }}</td>
                                 <td>{{ (cliente.hora)}}</td>
                                 <td>{{ cliente.cliente }}</td>

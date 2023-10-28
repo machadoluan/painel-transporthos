@@ -21,13 +21,22 @@ export class PainelCadastroComponent implements OnInit {
   totalItems: number = 0;
   alternarCores: boolean = true;
 
+  selectedRow: any;
 
 
 
-  constructor(private clienteService: DataApiService, private http: HttpClient) {
 
+
+  constructor(private clienteService: DataApiService, private http: HttpClient) { }
+
+
+  selecionarLinha(cliente: any) {
+    this.selectedRow = cliente; // Salva a linha selecionada
+    console.log(cliente);
 
   }
+
+
 
   paginaAlterada(event: any): void {
     this.currentPage = event;

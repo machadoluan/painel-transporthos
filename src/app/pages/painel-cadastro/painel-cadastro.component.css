@@ -112,6 +112,9 @@ img {
 
 }
 
+
+
+
 .pagination-row {
     text-align: center;
     margin-top: 5px;
@@ -136,6 +139,18 @@ img {
     /* Cor do texto, se necessário */
 }
 
+/* Quando o cursor passar sobre a linha selecionável */
+.linha-selecionavel:hover {
+    cursor: pointer;
+}
+
+
+.selecionada {
+    background-color: #a6bee2;
+    /* Cor de destaque de sua escolha */
+    color: #fff;
+    /* Cor de texto para a linha selecionada */
+}
 
 /*Mudando a cor conforme o STATUS*/
 .status-concluido {
