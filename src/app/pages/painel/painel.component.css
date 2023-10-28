@@ -152,24 +152,46 @@ th {
 }
 
 /* Estilo para dispositivos móveis com tela menor que 768px */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
 
     .painel__container {
-        margin-left: 90%;
-        margin-right: 90%;
+        margin: auto;
+    }
+
+    .painel__table {
+        margin: auto;
     }
 
     /* Suas regras de estilo para dispositivos móveis aqui */
+
+    .painel-table__descricoes {
+        display: flex;
+    }
+
+    .painel-table__resultados {
+        display: flex;
+    }
+
     .painel__title h1 {
         font-size: 16px;
     }
 
     .painel-table__descricoes th {
         font-size: 9px;
+        width: 100px;
         padding: 2px 7px 2px 7px;
     }
 
     .painel-table__resultados td {
         font-size: 7px;
+        width: 100px;
+        text-align: center;
+    }
+
+    /* Tornar as células da descrição fixas na parte superior */
+    .painel-table__descricoes {
+        position: sticky;
+        top: 0;
+        background-color: #f5f5f5;
     }
 }
