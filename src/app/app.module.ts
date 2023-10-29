@@ -16,6 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
 import { DadosPainelService } from './services/dados-painel.service';
 import { ClienteSelecionadoServiceService } from './services/cliente-selecionado-service.service';
+import { ClienteIdService } from './services/cliente-id.service';
 
 
 
@@ -42,7 +43,11 @@ import { ClienteSelecionadoServiceService } from './services/cliente-selecionado
     BrowserAnimationsModule,
 
   ],
-  providers: [DadosPainelService],
+  providers: [
+    DadosPainelService,
+    ClienteIdService,
+    ClienteSelecionadoServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

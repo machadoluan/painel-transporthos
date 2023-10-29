@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
-import { ClienteSelecionadoServiceService } from 'src/app/services/cliente-selecionado-service.service';
 
 
 
@@ -14,17 +13,18 @@ export class EditarPopupComponent implements OnInit {
 
 
 
-  constructor(
-    private clienteSelecionadoService: ClienteSelecionadoServiceService,
-    private clienteIdService: ClienteIdService
-  ) {
+  constructor(private clienteIdService: ClienteIdService) {
+    // this.clienteEditado = this.clienteIdService.getClienteSelecionado();
+    // console.log('Cliente Id', this.clienteEditado);
+
   }
 
 
   ngOnInit() {
-    this.clienteEditado = this.clienteIdService.getClienteSelecionado(); // Recupera o cliente selecionado do serviço
-    console.log(this.clienteIdService.getClienteSelecionado());
-
+    setTimeout(() => {
+      this.clienteEditado = this.clienteIdService.getClienteSelecionado();
+      console.log('Cliente recuperado no EditarPopupComponent:', this.clienteEditado);
+    }, 0);
   }
 
   // Outros métodos do seu componente...

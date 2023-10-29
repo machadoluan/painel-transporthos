@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
-import { DadosPainelService } from 'src/app/services/dados-painel.service';
+
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
-import { ClienteSelecionadoServiceService } from 'src/app/services/cliente-selecionado-service.service';
+
 
 
 interface Cliente {
@@ -29,26 +29,33 @@ export class PainelCadastroComponent implements OnInit {
   selectedRow: any;
   clienteSelecionado: any;
   mostrarPopupEditar: boolean | undefined;
+  clienteIdSalvo: any;
 
   constructor(
     private clientesservice: ClientesService,
     private http: HttpClient,
     private deleteService: DeleteService,
-    private dadosPainel: DadosPainelService,
-    private clienteIdService: ClienteIdService,
-    private clienteSelecionadoService: ClienteSelecionadoServiceService
+
+    private clienteIdService: ClienteIdService
   ) { }
 
   selecionarLinha(cliente: any) {
     this.selectedRow = cliente;
     this.clienteIdService.setClienteSelecionado(cliente); // Define o cliente selecionado no serviço
-    console.log('Cliente Service', this.clienteIdService.getClienteSelecionado()); // Use o método getClienteSelecionado para recuperar o cliente
+    this.clienteIdSalvo = this.clienteIdService.getClienteSelecionado();
+    console.log('Cliente Service (definido no componente):', this.clienteIdService.getClienteSelecionado());
   }
 
   abrirPopupEditarCadastro() {
-    const url = '/editar';
-    const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, width=1300, height=350,resizable=no';
-    window.open(url, 'EditarPopup', configuracao);
+    const clienteSelecionado = this.clienteIdService.getClienteSelecionado();
+
+    if (clienteSelecionado) {
+      const url = '/editar';
+      const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, width=1300, height=350,resizable=no';
+      window.open(url, 'EditarPopup', configuracao);
+    } else {
+      // Lide com o caso em que os dados do cliente não estão prontos, por exemplo, mostre uma mensagem de erro.
+    }
   }
 
 
