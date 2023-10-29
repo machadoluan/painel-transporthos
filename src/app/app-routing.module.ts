@@ -5,6 +5,7 @@ import { PainelComponent } from './pages/painel/painel.component';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
 import { AuthGuard } from './auth.guard';
 import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
+import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'listagem',
     component: PainelComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'editar',
+    component: EditarPopupComponent, canActivate: [AuthGuard]
   },
 
   {

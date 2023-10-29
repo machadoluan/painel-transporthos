@@ -13,6 +13,9 @@ import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
+import { DadosPainelService } from './services/dados-painel.service';
+import { ClienteSelecionadoServiceService } from './services/cliente-selecionado-service.service';
 
 
 
@@ -25,6 +28,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PainelCadastroComponent,
     DateFormatDirective,
     CadastroPopupComponent,
+    EditarPopupComponent,
 
   ],
   imports: [
@@ -35,9 +39,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     TextMaskModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
-  providers: [],
+  providers: [DadosPainelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,6 +29,17 @@ body {
 
 }
 
+.select__status {
+    color: black;
+    padding: 1px;
+    margin-right: 8px;
+
+}
+
+.select__status option {
+    color: black;
+}
+
 .popup-container h2 {
     color: black;
 }

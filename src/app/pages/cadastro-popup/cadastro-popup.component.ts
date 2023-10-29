@@ -25,7 +25,7 @@ export class CadastroPopupComponent {
   destino: string = '';
   ajudantes: string = '';
   conferente: string = '';
-  status: string = '';
+  selectedStatus: string = '';
   // ...
 
   constructor(private authService: AuthService, private http: HttpClient) { }
@@ -55,7 +55,7 @@ export class CadastroPopupComponent {
       destino: this.destino,
       ajudantes: this.ajudantes,
       conferente: this.conferente,
-      status: this.status
+      status: this.selectedStatus
       // ...
     };
 
@@ -68,6 +68,7 @@ export class CadastroPopupComponent {
         // Lidar com a resposta da API
         console.log('Cadastro enviado com sucesso', response);
         window.alert(response.Mensagem)
+
 
         // Limpar os campos do formulário
         this.resetForm();
@@ -99,7 +100,7 @@ export class CadastroPopupComponent {
     this.destino = '';
     this.ajudantes = '';
     this.conferente = '';
-    this.status = '';
+    this.selectedStatus = '';
   }
 }
 

@@ -50,8 +50,13 @@
             <label>CONFERENTE:</label>
             <input type="text" name="confente" [(ngModel)]="conferente">
 
-            <label>STATUS:</label>
-            <input type="text" name="status" [(ngModel)]="status">
+            <label for="status">STATUS:</label>
+            <select class="select__status" id="status" [(ngModel)]="selectedStatus" name="status">
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Programado">Programado</option>
+                <option value="Aguardando Carregamento">Aguardando Carregamento</option>
+            </select>
 
             <!-- Outros campos de cadastro aqui -->
 
