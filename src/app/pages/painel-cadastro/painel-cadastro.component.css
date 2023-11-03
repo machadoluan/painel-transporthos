@@ -18,10 +18,10 @@
 
 .container__item {
     background-color: rgb(255, 255, 255);
-    height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 95vh;
 }
 
 .item {
@@ -173,10 +173,44 @@ img {
 
 @media (max-width: 1300px) {
     .navbar {
-      display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 1em;
+    align-items: center;
+    }
+
+    .crud {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .acoes{
+        gap: 10px;
+    }
+
+    .busca > input{
+        font-size: 10px;
+    }
+
+    .label__input{
+        font-size: 10px;
+    }
+
+    .acoes > p{
+        font-size: 10px;
+    }
+
+    .item{
+        flex-direction: column;
+        
     }
 
     .cadastro_painel{
         width: 100%;
+    }
+
+    .container__item{
+        height: 145vh;
+
     }
   }
