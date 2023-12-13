@@ -1,0 +1,102 @@
+<div class="modal-header">
+  <h2 class="modal-title">Cadastro de Dados</h2>
+  <button type="button" class="btn close" aria-label="Fechar" (click)="closeModal()">
+    <span aria-hidden="true" class="close-button">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (submit)="enviarCadastro()" class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+      <div class="form-group">
+        <label for="data">DATA:</label>
+        <input type="date" name="data" id="data" [(ngModel)]="data" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="hora">HORA:</label>
+        <input type="time" name="hora" id="hora" [(ngModel)]="hora" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="cliente">CLIENTE:</label>
+        <input type="text" name="cliente" id="cliente" [(ngModel)]="cliente" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label id="qtd">QUANTIDADE:</label>
+        <input type="number" name="qtd" id="qtd" [(ngModel)]="qtd" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="di">DI:</label>
+        <input type="text" name="di" id="di" [(ngModel)]="di" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="dta">DTA:</label>
+        <input type="text" name="dta" id="dta" [(ngModel)]="dta" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="tipo-de-carga">TIPO DE CARGA:</label>
+        <input type="text" name="tipo-de-carga" id="tipo-de-carga" [(ngModel)]="tipo_de_carga" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="processo">PROCESSO:</label>
+        <input type="text" name="processo" id="processo" [(ngModel)]="processo" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="cavalo">CAVALO:</label>
+        <input type="text" name="cavalo" id="cavalo" [(ngModel)]="pl_cavalo" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="carreta">CARRETA:</label>
+        <input type="text" name="carreta" id="carreta" [(ngModel)]="pl_carreta" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="motorista">MOTORISTA:</label>
+        <input type="text" name="motorista" id="motorista" [(ngModel)]="motorista" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="origem">ORIGEM:</label>
+        <input type="text" name="origem" id="origem" [(ngModel)]="origem" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="destino">DESTINO:</label>
+        <input type="text" name="destino" id="destino" [(ngModel)]="destino" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="ajudantes">AJUDANTES:</label>
+        <input type="text" name="ajudantes" id="ajudantes" [(ngModel)]="ajudantes" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="confente">CONFERENTE:</label>
+        <input type="text" name="confente" id="confente" [(ngModel)]="conferente" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
+        <label for="status">STATUS:</label>
+        <select class="form-control form-control-sm mb-2" id="status" [(ngModel)]="selectedStatus" name="status">
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluído">Concluído</option>
+            <option value="Programado">Programado</option>
+            <option value="Aguardando Carregamento">Aguardando Carregamento</option>
+        </select>
+      </div>
+
+      <!-- Outros campos de cadastro aqui -->
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary text-white">Enviar</button>
+    </div>
+  </form>
+</div>

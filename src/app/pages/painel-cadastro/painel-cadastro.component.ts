@@ -4,6 +4,8 @@ import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
 
 
 
@@ -35,7 +37,7 @@ export class PainelCadastroComponent implements OnInit {
     private clientesservice: ClientesService,
     private http: HttpClient,
     private deleteService: DeleteService,
-
+    private modalService: NgbModal,
     private clienteIdService: ClienteIdService
   ) { }
 
@@ -103,10 +105,16 @@ export class PainelCadastroComponent implements OnInit {
       });
   }
 
-  abrirPopupCadastro() {
-    const url = '/cadastro';
-    const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, width=1300, height=350,resizable=no';
-    window.open(url, 'CadastroPopup', configuracao);
+  abrirModalCadastro() {
+    const modalRef = this.modalService.open(CadastroModalComponent, { size: 'xl' });
+    modalRef.result.then(
+      (result) => {
+        console.log(`Modal fechado com resultado: ${result}`);
+      },
+      (reason) => {
+        console.log(`Modal fechado com motivo: ${reason}`);
+      }
+    );
   }
 
   abrirJanelaDoPainel() {
