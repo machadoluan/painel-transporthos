@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h2 class="modal-title">Cadastro de Dados</h2>
+  <h4 class="modal-title">{{isEdit ? 'Edição' : 'Cadastro'}} de Dados</h4>
   <button type="button" class="btn close" aria-label="Fechar" (click)="closeModal()">
     <span aria-hidden="true" class="close-button">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <form (submit)="enviarCadastro()" class="container">
+  <form (submit)="enviar()" class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
       <div class="form-group">
         <label for="data">DATA:</label>
