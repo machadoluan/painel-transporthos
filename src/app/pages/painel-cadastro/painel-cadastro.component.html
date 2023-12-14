@@ -7,26 +7,25 @@
         <div class="item">
             <nav class="navbar">
                 <div class="busca">
-                    <label class="label__input">BUSCAR:</label>
-                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()" placeholder="BUSCAR">
+                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()" placeholder="Buscar">
                 </div>
                 <div class="crud">
-                    <div class="acoes">
+                    <button class="btn acoes" (click)="abrirModalCadastro()">
                         <img src="../../../assets/adicionar.png" alt="">
-                        <p (click)="abrirModalCadastro()">Adicionar</p>
-                    </div>
-                    <div class="acoes">
+                        <span>Adicionar</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirModalEdicao()">
                         <img src="../../../assets/editar.png" alt="">
-                        <p (click)="abrirModalEdicao()">Editar</p>
-                    </div>
-                    <div class="acoes">
+                        <span>Editar</span>
+                    </button>
+                    <button class="btn acoes" (click)="removerClienteSelecionado()">
                         <img src="../../../assets/remover.png" alt="">
-                        <p (click)="removerClienteSelecionado()">Remover</p>
-                    </div>
-                    <div class="acoes">
+                        <span>Remover</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirJanelaDoPainel()">
                         <img src="../../../assets/Finalizar.png" alt="">
-                        <p (click)="abrirJanelaDoPainel()">Painel</p>
-                    </div>
+                        <span>Painel</span>
+                    </button>
                 </div>
             </nav>
             <section class="cadastro_painel">
@@ -56,8 +55,6 @@
                         <ng-container
                             *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems } let i = index">
                             <tr class="painel-table__resultados linha-selecionavel" [ngClass]="{
-                                 'linha-azul': i % 2 === 0,
-                                 'linha-azul-escuro': i % 2 !== 0,
                                  'selecionada': selectedRow === cliente
                                 }" (click)="selecionarLinha(cliente)">
                                 <td>{{cliente.id}}</td>
@@ -76,18 +73,14 @@
                                 <td>{{ cliente.destino }}</td>
                                 <td>{{ cliente.ajudantes }}</td>
                                 <td>{{ cliente.conferente }}</td>
-                                <td class="td-status">
-                                    <div ngbDropdown
-                                        (click)="stopPropagation($event)"
-                                        class="d-inline-block w-100"
-                                        [ngClass]="{
-                                            'status-concluido': cliente.status.toLowerCase() === 'concluído',
-                                            'status-andamento': cliente.status.toLowerCase() === 'em andamento',
-                                            'status-programado': cliente.status.toLowerCase() === 'programado',
-                                            'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
-                                        }"
-                                    >
-                                        <button type="button" class="btn btn-ghost w-100" id="updateStatus" ngbDropdownToggle>
+                                <td class="td-status" (click)="stopPropagation($event)" [ngClass]="{
+                                    'status-concluido': cliente.status.toLowerCase() === 'concluído',
+                                    'status-andamento': cliente.status.toLowerCase() === 'em andamento',
+                                    'status-programado': cliente.status.toLowerCase() === 'programado',
+                                    'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
+                                }">
+                                    <div ngbDropdown class="d-inline-block w-100 h-100">
+                                        <button type="button" class="btn btn-ghost w-100 h-100" id="updateStatus" ngbDropdownToggle>
                                             {{ cliente.status }}
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="updateStatus">
@@ -124,7 +117,7 @@
 
                 </table>
                 <div class="pagination-row">
-                    <pagination-controls (pageChange)="paginaAlterada($event)"></pagination-controls>
+                    <pagination-controls (pageChange)="paginaAlterada($event)" nextLabel="Próximo" previousLabel="Anterior" class="my-pagination"></pagination-controls>
                 </div>
             </section>
 
