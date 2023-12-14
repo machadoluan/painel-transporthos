@@ -8,7 +8,7 @@
 }
 
 .painel__table {
-    overflow-x: auto;
+    overflow: auto;
     /* Adicione uma barra de rolagem horizontal quando necessário */
 }
 
@@ -48,7 +48,7 @@
 
 .painel-table__resultados td {
     text-align: center;
-    font-size: 12px;
+    font-size: 1rem;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* border: 1px solid white; */
@@ -57,7 +57,8 @@
 
 table {
     border-collapse: collapse;
-
+    width: 100%;
+    max-height: 100vh;
 }
 
 td,
@@ -66,6 +67,14 @@ th {
     color: black;
     padding: 10px;
     border: 0;
+}
+
+thead tr {
+    height: 100px
+}
+
+tbody tr {
+    height: calc(10vh - 10px);
 }
 
 .cor {
