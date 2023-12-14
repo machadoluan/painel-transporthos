@@ -184,4 +184,36 @@ export class PainelCadastroComponent implements OnInit {
       }
     );
   }
+
+  stopPropagation(event: any) {
+    event.stopPropagation()
+  }
+
+  updateStatus(cliente: Cliente, status: string) {
+    const { id, data, hora, tipoDeCarga, plCavalo, plCarreta, conferentes, ...clienteProps } = cliente;
+
+    this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
+      ...clienteProps,
+      status,
+      dataAbreviada: cliente.data,
+      horaAbreviada: cliente.hora,
+      tipo_de_carga: cliente.tipoDeCarga,
+      pl_cavalo: cliente.plCavalo,
+      pl_carreta: cliente.plCarreta,
+      conferente: cliente.conferentes,
+    })
+        .subscribe(
+          (response: any) => {
+            const defaultMessage = 'Status alterado com sucesso';
+            console.log(defaultMessage, response);
+            window.alert(response.Mensagem || defaultMessage);
+            location.reload();
+          },
+          (error: any) => {
+            const defaultMessage = 'Erro ao alterar status';
+            console.error(defaultMessage, error.error);
+            window.alert(error.error.Mensagem || defaultMessage);
+          }
+        );
+  }
 }

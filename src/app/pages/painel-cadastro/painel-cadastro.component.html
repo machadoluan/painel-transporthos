@@ -76,12 +76,48 @@
                                 <td>{{ cliente.destino }}</td>
                                 <td>{{ cliente.ajudantes }}</td>
                                 <td>{{ cliente.conferente }}</td>
-                                <td [ngClass]="{
-                                'status-concluido': cliente.status.toLowerCase() === 'concluído',
-                                'status-andamento': cliente.status.toLowerCase() === 'em andamento',
-                                'status-programado': cliente.status.toLowerCase() === 'programado',
-                                'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
-                              }">{{ cliente.status }}</td>
+                                <td class="td-status">
+                                    <div ngbDropdown
+                                        (click)="stopPropagation($event)"
+                                        class="d-inline-block w-100"
+                                        [ngClass]="{
+                                            'status-concluido': cliente.status.toLowerCase() === 'concluído',
+                                            'status-andamento': cliente.status.toLowerCase() === 'em andamento',
+                                            'status-programado': cliente.status.toLowerCase() === 'programado',
+                                            'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
+                                        }"
+                                    >
+                                        <button type="button" class="btn btn-ghost w-100" id="updateStatus" ngbDropdownToggle>
+                                            {{ cliente.status }}
+                                        </button>
+                                        <div ngbDropdownMenu aria-labelledby="updateStatus">
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Em andamento')">
+                                                <div class="dropdown-check-container">
+                                                    <span *ngIf="cliente.status.toLowerCase() === 'em andamento'">&#10003;</span>
+                                                </div>
+                                                <span>Em andamento</span>
+                                            </button>
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Concluído')">
+                                                <div class="dropdown-check-container">
+                                                    <span *ngIf="cliente.status.toLowerCase() === 'concluído'">&#10003;</span>
+                                                </div>
+                                                <span>Concluído</span>
+                                            </button>
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Programado')">
+                                                <div class="dropdown-check-container">
+                                                    <span *ngIf="cliente.status.toLowerCase() === 'programado'">&#10003;</span>
+                                                </div>
+                                                <span>Programado</span>
+                                            </button>
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Aguardando Carregamento')">
+                                                <div class="dropdown-check-container">
+                                                    <span *ngIf="cliente.status.toLowerCase() === 'aguardando carregamento'">&#10003;</span>
+                                                </div>
+                                                <span>Aguardando Carregamento</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-container>
                     </tbody>

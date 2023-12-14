@@ -104,14 +104,20 @@ img {
 
 .painel-table__resultados td {
     font-size: 10px;
-    padding: 5px;
     text-align: center;
     color: white;
 
 }
 
+.painel-table__resultados td:not(.td-status) {
+    padding: 5px;
+}
 
-
+.dropdown-check-container{
+    display: inline-block;
+    width: 12px;
+    margin-right: 0.5rem;
+}
 
 .pagination-row {
     text-align: center;
