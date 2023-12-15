@@ -29,11 +29,11 @@
     align-items: center;
     justify-content: center;
     height: calc(100vh - 4rem);
-    padding: 0.5rem;
 }
 
 .item {
     max-width: calc(100vw - 1rem);
+    width: 95%;
     background-color: #CDCDCD;
     border-radius: 20px;
     display: flex;
@@ -100,6 +100,7 @@ img {
 .cadastro_painel table {
     color: #000;
     min-height: calc(100% - 49px);
+    width: 100%;
 }
 
 .cadastro_painel th, .cadastro_painel td {
@@ -109,6 +110,7 @@ img {
 .painel-table__descricoes th {
     font-size: 14px;
     padding: 0.2rem;
+    text-align: center;
 }
 
 .painel-table__resultados td {
