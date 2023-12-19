@@ -92,15 +92,16 @@ img {
 .cadastro_painel {
     width: 87%;
     border-radius: 20px;
-    background-color: white;
     overflow: auto;
     border: 1px solid #a7a7a7;
+    background-color: #a7a7a7;
 }
 
 .cadastro_painel table {
     color: #000;
     min-height: calc(100% - 49px);
     width: 100%;
+    background-color: white;
 }
 
 .cadastro_painel th, .cadastro_painel td {
@@ -134,7 +135,6 @@ img {
     padding: 0.5rem 0.3rem;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: #a7a7a7;
 }
 
 .ngx-pagination {
@@ -250,3 +250,9 @@ img {
 
     }
   }
+
+@media (max-width: 600px) {
+    .crud {
+        flex-wrap: wrap;
+    }
+}
