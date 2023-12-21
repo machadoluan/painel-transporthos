@@ -19,6 +19,7 @@ import { ClienteSelecionadoServiceService } from './services/cliente-selecionado
 import { ClienteIdService } from './services/cliente-id.service';
 import { CadastroModalComponent } from './components/cadastro-modal/cadastro-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -45,6 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgxPaginationModule,
     BrowserAnimationsModule,
     NgbModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [
