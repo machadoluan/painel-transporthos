@@ -31,8 +31,8 @@
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor="let cliente of clientes; let i = index">
-                    <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'">
+                <ng-container *ngFor="let cliente of clientesPaginado; let i = index">
+                    <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'" [ngStyle]="{'height': obterAlturaDaLinha() + 'px'}">
                         <td>{{ (cliente.data) }}</td>
                         <td>{{ (cliente.hora)}}</td>
                         <td>{{ cliente.cliente }}</td>

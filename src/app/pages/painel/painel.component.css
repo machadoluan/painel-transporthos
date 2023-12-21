@@ -26,10 +26,8 @@
 }
 
 .painel__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     background-color: #000;
+    height: 100vh;
 }
 
 .painel__table {
@@ -78,10 +76,6 @@ th {
 
 thead tr {
     height: 50px
-}
-
-tbody tr {
-    height: calc(10vh - 15px);
 }
 
 .cor {

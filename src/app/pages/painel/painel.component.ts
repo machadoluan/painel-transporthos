@@ -15,12 +15,13 @@ export class PainelComponent implements OnInit {
   dados: Dado[] = []
 
   clientes: any[] = [];
-
+  clientesPaginado: any[] = [];
+  clientesPorPagina = 0;
 
   usuariosFiltrados: any[] = [];
   termoDeBusca: string = '';
 
-
+  alturaDisponivelNaTabela = window.innerHeight - 150;
 
   constructor(private dataService: DataService, private clienteService: DataApiService) { }
 
@@ -30,15 +31,45 @@ export class PainelComponent implements OnInit {
 
     // this.filtrarEOrdenarDados()
 
-    this.clienteService.listarClientes().subscribe((data: any) => {
-      this.clientes = data;
-    });
+    this.obterNumeroDeClientesPorPagina();
 
-
-
+    this.iniciarPainel();
   }
 
+  obterNumeroDeClientesPorPagina() {
+    const alturaDaLinha = 100;
 
+    this.clientesPorPagina = Math.floor(this.alturaDisponivelNaTabela / alturaDaLinha);
+  }
+
+  paginacaoAutomatica(pagina: number) {
+    const primeiroIndex = (pagina - 1) * this.clientesPorPagina;
+    const ultimoIndex = (primeiroIndex - 1) + this.clientesPorPagina;
+
+    const primeiraPagina = pagina === 1;
+    const ultimaPagina = (ultimoIndex + 1) >= this.clientes.length;
+    
+    this.clientesPaginado = this.clientes.filter((_, index) => index >= primeiroIndex && index <= ultimoIndex);
+
+    setTimeout(() => ultimaPagina ? this.iniciarPainel() : this.paginacaoAutomatica(pagina + 1), primeiraPagina ? 5000 : 3000);
+  }
+
+  iniciarPainel() {
+    this.clienteService.listarClientes().subscribe((data: any) => {
+      this.clientes = data;
+
+      console.log("clientes: ", this.clientes);
+
+      this.paginacaoAutomatica(1);
+    });
+  }
+
+  obterAlturaDaLinha() {
+    const alturaMaxima = 150;
+    const altura = this.alturaDisponivelNaTabela / this.clientesPorPagina;
+
+    return altura > alturaMaxima ? alturaMaxima : altura
+  }
 
 
   // onInputChange(): void {
