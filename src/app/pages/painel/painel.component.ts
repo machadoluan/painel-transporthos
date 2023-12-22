@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Dado } from 'src/app/dataBase/dados';
 import { DataApiService } from 'src/app/services/data-api.service';
 import { DataService } from 'src/app/services/data.service';
@@ -23,6 +23,8 @@ export class PainelComponent implements OnInit {
 
   alturaDisponivelNaTabela = window.innerHeight - 150;
 
+  timeoutId: any;
+
   constructor(private dataService: DataService, private clienteService: DataApiService) { }
 
   ngOnInit(): void {
@@ -34,6 +36,21 @@ export class PainelComponent implements OnInit {
     this.obterNumeroDeClientesPorPagina();
 
     this.iniciarPainel();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.alturaDisponivelNaTabela = window.innerHeight - 150;
+
+    const clientesPorPaginaAntigo = this.clientesPorPagina;
+
+    this.obterNumeroDeClientesPorPagina();
+
+    if(clientesPorPaginaAntigo !== this.clientesPorPagina) {
+      if(this.timeoutId) clearTimeout(this.timeoutId);
+
+      this.iniciarPainel()
+    };
   }
 
   obterNumeroDeClientesPorPagina() {
@@ -51,12 +68,12 @@ export class PainelComponent implements OnInit {
     
     this.clientesPaginado = this.clientes.filter((_, index) => index >= primeiroIndex && index <= ultimoIndex);
 
-    setTimeout(() => ultimaPagina ? this.iniciarPainel() : this.paginacaoAutomatica(pagina + 1), primeiraPagina ? 30000 : 15000);
+    this.timeoutId = setTimeout(() => ultimaPagina ? this.iniciarPainel() : this.paginacaoAutomatica(pagina + 1), primeiraPagina ? 30000 : 15000);
   }
 
   iniciarPainel() {
     this.clienteService.listarClientes().subscribe((data: any) => {
-      this.clientes = data;
+      this.clientes = data || [];
 
       console.log("clientes: ", this.clientes);
 
