@@ -51,7 +51,7 @@ export class PainelComponent implements OnInit {
     
     this.clientesPaginado = this.clientes.filter((_, index) => index >= primeiroIndex && index <= ultimoIndex);
 
-    setTimeout(() => ultimaPagina ? this.iniciarPainel() : this.paginacaoAutomatica(pagina + 1), primeiraPagina ? 5000 : 3000);
+    setTimeout(() => ultimaPagina ? this.iniciarPainel() : this.paginacaoAutomatica(pagina + 1), primeiraPagina ? 30000 : 15000);
   }
 
   iniciarPainel() {
