@@ -6,10 +6,17 @@
 
 .header {
     background-color: #BEBEBE;
-    height: 5vh;
+    height: 4rem;
     align-items: center;
     display: flex;
     padding-left: 2vh;
+    align-items: center;
+    border-bottom: 1px solid #a7a7a7;
+}
+
+.header p {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
 .header span {
@@ -21,21 +28,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 95vh;
+    height: calc(100vh - 4rem);
 }
 
 .item {
+    max-width: calc(100vw - 1rem);
+    width: 95%;
     background-color: #CDCDCD;
     border-radius: 20px;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    padding: 0.5rem;
+    border: 1px solid #a7a7a7;
 }
 
 .navbar {
+    padding: 0 0.5rem;
     display: flex;
     flex-direction: column;
+    justify-content: start;
     align-items: center;
-    gap: 2em;
+    gap: 1.5rem;
 }
 
 .label__input {
@@ -45,27 +58,31 @@
 }
 
 .busca input {
-    padding: 5px 3px;
+    height: 2.5rem;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid #a7a7a7;
     outline: none;
-    margin-top: 0em;
-    padding-left: 5px;
+    padding: 0 0.7rem;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 .crud {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
 }
 
 .acoes {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 2rem;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #a7a7a7;
+    border-radius: 0;
 }
 
 img {
@@ -73,55 +90,74 @@ img {
 }
 
 .cadastro_painel {
-
     width: 87%;
-    background-color: #a7a7a7;
     border-radius: 20px;
+    overflow: auto;
+    border: 1px solid #a7a7a7;
+    background-color: #a7a7a7;
 }
 
-.cadastro_painel form {
-    padding: 8px;
+.cadastro_painel table {
+    color: #000;
+    min-height: calc(100% - 49px);
+    width: 100%;
+    background-color: white;
 }
 
-.cadastro_painel form input {
-    margin-left: 2px;
-    margin-right: 5px;
-}
-
-.input__data {
-    width: 80px;
-}
-
-.input__hora {
-    width: 70px;
+.cadastro_painel th, .cadastro_painel td {
+    border: 1px solid #a7a7a7;
 }
 
 .painel-table__descricoes th {
     font-size: 14px;
-    margin: 5px;
-    padding: 5px;
+    padding: 0.2rem;
+    text-align: center;
 }
 
 .painel-table__resultados td {
-    font-size: 10px;
-    padding: 5px;
+    font-size: 12px;
     text-align: center;
-    color: white;
-
 }
 
+.painel-table__resultados td:not(.td-status) {
+    padding-top: 5px;
+}
 
-
+.dropdown-check-container{
+    display: inline-block;
+    width: 12px;
+    margin-right: 0.5rem;
+}
 
 .pagination-row {
+    width: 100%;
     text-align: center;
-    margin-top: 5px;
+    padding: 0.5rem 0.3rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
-.pagination-row .ngx-pagination {
+.ngx-pagination {
     display: inline-block;
+    color: black;
 }
 
+.my-pagination ::ng-deep .ngx-pagination {
+    margin-bottom: 0.2rem;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background-color: black;
+}
+
+.my-pagination ::ng-deep .ngx-pagination li, .my-pagination ::ng-deep .ngx-pagination li a {
+    border-radius: 20px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination li:hover, .my-pagination ::ng-deep .ngx-pagination li a:hover {
+    background-color: #0003;
+    cursor: pointer;
+}
 
 /*Mudando a cor da Linha da tabela*/
 
@@ -188,8 +224,8 @@ img {
         gap: 10px;
     }
 
-    .busca > input{
-        font-size: 10px;
+    .busca > input {
+        width: 300px;
     }
 
     .label__input{
@@ -214,3 +250,9 @@ img {
 
     }
   }
+
+@media (max-width: 600px) {
+    .crud {
+        flex-wrap: wrap;
+    }
+}
