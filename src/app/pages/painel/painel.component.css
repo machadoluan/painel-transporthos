@@ -8,34 +8,39 @@
 }
 
 .painel__table {
-    overflow-x: auto;
+    overflow: auto;
     /* Adicione uma barra de rolagem horizontal quando necessário */
 }
 
 .painel__title {
     padding: .5em 0 .5em;
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .painel__title>p,
 .painel__title span {
-    color: black;
+    color: #FFF;
+    margin: 0;
 }
 
 .painel__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: #000;
+    height: 100vh;
 }
 
 .painel__table {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white
 }
 
 
 
 .painel-table__descricoes th {
+    text-align: center;
     padding: 0 15px;
     font-size: 14px;
     font-weight: bold;
@@ -48,7 +53,7 @@
 
 .painel-table__resultados td {
     text-align: center;
-    font-size: 12px;
+    font-size: 1rem;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* border: 1px solid white; */
@@ -57,7 +62,8 @@
 
 table {
     border-collapse: collapse;
-
+    width: 100%;
+    max-height: 100vh;
 }
 
 td,
@@ -66,6 +72,10 @@ th {
     color: black;
     padding: 10px;
     border: 0;
+}
+
+thead tr {
+    height: 50px
 }
 
 .cor {

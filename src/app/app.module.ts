@@ -17,6 +17,9 @@ import { EditarPopupComponent } from './pages/editar-popup/editar-popup.componen
 import { DadosPainelService } from './services/dados-painel.service';
 import { ClienteSelecionadoServiceService } from './services/cliente-selecionado-service.service';
 import { ClienteIdService } from './services/cliente-id.service';
+import { CadastroModalComponent } from './components/cadastro-modal/cadastro-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -30,6 +33,7 @@ import { ClienteIdService } from './services/cliente-id.service';
     DateFormatDirective,
     CadastroPopupComponent,
     EditarPopupComponent,
+    CadastroModalComponent,
 
   ],
   imports: [
@@ -41,6 +45,8 @@ import { ClienteIdService } from './services/cliente-id.service';
     TextMaskModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
+    NgbModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [

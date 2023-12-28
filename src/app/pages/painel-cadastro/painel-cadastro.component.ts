@@ -4,14 +4,30 @@ import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
+import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 
 
 
 interface Cliente {
   id: number;
-  nome: string;
-  email: string;
-  // Adicione outros campos do cliente conforme necessário
+  cliente: string;
+  ajudantes: string;
+  conferentes: string;
+  data: string;
+  destino: string;
+  di: string;
+  dta: string;
+  hora: string;
+  motorista: string;
+  origem: string;
+  plCarreta: string;
+  plCavalo: string;
+  processo: string;
+  quantidade: number;
+  status: string;
+  tipoDeCarga: string;
 }
 
 @Component({
@@ -35,7 +51,7 @@ export class PainelCadastroComponent implements OnInit {
     private clientesservice: ClientesService,
     private http: HttpClient,
     private deleteService: DeleteService,
-
+    private modalService: NgbModal,
     private clienteIdService: ClienteIdService
   ) { }
 
@@ -45,21 +61,6 @@ export class PainelCadastroComponent implements OnInit {
     this.clienteIdSalvo = this.clienteIdService.getClienteSelecionado();
     console.log('Cliente Service (definido no componente):', this.clienteIdService.getClienteSelecionado());
   }
-
-  abrirPopupEditarCadastro() {
-    const clienteSelecionado = this.clienteIdService.getClienteSelecionado();
-
-    if (clienteSelecionado) {
-      const url = '/editar';
-      const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, width=1300, height=350,resizable=no';
-      window.open(url, 'EditarPopup', configuracao);
-    } else {
-      // Lide com o caso em que os dados do cliente não estão prontos, por exemplo, mostre uma mensagem de erro.
-    }
-  }
-
-
-
 
   removerClienteSelecionado() {
     if (this.selectedRow) {
@@ -103,10 +104,64 @@ export class PainelCadastroComponent implements OnInit {
       });
   }
 
-  abrirPopupCadastro() {
-    const url = '/cadastro';
-    const configuracao = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, width=1300, height=350,resizable=no';
-    window.open(url, 'CadastroPopup', configuracao);
+  abrirModalCadastro() {
+    this.abrirModalFormulario();
+  }
+
+  abrirModalEdicao() {
+    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+
+    console.log('selecionado ', clienteSelecionado)
+
+    if (clienteSelecionado) {
+      const {
+        id,
+        cliente,
+        data,
+        hora,
+        quantidade,
+        ajudantes,
+        conferentes,
+        destino,
+        di,
+        dta,
+        motorista,
+        origem,
+        plCarreta,
+        plCavalo,
+        processo,
+        status,
+        tipoDeCarga
+      } = clienteSelecionado;
+
+      const dadosIniciaisFormulario: DadosIniciaisFormulario = {
+        id,
+        cliente,
+        data,
+        hora,
+        qtd: String(quantidade),
+        di,
+        dta,
+        tipo_de_carga: tipoDeCarga,
+        processo,
+        pl_cavalo: plCavalo,
+        pl_carreta: plCarreta,
+        motorista,
+        origem,
+        destino,
+        ajudantes,
+        conferente: conferentes,
+        selectedStatus: status
+      };
+      this.abrirModalFormulario(true, dadosIniciaisFormulario);
+    } else {
+      window.alert("Selecione um cliente")
+    }
+  }
+
+  abrirModalFormulario(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
+    const modalRef = this.modalService.open(CadastroModalComponent, { size: 'xl' });
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
   }
 
   abrirJanelaDoPainel() {
@@ -128,5 +183,37 @@ export class PainelCadastroComponent implements OnInit {
         console.error('Erro ao obter a lista de clientes', error);
       }
     );
+  }
+
+  stopPropagation(event: any) {
+    event.stopPropagation()
+  }
+
+  updateStatus(cliente: Cliente, status: string) {
+    const { id, data, hora, tipoDeCarga, plCavalo, plCarreta, conferentes, ...clienteProps } = cliente;
+
+    this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
+      ...clienteProps,
+      status,
+      dataAbreviada: cliente.data,
+      horaAbreviada: cliente.hora,
+      tipo_de_carga: cliente.tipoDeCarga,
+      pl_cavalo: cliente.plCavalo,
+      pl_carreta: cliente.plCarreta,
+      conferente: cliente.conferentes,
+    })
+        .subscribe(
+          (response: any) => {
+            const defaultMessage = 'Status alterado com sucesso';
+            console.log(defaultMessage, response);
+            window.alert(response.Mensagem || defaultMessage);
+            location.reload();
+          },
+          (error: any) => {
+            const defaultMessage = 'Erro ao alterar status';
+            console.error(defaultMessage, error.error);
+            window.alert(error.error.Mensagem || defaultMessage);
+          }
+        );
   }
 }
