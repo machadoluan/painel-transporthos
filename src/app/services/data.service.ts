@@ -106,7 +106,7 @@ export class DataService {
       "conferentes": "LUCIO"
     },
   ]
-
+  //teste
   getDados(): Dado[] {
     return this.dados
   }
