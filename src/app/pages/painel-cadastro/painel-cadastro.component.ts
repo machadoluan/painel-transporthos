@@ -4,7 +4,7 @@ import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 
@@ -46,12 +46,13 @@ export class PainelCadastroComponent implements OnInit {
   clienteSelecionado: any;
   mostrarPopupEditar: boolean | undefined;
   clienteIdSalvo: any;
+  modalService: any;
 
   constructor(
     private clientesservice: ClientesService,
     private http: HttpClient,
     private deleteService: DeleteService,
-    private modalService: NgbModal,
+    // private modalService: NgbModal,
     private clienteIdService: ClienteIdService
   ) { }
 
@@ -202,18 +203,18 @@ export class PainelCadastroComponent implements OnInit {
       pl_carreta: cliente.plCarreta,
       conferente: cliente.conferentes,
     })
-        .subscribe(
-          (response: any) => {
-            const defaultMessage = 'Status alterado com sucesso';
-            console.log(defaultMessage, response);
-            window.alert(response.Mensagem || defaultMessage);
-            location.reload();
-          },
-          (error: any) => {
-            const defaultMessage = 'Erro ao alterar status';
-            console.error(defaultMessage, error.error);
-            window.alert(error.error.Mensagem || defaultMessage);
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          const defaultMessage = 'Status alterado com sucesso';
+          console.log(defaultMessage, response);
+          window.alert(response.Mensagem || defaultMessage);
+          location.reload();
+        },
+        (error: any) => {
+          const defaultMessage = 'Erro ao alterar status';
+          console.error(defaultMessage, error.error);
+          window.alert(error.error.Mensagem || defaultMessage);
+        }
+      );
   }
 }
