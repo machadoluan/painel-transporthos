@@ -4,7 +4,7 @@ import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 
@@ -46,13 +46,12 @@ export class PainelCadastroComponent implements OnInit {
   clienteSelecionado: any;
   mostrarPopupEditar: boolean | undefined;
   clienteIdSalvo: any;
-  modalService: any;
 
   constructor(
     private clientesservice: ClientesService,
     private http: HttpClient,
     private deleteService: DeleteService,
-    // private modalService: NgbModal,
+    private modalService: NgbModal,
     private clienteIdService: ClienteIdService
   ) { }
 
