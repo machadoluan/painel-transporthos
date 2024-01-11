@@ -164,6 +164,10 @@ thead tr {
 /* Estilo para dispositivos móveis com tela menor que 768px */
 @media (max-width: 576px) {
 
+  .linha-azul,
+    .linha-azul-escuro {
+        color: black;
+    }
     .painel__container {
         margin: auto;
     }
