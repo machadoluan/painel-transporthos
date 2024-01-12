@@ -54,7 +54,7 @@
 .painel-table__resultados td {
     text-align: center;
     font-size: 1rem;
-    color: white;
+    color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* border: 1px solid white; */
 
@@ -127,14 +127,14 @@ thead tr {
 /*Mudando a cor da Linha da tabela*/
 
 .linha-azul {
-    background-color:#c4c4c4;
-    color: black;
+    background-color: #c4c4c4;
+    color: white;
     /* Cor do texto, se necessário */
 }
 
 .linha-azul-escuro {
     background-color: #d9d9d9;
-    color: black;
+    color: white;
     /* Cor do texto, se necessário */
 }
 
@@ -164,10 +164,8 @@ thead tr {
 /* Estilo para dispositivos móveis com tela menor que 768px */
 @media (max-width: 576px) {
 
-  .linha-azul,
-    .linha-azul-escuro {
-        color: black;
-    }
+
+
     .painel__container {
         margin: auto;
     }
