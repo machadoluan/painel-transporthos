@@ -14,7 +14,7 @@ interface Cliente {
   id: number;
   cliente: string;
   ajudantes: string;
-  conferentes: string;
+  conferente: string;
   data: string;
   destino: string;
   di: string;
@@ -22,8 +22,8 @@ interface Cliente {
   hora: string;
   motorista: string;
   origem: string;
-  plCarreta: string;
-  plCavalo: string;
+  pl_Carreta: string;
+  pl_Cavalo: string;
   processo: string;
   quantidade: number;
   status: string;
@@ -121,14 +121,14 @@ export class PainelCadastroComponent implements OnInit {
         hora,
         quantidade,
         ajudantes,
-        conferentes,
+        conferente,
         destino,
         di,
         dta,
         motorista,
         origem,
-        plCarreta,
-        plCavalo,
+        pl_Carreta,
+        pl_Cavalo,
         processo,
         status,
         tipoDeCarga
@@ -144,13 +144,13 @@ export class PainelCadastroComponent implements OnInit {
         dta,
         tipo_de_carga: tipoDeCarga,
         processo,
-        pl_cavalo: plCavalo,
-        pl_carreta: plCarreta,
+        pl_cavalo: pl_Cavalo,
+        pl_carreta: pl_Carreta,
         motorista,
         origem,
         destino,
         ajudantes,
-        conferente: conferentes,
+        conferente: conferente,
         selectedStatus: status
       };
       this.abrirModalFormulario(true, dadosIniciaisFormulario);
@@ -190,7 +190,7 @@ export class PainelCadastroComponent implements OnInit {
   }
 
   updateStatus(cliente: Cliente, status: string) {
-    const { id, data, hora, tipoDeCarga, plCavalo, plCarreta, conferentes, ...clienteProps } = cliente;
+    const { id, data, hora, tipoDeCarga, pl_Cavalo, pl_Carreta, conferente, ...clienteProps } = cliente;
 
     this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
       ...clienteProps,
@@ -198,9 +198,9 @@ export class PainelCadastroComponent implements OnInit {
       dataAbreviada: cliente.data,
       horaAbreviada: cliente.hora,
       tipo_de_carga: cliente.tipoDeCarga,
-      pl_cavalo: cliente.plCavalo,
-      pl_carreta: cliente.plCarreta,
-      conferente: cliente.conferentes,
+      pl_cavalo: cliente.pl_Cavalo,
+      pl_carreta: cliente.pl_Carreta,
+      conferente: cliente.conferente,
     })
       .subscribe(
         (response: any) => {
