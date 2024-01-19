@@ -47,7 +47,7 @@
                             <th class="ref">ORIGEM</th>
                             <th class="ref">DESTINO</th>
                             <th class="ref">AJUDANTES</th>
-                            <th class="ref">CONFERENTES</th>
+                            <th class="ref">CONFERENTE</th>
                             <th class="ref">STATUS</th>
                         </tr>
                     </thead>
@@ -80,31 +80,37 @@
                                     'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
                                 }">
                                     <div ngbDropdown class="d-inline-block w-100 h-100">
-                                        <button type="button" class="btn btn-ghost w-100 h-100" id="updateStatus" ngbDropdownToggle>
+                                        <button type="button" class="btn btn-ghost w-100 h-100" id="updateStatus"
+                                            ngbDropdownToggle>
                                             {{ cliente.status }}
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="updateStatus">
                                             <button ngbDropdownItem (click)="updateStatus(cliente, 'Em andamento')">
                                                 <div class="dropdown-check-container">
-                                                    <span *ngIf="cliente.status.toLowerCase() === 'em andamento'">&#10003;</span>
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'em andamento'">&#10003;</span>
                                                 </div>
                                                 <span>Em andamento</span>
                                             </button>
                                             <button ngbDropdownItem (click)="updateStatus(cliente, 'Concluído')">
                                                 <div class="dropdown-check-container">
-                                                    <span *ngIf="cliente.status.toLowerCase() === 'concluído'">&#10003;</span>
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'concluído'">&#10003;</span>
                                                 </div>
                                                 <span>Concluído</span>
                                             </button>
                                             <button ngbDropdownItem (click)="updateStatus(cliente, 'Programado')">
                                                 <div class="dropdown-check-container">
-                                                    <span *ngIf="cliente.status.toLowerCase() === 'programado'">&#10003;</span>
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'programado'">&#10003;</span>
                                                 </div>
                                                 <span>Programado</span>
                                             </button>
-                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Aguardando Carregamento')">
+                                            <button ngbDropdownItem
+                                                (click)="updateStatus(cliente, 'Aguardando Carregamento')">
                                                 <div class="dropdown-check-container">
-                                                    <span *ngIf="cliente.status.toLowerCase() === 'aguardando carregamento'">&#10003;</span>
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'aguardando carregamento'">&#10003;</span>
                                                 </div>
                                                 <span>Aguardando Carregamento</span>
                                             </button>
@@ -117,7 +123,8 @@
 
                 </table>
                 <div class="pagination-row">
-                    <pagination-controls (pageChange)="paginaAlterada($event)" nextLabel="Próximo" previousLabel="Anterior" class="my-pagination"></pagination-controls>
+                    <pagination-controls (pageChange)="paginaAlterada($event)" nextLabel="Próximo"
+                        previousLabel="Anterior" class="my-pagination"></pagination-controls>
                 </div>
             </section>
 
