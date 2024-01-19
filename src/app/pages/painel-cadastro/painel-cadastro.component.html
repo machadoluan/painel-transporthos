@@ -66,13 +66,13 @@
                                 <td>{{ cliente.dta }}</td>
                                 <td>{{ cliente.tipoDeCarga }}</td>
                                 <td>{{ cliente.processo }}</td>
-                                <td>{{ cliente.pl_cavalo }}</td>
-                                <td>{{ cliente.pl_carreta }}</td>
+                                <td>{{ cliente.pl_Cavalo }}</td>
+                                <td>{{ cliente.pl_Carreta }}</td>
                                 <td>{{ cliente.motorista }}</td>
                                 <td>{{ cliente.origem }}</td>
                                 <td>{{ cliente.destino }}</td>
                                 <td>{{ cliente.ajudantes }}</td>
-                                <td>{{ cliente.conferente }}</td>
+                                <td>{{ cliente.conferentes }}</td>
                                 <td class="td-status" (click)="stopPropagation($event)" [ngClass]="{
                                     'status-concluido': cliente.status.toLowerCase() === 'concluído',
                                     'status-andamento': cliente.status.toLowerCase() === 'em andamento',
