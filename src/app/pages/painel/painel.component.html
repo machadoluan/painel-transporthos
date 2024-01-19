@@ -26,13 +26,14 @@
                     <th class="ref">ORIGEM</th>
                     <th class="ref">DESTINO</th>
                     <th class="ref">AJUDANTES</th>
-                    <th class="ref">CONFERENTES</th>
+                    <th class="ref">CONFERENTE</th>
                     <th class="ref">STATUS</th>
                 </tr>
             </thead>
             <tbody>
                 <ng-container *ngFor="let cliente of clientesPaginado; let i = index">
-                    <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'" [ngStyle]="{'height': obterAlturaDaLinha() + 'px'}">
+                    <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'"
+                        [ngStyle]="{'height': obterAlturaDaLinha() + 'px'}">
                         <td>{{ (cliente.data) }}</td>
                         <td>{{ (cliente.hora)}}</td>
                         <td>{{ cliente.cliente }}</td>
@@ -41,13 +42,13 @@
                         <td>{{ cliente.dta }}</td>
                         <td>{{ cliente.tipoDeCarga }}</td>
                         <td>{{ cliente.processo }}</td>
-                        <td>{{ cliente.plCavalo }}</td>
-                        <td>{{ cliente.plCarreta }}</td>
+                        <td>{{ cliente.pl_Cavalo }}</td>
+                        <td>{{ cliente.pl_Carreta }}</td>
                         <td>{{ cliente.motorista }}</td>
                         <td>{{ cliente.origem }}</td>
                         <td>{{ cliente.destino }}</td>
                         <td>{{ cliente.ajudantes }}</td>
-                        <td>{{ cliente.conferentes }}</td>
+                        <td>{{ cliente.conferente }}</td>
                         <td [ngClass]="{
                         'status-concluido': cliente.status.toLowerCase() === 'concluído',
                         'status-andamento': cliente.status.toLowerCase() === 'em andamento',
