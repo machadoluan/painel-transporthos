@@ -77,7 +77,7 @@
                                     'status-concluido': cliente.status.toLowerCase() === 'concluído',
                                     'status-andamento': cliente.status.toLowerCase() === 'em andamento',
                                     'status-programado': cliente.status.toLowerCase() === 'programado',
-                                    'status-aguardando': cliente.status.toLowerCase() === 'aguardando carregamento'
+                                    'status-aguardando': cliente.status.toLowerCase() === 'aguardando programação'
                                 }">
                                     <div ngbDropdown class="d-inline-block w-100 h-100">
                                         <button type="button" class="btn btn-ghost w-100 h-100" id="updateStatus"
@@ -107,10 +107,10 @@
                                                 <span>Programado</span>
                                             </button>
                                             <button ngbDropdownItem
-                                                (click)="updateStatus(cliente, 'Aguardando Carregamento')">
+                                                (click)="updateStatus(cliente, 'Aguardando Programação')">
                                                 <div class="dropdown-check-container">
                                                     <span
-                                                        *ngIf="cliente.status.toLowerCase() === 'aguardando carregamento'">&#10003;</span>
+                                                        *ngIf="cliente.status.toLowerCase() === 'aguardando Programação'">&#10003;</span>
                                                 </div>
                                                 <span>Aguardando Carregamento</span>
                                             </button>
