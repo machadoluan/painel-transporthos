@@ -140,9 +140,7 @@ thead tr {
 
 
 /*Mudando a cor da celula de acordo com o STATUS*/
-.__status {
-    color: white;
-}
+
 
 .status-concluido {
     background-color: green;
@@ -161,6 +159,10 @@ thead tr {
 
 .status-aguardando {
     background-color: rgb(149, 30, 6);
+    color: white;
+}
+
+.painel__table .texto-branco {
     color: white;
 }
 

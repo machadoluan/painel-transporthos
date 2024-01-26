@@ -49,7 +49,7 @@
                         <td>{{ cliente.destino }}</td>
                         <td>{{ cliente.ajudantes }}</td>
                         <td>{{ cliente.conferentes }}</td>
-                        <td class="__status" [ngClass]="{
+                        <td class="__status texto-branco" [ngClass]="{
                         'status-concluido': cliente.status.toLowerCase() === 'concluído',
                         'status-andamento': cliente.status.toLowerCase() === 'em andamento',
                         'status-programado': cliente.status.toLowerCase() === 'programado',
