@@ -99,7 +99,7 @@ export class PainelCadastroComponent implements OnInit {
     };
 
     this.http
-      .get<any[]>('https://transporthos-painel-backend.vercel.app/buscar', { params })
+      .get<any[]>('https://transporthos-painel-backend.onrender.com/buscar', { params })
       .subscribe((response) => {
         this.clientes = response;
         this.totalItems = response.length;
@@ -198,7 +198,7 @@ export class PainelCadastroComponent implements OnInit {
   updateStatus(cliente: Cliente, status: string) {
     const { id, data, hora, tipoDeCarga, pl_cavalo, pl_carreta, plCavalo, plCarreta, conferentes, conferente, ...clienteProps } = cliente;
 
-    this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
+    this.http.put(`https://transporthos-painel-backend.onrender.com/cliente/${cliente.id}`, {
       ...clienteProps,
       status,
       dataAbreviada: cliente.data,

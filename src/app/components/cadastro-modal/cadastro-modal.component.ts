@@ -39,11 +39,11 @@ export class CadastroModalComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario){
+  setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario) {
     console.log('chegou: ', dadosIniciais)
 
     function formatDate(date: string) {
-      if(!date) return '';
+      if (!date) return '';
 
       const [day, month, year] = date.split('/');
 
@@ -53,8 +53,8 @@ export class CadastroModalComponent implements OnInit {
       return `${year}-${formattedMonth}-${formattedDay}`
     }
 
-    function formatHour(hour: string){
-      if(!hour) return '';
+    function formatHour(hour: string) {
+      if (!hour) return '';
 
       const [hours, minutes] = hour.split(':')
 
@@ -140,10 +140,10 @@ export class CadastroModalComponent implements OnInit {
 
     console.log(data.dataAbreviada)
     console.log(data.horaAbreviada)
-    
-    if(!this.isEdit){
+
+    if (!this.isEdit) {
       // Cadastro
-      this.http.post('https://transporthos-painel-backend.vercel.app/clientes', data)
+      this.http.post('https://transporthos-painel-backend.onrender.com', data)
         .subscribe(
           (response: any) => {
             const defaultMessage = 'Cadastro enviado com sucesso';
@@ -157,9 +157,9 @@ export class CadastroModalComponent implements OnInit {
             window.alert(error.error.Mensagem || defaultMessage);
           }
         );
-      } else {
-        // Edição
-        this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${this.id}`, data)
+    } else {
+      // Edição
+      this.http.put(`https://transporthos-painel-backend.onrender.com/cliente/${this.id}`, data)
         .subscribe(
           (response: any) => {
             const defaultMessage = 'Alterações salvas com sucesso';
@@ -173,7 +173,7 @@ export class CadastroModalComponent implements OnInit {
             window.alert(error.error.Mensagem || defaultMessage);
           }
         );
-      }
+    }
   }
 
   resetForm() {

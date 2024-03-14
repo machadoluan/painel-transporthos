@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PainelComponent } from './pages/painel/painel.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DateFormatDirective } from './pages/painel-cadastro/date-format.directive';
@@ -20,6 +20,7 @@ import { ClienteIdService } from './services/cliente-id.service';
 import { CadastroModalComponent } from './components/cadastro-modal/cadastro-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
 
 
 
@@ -34,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     CadastroPopupComponent,
     EditarPopupComponent,
     CadastroModalComponent,
+    EnviarPdfComponent,
 
   ],
   imports: [
@@ -47,6 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     NgbModule,
     ToastrModule.forRoot(),
+    ReactiveFormsModule
 
   ],
   providers: [

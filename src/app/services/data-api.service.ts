@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class DataApiService {
 
-  private apiUrl = 'https://transporthos-painel-backend.vercel.app';
+  private apiUrl = 'https://transporthos-painel-backend.onrender.com';
 
   constructor(private http: HttpClient) { }
 
