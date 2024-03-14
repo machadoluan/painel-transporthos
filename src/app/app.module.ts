@@ -21,6 +21,7 @@ import { CadastroModalComponent } from './components/cadastro-modal/cadastro-mod
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
+import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
 
 
 
@@ -36,6 +37,7 @@ import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
     EditarPopupComponent,
     CadastroModalComponent,
     EnviarPdfComponent,
+    ManutencaoComponent,
 
   ],
   imports: [
