@@ -10,34 +10,34 @@ import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
 import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ManutencaoComponent
-  },
   // {
   //   path: '',
-  //   component: HomeComponent
+  //   component: ManutencaoComponent
   // },
-  // {
-  //   path: 'painel',
-  //   component: PainelCadastroComponent, canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'cadastro',
-  //   component: CadastroPopupComponent, canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'listagem',
-  //   component: PainelComponent, canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'editar',
-  //   component: EditarPopupComponent, canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'enviar-pdf',
-  //   component: EnviarPdfComponent, canActivate: [AuthGuard]
-  // },
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'painel',
+    component: PainelCadastroComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'cadastro',
+    component: CadastroPopupComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'listagem',
+    component: PainelComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'editar',
+    component: EditarPopupComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'enviar-pdf',
+    component: EnviarPdfComponent, canActivate: [AuthGuard]
+  },
 
   {
     path: '**', // Rota padrão
