@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://transporthos-painel-backend.onrender.com/login';
+  private apiUrl = 'https://transporthos-painel-backend.vercel.app/login';
 
   constructor(private http: HttpClient) { }
 

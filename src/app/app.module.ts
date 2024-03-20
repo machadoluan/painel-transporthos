@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PainelComponent } from './pages/painel/painel.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DateFormatDirective } from './pages/painel-cadastro/date-format.directive';
 import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
@@ -20,8 +21,12 @@ import { ClienteIdService } from './services/cliente-id.service';
 import { CadastroModalComponent } from './components/cadastro-modal/cadastro-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
-import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
+import { PopUpModalComponent } from './pages/follow-up/follow-up.component';
+import { TetsteComponent } from './tetste/tetste.component';
+import { PdfComponent } from './pdf/pdf.component';
+import { EmailService } from './services/email.service';
+import { EmailTemplateComponent } from './email-template/email-template.component';
+import { DownloadModalComponent } from './download-modal/download-modal.component';
 
 
 
@@ -36,8 +41,11 @@ import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
     CadastroPopupComponent,
     EditarPopupComponent,
     CadastroModalComponent,
-    EnviarPdfComponent,
-    ManutencaoComponent,
+    PopUpModalComponent,
+    TetsteComponent,
+    PdfComponent,
+    EmailTemplateComponent,
+    DownloadModalComponent
 
   ],
   imports: [
@@ -50,14 +58,20 @@ import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
     NgxPaginationModule,
     BrowserAnimationsModule,
     NgbModule,
-    ToastrModule.forRoot(),
-    ReactiveFormsModule
+    MatDialogModule,
+    MatButtonModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, // Tempo em milissegundos antes de fechar automaticamente
+      positionClass: 'toast-top-right', // Posição da notificação (veja outras opções na documentação)
+      preventDuplicates: true, // Evita notificações duplicadas
+    })
 
   ],
   providers: [
     DadosPainelService,
     ClienteIdService,
-    ClienteSelecionadoServiceService
+    ClienteSelecionadoServiceService,
+    EmailService
   ],
   bootstrap: [AppComponent]
 })

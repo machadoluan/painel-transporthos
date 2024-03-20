@@ -6,7 +6,9 @@ import { ClientesService } from 'src/app/services/clientes.service';
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
+import { PopUpModalComponent } from 'src/app/pages/follow-up/follow-up.component';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
+import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
 
 
 
@@ -38,6 +40,7 @@ interface Cliente {
   templateUrl: './painel-cadastro.component.html',
   styleUrls: ['./painel-cadastro.component.css'],
 })
+
 export class PainelCadastroComponent implements OnInit {
   clientes: any[] = [];
   termoDeBusca: string = '';
@@ -49,6 +52,7 @@ export class PainelCadastroComponent implements OnInit {
   clienteSelecionado: any;
   mostrarPopupEditar: boolean | undefined;
   clienteIdSalvo: any;
+
 
   constructor(
     private clientesservice: ClientesService,
@@ -99,7 +103,7 @@ export class PainelCadastroComponent implements OnInit {
     };
 
     this.http
-      .get<any[]>('https://transporthos-painel-backend.onrender.com/buscar', { params })
+      .get<any[]>('https://transporthos-painel-backend.vercel.app/buscar', { params })
       .subscribe((response) => {
         this.clientes = response;
         this.totalItems = response.length;
@@ -110,6 +114,61 @@ export class PainelCadastroComponent implements OnInit {
   abrirModalCadastro() {
     this.abrirModalFormulario();
   }
+
+  abrirPopUp() {
+    // this.abrirModalPopUp();
+    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+
+    console.log('selecionado ', clienteSelecionado)
+
+    if (clienteSelecionado) {
+      const {
+        id,
+        cliente,
+        data,
+        hora,
+        quantidade,
+        ajudantes,
+        conferentes,
+        conferente,
+        destino,
+        di,
+        dta,
+        motorista,
+        origem,
+        pl_carreta,
+        pl_cavalo,
+        plCarreta,
+        plCavalo,
+        processo,
+        status,
+        tipoDeCarga
+      } = clienteSelecionado;
+
+      const dadosIniciaisFormulario: DadosIniciaisFormulario = {
+        id,
+        cliente,
+        data,
+        hora,
+        qtd: String(quantidade),
+        di,
+        dta,
+        tipo_de_carga: tipoDeCarga,
+        processo,
+        pl_cavalo: pl_cavalo || plCavalo,
+        pl_carreta: pl_carreta || plCarreta,
+        motorista,
+        origem,
+        destino,
+        ajudantes,
+        conferente: conferentes || conferente,
+        selectedStatus: status
+      };
+      this.abrirModalPopUp(true, dadosIniciaisFormulario);
+    } else {
+      window.alert("Selecione um cliente")
+    }
+}
 
   abrirModalEdicao() {
     const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
@@ -170,6 +229,70 @@ export class PainelCadastroComponent implements OnInit {
     modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
   }
 
+  abrirModalPopUp(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
+    const modalRef = this.modalService.open(PopUpModalComponent, { size: 'xl' });
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
+  }
+
+
+
+  abrirPDF(){
+    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+
+    console.log('selecionado ', clienteSelecionado)
+
+    if (clienteSelecionado) {
+      const {
+        id,
+        cliente,
+        data,
+        hora,
+        quantidade,
+        ajudantes,
+        conferentes,
+        conferente,
+        destino,
+        di,
+        dta,
+        motorista,
+        origem,
+        pl_carreta,
+        pl_cavalo,
+        plCarreta,
+        plCavalo,
+        processo,
+        status,
+        tipoDeCarga
+      } = clienteSelecionado;
+
+      const dadosIniciaisFormulario: DadosIniciaisFormulario = {
+        id,
+        cliente,
+        data,
+        hora,
+        qtd: String(quantidade),
+        di,
+        dta,
+        tipo_de_carga: tipoDeCarga,
+        processo,
+        pl_cavalo: pl_cavalo || plCavalo,
+        pl_carreta: pl_carreta || plCarreta,
+        motorista,
+        origem,
+        destino,
+        ajudantes,
+        conferente: conferentes || conferente,
+        selectedStatus: status
+      };
+      this.abrirModalpdf(true, dadosIniciaisFormulario);
+    } 
+}
+
+  abrirModalpdf(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
+    const modalRef = this.modalService.open(DownloadModalComponent, { size: 'xl' });
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
+  }
+
   abrirJanelaDoPainel() {
     const token = localStorage.getItem('token');
     const url = `/listagem?token=${token}`;
@@ -198,7 +321,7 @@ export class PainelCadastroComponent implements OnInit {
   updateStatus(cliente: Cliente, status: string) {
     const { id, data, hora, tipoDeCarga, pl_cavalo, pl_carreta, plCavalo, plCarreta, conferentes, conferente, ...clienteProps } = cliente;
 
-    this.http.put(`https://transporthos-painel-backend.onrender.com/cliente/${cliente.id}`, {
+    this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
       ...clienteProps,
       status,
       dataAbreviada: cliente.data,
