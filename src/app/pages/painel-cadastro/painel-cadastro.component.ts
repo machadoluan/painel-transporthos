@@ -115,8 +115,10 @@ export class PainelCadastroComponent implements OnInit {
     this.abrirModalFormulario();
   }
 
+
+  // Abrindo follow up
+
   abrirPopUp() {
-    // this.abrirModalPopUp();
     const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
 
     console.log('selecionado ', clienteSelecionado)
@@ -168,7 +170,12 @@ export class PainelCadastroComponent implements OnInit {
     } else {
       window.alert("Selecione um cliente")
     }
-}
+  }
+
+  abrirModalPopUp(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
+    const modalRef = this.modalService.open(PopUpModalComponent, { size: 'xl' });
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
+  }
 
   abrirModalEdicao() {
     const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
@@ -229,14 +236,8 @@ export class PainelCadastroComponent implements OnInit {
     modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
   }
 
-  abrirModalPopUp(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
-    const modalRef = this.modalService.open(PopUpModalComponent, { size: 'xl' });
-    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
-  }
 
-
-
-  abrirPDF(){
+  abrirPDF() {
     const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
 
     console.log('selecionado ', clienteSelecionado)
@@ -285,8 +286,8 @@ export class PainelCadastroComponent implements OnInit {
         selectedStatus: status
       };
       this.abrirModalpdf(true, dadosIniciaisFormulario);
-    } 
-}
+    }
+  }
 
   abrirModalpdf(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
     const modalRef = this.modalService.open(DownloadModalComponent, { size: 'xl' });

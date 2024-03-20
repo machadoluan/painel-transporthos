@@ -161,6 +161,7 @@ export class PopUpModalComponent implements OnInit {
       };
 
 
+      // Variavel modelo email.
 
       const emailBody = `<head>
       <style>

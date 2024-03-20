@@ -4,17 +4,19 @@ const cors = require('cors');
 const ejs = require('ejs');
 
 const app = express();
-app.use(cors()); // Use o middleware CORS
+app.use(cors());
 
 const port = 3000;
 
-const user = "luandealmeidamachado0@gmail.com"; // Substitua pelo seu e-mail
-const pass = "tjje fapq gckb dttr"; // Substitua pela sua senha
+const user = ""; // Substitua pelo seu e-mail
+const pass = ""; // Substitua pela sua senha
 
 app.get('/', (req, res) => res.send('Sistema de mandar emails funcionando.'));
 
 
 app.use(express.json());
+
+// Mandar email.
 
 app.post('/send', (req, res) => {
   const recipientEmail = req.body.recipientEmail;
@@ -45,13 +47,13 @@ app.post('/send', (req, res) => {
     Informação: ${selectedInform}
   `;
 
-  const htmlBody = emailBody;  // Use o corpo HTML fornecido
+  const htmlBody = emailBody;
 
   transporter.sendMail({
     from: user,
     to: recipientEmail,
     subject: subject,
-    html: htmlBody  // Inclua o corpo HTML aqui
+    html: htmlBody
 
   }).then(info => {
     res.send(info);

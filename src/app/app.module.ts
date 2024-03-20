@@ -23,9 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { PopUpModalComponent } from './pages/follow-up/follow-up.component';
 import { TetsteComponent } from './tetste/tetste.component';
-import { PdfComponent } from './pdf/pdf.component';
 import { EmailService } from './services/email.service';
-import { EmailTemplateComponent } from './email-template/email-template.component';
 import { DownloadModalComponent } from './download-modal/download-modal.component';
 
 
@@ -43,8 +41,6 @@ import { DownloadModalComponent } from './download-modal/download-modal.componen
     CadastroModalComponent,
     PopUpModalComponent,
     TetsteComponent,
-    PdfComponent,
-    EmailTemplateComponent,
     DownloadModalComponent
 
   ],
