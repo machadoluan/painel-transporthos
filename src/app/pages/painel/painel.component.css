@@ -31,10 +31,11 @@
 }
 
 .painel__table {
+   width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white
+    background-color: white;
 }
 
 
@@ -164,6 +165,21 @@ thead tr {
 
 .painel__table .texto-branco {
     color: white;
+}
+
+/* Btn pdf */
+.btns{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn-panel{
+  padding: 10px 20px;
+  border: none;
+  background-color: rgb(3, 158, 3);
+  margin: 15px 0;
+  border-radius: 5px;
+
 }
 
 /* Estilo para dispositivos móveis com tela menor que 768px */

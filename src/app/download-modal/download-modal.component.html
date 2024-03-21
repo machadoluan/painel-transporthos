@@ -1,0 +1,156 @@
+<div class="modal-body">
+  <div class="pdf" #content>
+    <div class="header">
+      <img src="../../assets/transporthos.png" alt="">
+      <h1>DOSSIÊ OPERACIONAL - TRANSPORTE</h1>
+    </div>
+
+    <div class="corpo_preenchi">
+      <div class="line_1">
+        <span>REF.TRANSPORTHOS:__________________</span>
+        <span>CTE/NFE NR:__________________</span>
+        <span>REF.CLIENTE:__________________</span>
+      </div>
+      <div class="line_1">
+        <span>NOME DO CLIENTE:______________________________________</span>
+        <span>CNPJ:______________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>CONTRATANTE/PAGADOR DO FRETE, CLIENTE: SIM ( ) NÃO ( ):______________________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>DOC.TRANSPORTE(DI/NF/DTA/DTC/DAT):_________________________________________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>LOCAL DE COLETA:________________________________</span>
+        <span>REMETENTE:______________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>LOCAL DE ENTREGA:______________________________</span>
+        <span>DESTINATARIO: ____________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>PRODUTO:_______________________________________</span>
+        <span>PESO: ____________________________________________</span>
+      </div>
+      <div class="line_1">
+        <span>VALOR CIF. U$$ / R$: __________________________________________________________________________________</span>
+      </div>
+    </div>
+    <div class="segunda_parte">
+      <div class="titulo">
+        <h1>ACOMPANHAMENTO OPERACIONAL</h1>
+      </div>
+      <div class="colunas">
+
+        <div class="pt2_colun">
+          AGENDAMENTO
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          DTA/DI/DTC
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          CONTAINERS
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          MOTORISTA
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+      </div>
+      <div class="titulo2">
+        <h5>DEV. DO VAZIO</h5>
+      </div>
+      <div class="colunas ultima">
+
+        <div class="pt2_colun">
+          AGENDAMENTO
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          DTA/DI/DTC
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          CONTAINERS
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          MOTORISTA
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+          <span>_______________________</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="close" (click)="closeModal()">Fechar</button>
+    <button class="donwload" (click)="salvarPdf()">Baixar</button>
+  </div>
+</div>

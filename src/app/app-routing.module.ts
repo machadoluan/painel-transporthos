@@ -6,10 +6,9 @@ import { PainelCadastroComponent } from './pages/painel-cadastro/painel-cadastro
 import { AuthGuard } from './auth.guard';
 import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.component';
 import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
-import { EnviarPdfComponent } from './pages/enviar-pdf/enviar-pdf.component';
-import { ManutencaoComponent } from './pages/manutencao/manutencao.component';
 
 const routes: Routes = [
+
   // {
   //   path: '',
   //   component: ManutencaoComponent
@@ -34,10 +33,12 @@ const routes: Routes = [
     path: 'editar',
     component: EditarPopupComponent, canActivate: [AuthGuard]
   },
+
   {
     path: 'enviar-pdf',
     component: EnviarPdfComponent, canActivate: [AuthGuard]
   },
+
 
   {
     path: '**', // Rota padrão

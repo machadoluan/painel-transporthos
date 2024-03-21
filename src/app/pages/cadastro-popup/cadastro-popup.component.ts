@@ -63,7 +63,7 @@ export class CadastroPopupComponent {
     console.log(data.horaAbreviada)
 
     // Faça uma solicitação HTTP POST para a API
-    this.http.post('https://transporthos-painel-backend.onrender.com/clientes', data).subscribe(
+    this.http.post('https://transporthos-painel-backend.vercel.app/clientes', data).subscribe(
       (response: any) => {
         // Lidar com a resposta da API
         console.log('Cadastro enviado com sucesso', response);

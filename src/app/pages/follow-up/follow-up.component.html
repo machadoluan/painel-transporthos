@@ -1,0 +1,102 @@
+<div class="modal-header">
+  <h4 class="modal-title">Follow Up</h4>
+  <button type="button" class="btn close" aria-label="Fechar" (click)="closeModal()">
+    <span aria-hidden="true" class="close-button">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="container">
+    <h2 id="titulo-dados">Dados Cadastrais</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+
+      <div class="form-group">
+        <label for="cliente">CLIENTE:</label>
+        <input type="text" name="cliente" id="cliente" [(ngModel)]="cliente" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="carga">TIPO DE CARGA:</label>
+        <input type="text" name="carga" id="carga" [(ngModel)]="tipo_de_carga" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="origem">ORIGEM:</label>
+        <input type="text" name="origem" id="origem" [(ngModel)]="origem" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label id="destino">DESTINO:</label>
+        <input type="text" name="destino" id="destino" [(ngModel)]="destino" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="qtd">QUANTIDADE:</label>
+        <input type="number" name="qtd" id="qtd" [(ngModel)]="qtd" class="form-control form-control-sm mb-2" readonly>
+      </div>
+
+      <!-- Outros campos de cadastro aqui -->
+
+    </div>
+
+    <!-- Dados que vão chegar no email. -->
+
+    <div class="dados-follow">
+      <h2 id="titulo-dados">Dados do Follow Up</h2>
+      <div class="dados-container row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+        <div class="form-group">
+          <label for="email">E-MAIL:</label>
+          <input type="email" name="email" id="email" class="form-control form-control-sm mb-2" [(ngModel)]="userEmail">
+          <div *ngIf="emailInvalid" class="text-danger">E-mail Invalido. Por favor, insira um e-mail valido!</div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="status">INFORMAÇÕES:</label>
+          <select [(ngModel)]="selectedInform" class="form-control form-control-sm mb-2" id="status" name="status"
+            required (ngModelChange)="statusSelected = true">
+            <option value="" disabled selected>Selecione uma opção desejada</option>
+            <option value="Solicitação de transporte recebida">Solicitação de transporte recebida</option>
+            <option value="Aguardando agendamento para o carregamento">Aguardando agendamento para o carregamento
+            </option>
+            <option value="Vaiculo a caminho de coleta">Vaiculo a caminho de coleta</option>
+            <option value="Veiculo no local de coleta, aguardando entrada.">Veiculo no local de coleta, aguardando
+              entrada.</option>
+            <option value="Veiculo no local de coleta, aguardando carregamento.">Veiculo no local de coleta, aguardando
+              carregamento.</option>
+            <option value="Veiculo sendo carregado no local de coleta.">Veiculo sendo carregado no local de coleta.
+            </option>
+            <option value="Carregamento interrompido devido a ocorrencia nos volumes">Carregamento interrompido devido a
+              ocorrencia nos volumes</option>
+            <option value="Veiculo carregado, a caminho do local de entrega.">Veiculo carregado, a caminho do local de
+              entrega.</option>
+            <option value="Veiculo carregado e seguirá para entrega na data programada">Veiculo carregado e seguirá para
+              entrega na data programada</option>
+            <option value="Veiculo chegou no local de entrega">Veiculo chegou no local de entrega</option>
+            <option value="Veiculo aguardando descarga no local de entrega">Veiculo aguardando descarga no local de
+              entrega</option>
+            <option value="Veiculo sendo descarregado no local de entrega">Veiculo sendo descarregado no local de
+              entrega</option>
+            <option value="Descarga concluida no local de entrega">Descarga concluida no local de entrega</option>
+          </select>
+          <div *ngIf="selectedInvalid" class="text-danger">Está opção é obrigatoria!</div>
+        </div>
+
+        <div class="form-group">
+          <div class="up-img">ADICIONAR IMAGENS</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Botões de PDF e Enviar o email. -->
+
+    <div class="d-flex justify-content-end btn-enviar">
+      <button type="submit" class="btn btn-primary text-white pdf " (click)="salvarPdf()">Salvar PDF</button>
+      <button type="submit" class="btn btn-primary text-white" (click)="enviarEmail()">Enviar</button>
+    </div>
+  </form>
+</div>

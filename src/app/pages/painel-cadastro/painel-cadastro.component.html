@@ -1,6 +1,7 @@
 <div class="container__cadastro">
     <div class="header">
         <p><span>SOFTWARE</span> PAINEL TRANSPORTHOS</p>
+        <!-- <img src="../../../assets/transporthos_branca.png" alt=""> -->
     </div>
 
     <div class="container__item">
@@ -26,6 +27,11 @@
                         <img src="../../../assets/Finalizar.png" alt="">
                         <span>Painel</span>
                     </button>
+                    <button class="btn acoes" (click)="abrirPopUp()"  *ngIf="selectedRow">
+                        <img src="../../../assets/mail.png" alt="">
+                        <span>Follow Up</span>
+                    </button>
+
                 </div>
             </nav>
             <section class="cadastro_painel">
