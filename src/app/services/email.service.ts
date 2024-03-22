@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://transporthos-painel-backend.vercel.app/send';
 
   constructor(private http: HttpClient) { }
 
