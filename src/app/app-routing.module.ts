@@ -8,6 +8,11 @@ import { CadastroPopupComponent } from './pages/cadastro-popup/cadastro-popup.co
 import { EditarPopupComponent } from './pages/editar-popup/editar-popup.component';
 
 const routes: Routes = [
+
+  // {
+  //   path: '',
+  //   component: ManutencaoComponent
+  // },
   {
     path: '',
     component: HomeComponent
@@ -28,6 +33,12 @@ const routes: Routes = [
     path: 'editar',
     component: EditarPopupComponent, canActivate: [AuthGuard]
   },
+
+  {
+    path: 'enviar-pdf',
+    component: EnviarPdfComponent, canActivate: [AuthGuard]
+  },
+
 
   {
     path: '**', // Rota padrão
