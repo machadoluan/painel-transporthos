@@ -33,20 +33,21 @@
 }
 .corpo_preenchi{
     width: 100%;
-    padding: 15px 50px;
+    padding: 30px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
 }
 .line_1{
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 /* Segunda parte */
 .titulo{
-    text-align: center;
-    margin: 20px 0;
+  width: 90%;
+  margin: 0 auto;
 }
 .titulo h1{
     font-size: 16px;
@@ -58,11 +59,16 @@
     display: flex;
     gap: 1.6rem;
     padding: 40px 0;
+    justify-content: space-between;
 }
 .pt2_colun{
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 }
+/* .pt2_colun span{
+  text-align: center;
+} */
 .titulo2{
     width: 90%;
     margin: 0 auto;

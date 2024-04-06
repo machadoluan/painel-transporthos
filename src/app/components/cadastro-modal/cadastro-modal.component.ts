@@ -30,6 +30,7 @@ export class CadastroModalComponent implements OnInit {
   ajudantes: string = '';
   conferente: string = '';
   selectedStatus: string = '';
+  cnpj: string = "";
   // ...
 
   constructor(
@@ -83,7 +84,8 @@ export class CadastroModalComponent implements OnInit {
       destino,
       ajudantes,
       conferente,
-      selectedStatus
+      selectedStatus,
+      cnpj
     } = dadosIniciais || {};
 
     this.id = id;
@@ -103,6 +105,7 @@ export class CadastroModalComponent implements OnInit {
     this.ajudantes = ajudantes || '';
     this.conferente = conferente || '';
     this.selectedStatus = selectedStatus || '';
+    this.cnpj = cnpj || "";
   }
 
   closeModal() {
@@ -194,5 +197,6 @@ export class CadastroModalComponent implements OnInit {
     this.ajudantes = '';
     this.conferente = '';
     this.selectedStatus = '';
+    this.cnpj = "";
   }
 }

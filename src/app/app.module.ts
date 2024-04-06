@@ -22,9 +22,9 @@ import { CadastroModalComponent } from './components/cadastro-modal/cadastro-mod
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { PopUpModalComponent } from './pages/follow-up/follow-up.component';
-import { TetsteComponent } from './tetste/tetste.component';
 import { EmailService } from './services/email.service';
 import { DownloadModalComponent } from './download-modal/download-modal.component';
+import { PdfComponent } from './pages/pdf/pdf.component';
 
 
 
@@ -40,8 +40,8 @@ import { DownloadModalComponent } from './download-modal/download-modal.componen
     EditarPopupComponent,
     CadastroModalComponent,
     PopUpModalComponent,
-    TetsteComponent,
-    DownloadModalComponent
+    DownloadModalComponent,
+    PdfComponent
 
   ],
   imports: [

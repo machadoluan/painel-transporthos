@@ -1,9 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 * {
     color: black;
 }
-
-
-
 .header {
     background-color: #BEBEBE;
     height: 4rem;
@@ -93,7 +91,11 @@
 .acoes:hover{
   background-color: #ffffff5d;
 }
-
+.contagem{
+  position: absolute;
+  bottom: 0;
+  right: 23px;
+}
 img {
     height: 25px;
 }
@@ -154,6 +156,10 @@ img {
 .my-pagination ::ng-deep .ngx-pagination {
     margin-bottom: 0.2rem;
 }
+.my-pagination ::ng-deep .ng-label {
+  color: #000;
+  background-color: #000;
+}
 
 .my-pagination ::ng-deep .ngx-pagination .current {
     background-color: black;
@@ -189,7 +195,7 @@ img {
 
 
 .selecionada {
-    background-color: #a6bee2;
+    background-color: #a6bee2 !important;
     /* Cor de destaque de sua escolha */
     color: #fff;
     /* Cor de texto para a linha selecionada */

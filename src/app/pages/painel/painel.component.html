@@ -1,64 +1,63 @@
 <div class="painel__container">
-    <div class="painel__title" style="display: flex; align-items: center; justify-content: space-around;">
-        <p>PAINEL <span class="trans">TRANSPORTHOS</span></p>
-        <img src="../../../assets/transporthos_branca.png" alt="transporthos" style="height: 80px;">
-    </div>
+  <div class="painel__title" style="display: flex; align-items: center; justify-content: space-around;">
+    <p>PAINEL <span class="trans">TRANSPORTHOS</span></p>
+    <img src="../../../assets/transporthos_branca.png" alt="transporthos" style="height: 80px;">
+  </div>
 
 
-    <div class="painel__table">
-        <!-- <input type="text" [(ngModel)]="termoDeBusca" (input)="onInputChange()" placeholder="Pesquisar por nome"
+  <div class="painel__table">
+    <!-- <input type="text" [(ngModel)]="termoDeBusca" (input)="onInputChange()" placeholder="Pesquisar por nome"
             autofocus> -->
 
-        <table>
-            <thead>
-                <tr class="painel-table__descricoes">
-                    <th class="ref">DATA</th>
-                    <th class="ref">HORA</th>
-                    <th class="ref">CLIENTE</th>
-                    <th class="ref">QTD</th>
-                    <th class="ref">DI</th>
-                    <th class="ref">DTA</th>
-                    <th class="ref">TIPO DE CARGA</th>
-                    <th class="ref">PROCESSO</th>
-                    <th class="ref">CAVALO</th>
-                    <th class="ref">CARRETA</th>
-                    <th class="ref">MOTORISTA</th>
-                    <th class="ref">ORIGEM</th>
-                    <th class="ref">DESTINO</th>
-                    <th class="ref">AJUDANTES</th>
-                    <th class="ref">CONFERENTE</th>
-                    <th class="ref">STATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let cliente of clientesPaginado; let i = index">
-                    <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'"
-                        [ngStyle]="{'height': obterAlturaDaLinha() + 'px'}">
-                        <td>{{ (cliente.data) }}</td>
-                        <td>{{ (cliente.hora)}}</td>
-                        <td>{{ cliente.cliente }}</td>
-                        <td>{{ cliente.quantidade }}</td>
-                        <td>{{ cliente.di }}</td>
-                        <td>{{ cliente.dta }}</td>
-                        <td>{{ cliente.tipoDeCarga }}</td>
-                        <td>{{ cliente.processo }}</td>
-                        <td>{{ cliente.pl_Cavalo}}</td>
-                        <td>{{ cliente.pl_Carreta }}</td>
-                        <td>{{ cliente.motorista }}</td>
-                        <td>{{ cliente.origem }}</td>
-                        <td>{{ cliente.destino }}</td>
-                        <td>{{ cliente.ajudantes }}</td>
-                        <td>{{ cliente.conferentes }}</td>
-                        <td class="__status texto-branco" [ngClass]="{
+    <table>
+      <thead>
+        <tr class="painel-table__descricoes">
+          <th class="ref">DATA</th>
+          <th class="ref">HORA</th>
+          <th class="ref">CLIENTE</th>
+          <th class="ref">QTD</th>
+          <th class="ref">DI</th>
+          <th class="ref">DTA</th>
+          <th class="ref">TIPO DE CARGA</th>
+          <th class="ref">PROCESSO</th>
+          <th class="ref">CAVALO</th>
+          <th class="ref">CARRETA</th>
+          <th class="ref">MOTORISTA</th>
+          <th class="ref">ORIGEM</th>
+          <th class="ref">DESTINO</th>
+          <th class="ref">AJUDANTES</th>
+          <th class="ref">CONFERENTE</th>
+          <th class="ref">STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let cliente of clientesPaginado; let i = index">
+          <tr class="painel-table__resultados" [ngClass]="i % 2 === 0 ? 'linha-azul' : 'linha-azul-escuro'"
+            [ngStyle]="{'height': obterAlturaDaLinha() + 'px'}">
+            <td>{{ (cliente.data) }}</td>
+            <td>{{ (cliente.hora)}}</td>
+            <td>{{ cliente.cliente }}</td>
+            <td>{{ cliente.quantidade }}</td>
+            <td>{{ cliente.di }}</td>
+            <td>{{ cliente.dta }}</td>
+            <td>{{ cliente.tipoDeCarga }}</td>
+            <td>{{ cliente.processo }}</td>
+            <td>{{ cliente.pl_Cavalo}}</td>
+            <td>{{ cliente.pl_Carreta }}</td>
+            <td>{{ cliente.motorista }}</td>
+            <td>{{ cliente.origem }}</td>
+            <td>{{ cliente.destino }}</td>
+            <td>{{ cliente.ajudantes }}</td>
+            <td>{{ cliente.conferentes }}</td>
+            <td class="__status texto-branco" [ngClass]="{
                         'status-concluido': cliente.status.toLowerCase() === 'concluído',
                         'status-andamento': cliente.status.toLowerCase() === 'em andamento',
                         'status-programado': cliente.status.toLowerCase() === 'programado',
                         'status-aguardando': cliente.status.toLowerCase() === 'aguardando programação'
                       }">{{ cliente.status }}</td>
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-
-    </div>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+</div>
 </div>

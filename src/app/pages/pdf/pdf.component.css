@@ -1,0 +1,109 @@
+* {
+  color: #000;
+  font-family: sans-serif;
+}
+.modal-body{
+  border-radius: 5px;
+  background-color: #434243;
+}
+.pdf{
+  /* margin: 50px 50px; */
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 50px;
+}
+
+.header img{
+  width: 100px;
+}
+.header h1{
+  font-size: 20px;
+  padding-right: 200px;
+  font-weight: bold;
+}
+.corpo_preenchi{
+  width: 100%;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.line_1{
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+/* Segunda parte */
+.titulo{
+width: 90%;
+margin: 0 auto;
+}
+.titulo h1{
+  font-size: 16px;
+  font-weight: bold;
+}
+.colunas{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  gap: 1.6rem;
+  padding: 40px 0;
+}
+.pt2_colun{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+/* .pt2_colun span{
+text-align: center;
+} */
+.titulo2{
+  width: 90%;
+  margin: 0 auto;
+}
+.titulo2 h5{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ultima{
+  padding-bottom: 100px;
+}
+
+/* Buttons */
+
+.buttons{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+button{
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 9px;
+}
+
+.close{
+  background-color: gray;
+}
+
+.donwload{
+  background-color: green;
+}

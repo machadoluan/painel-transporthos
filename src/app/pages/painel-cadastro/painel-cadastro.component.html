@@ -1,9 +1,7 @@
 <div class="container__cadastro">
-    <div class="header">
+  <div class="header">
         <p><span>SOFTWARE</span> PAINEL TRANSPORTHOS</p>
-        <!-- <img src="../../../assets/transporthos_branca.png" alt=""> -->
     </div>
-
     <div class="container__item">
         <div class="item">
             <nav class="navbar">
@@ -27,11 +25,18 @@
                         <img src="../../../assets/Finalizar.png" alt="">
                         <span>Painel</span>
                     </button>
-                    <button class="btn acoes" (click)="abrirPopUp()"  *ngIf="selectedRow">
+                    <button class="btn acoes" (click)="abrirPopUp()"  *ngIf="selectedRows.length >= 1">
                         <img src="../../../assets/mail.png" alt="">
                         <span>Follow Up</span>
                     </button>
+                    <button class="btn acoes" (click)="abrirPDF()"  *ngIf="selectedRows.length >= 2">
+                        <img src="../../../assets/baixar.png" alt="">
+                        <span>Baixar PDF</span>
+                    </button>
 
+                    <div *ngIf="selectedRows && selectedRows.length > 0" class="contagem">
+                      <p>{{ selectedRows.length }}</p>
+                    </div>
                 </div>
             </nav>
             <section class="cadastro_painel">
@@ -60,9 +65,8 @@
                     <tbody>
                         <ng-container
                             *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems } let i = index">
-                            <tr class="painel-table__resultados linha-selecionavel" [ngClass]="{
-                                 'selecionada': selectedRow === cliente
-                                }" (click)="selecionarLinha(cliente)">
+                            <tr class="painel-table__resultados linha-selecionavel" [ngClass]="{'selecionada': isClienteSelecionado(cliente)}" (click)="selecionarLinha(cliente)">
+
                                 <td>{{cliente.id}}</td>
                                 <td>{{ (cliente.data) }}</td>
                                 <td>{{ (cliente.hora)}}</td>
@@ -133,8 +137,6 @@
                         previousLabel="Anterior" class="my-pagination"></pagination-controls>
                 </div>
             </section>
-
-
         </div>
     </div>
 
