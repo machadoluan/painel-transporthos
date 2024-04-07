@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DeleteService } from 'src/app/services/delete.service';
 import { ClientesService } from 'src/app/services/clientes.service';
-
+import { ToastrService } from 'ngx-toastr';
 import { ClienteIdService } from 'src/app/services/cliente-id.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CadastroModalComponent } from 'src/app/components/cadastro-modal/cadastro-modal.component';
 import { PopUpModalComponent } from 'src/app/pages/follow-up/follow-up.component';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
+import { PdfComponent } from '../pdf/pdf.component';
 
 
-
-interface Cliente {
+export interface Cliente {
   id: number;
   cliente: string;
   ajudantes: string;
@@ -48,10 +48,11 @@ export class PainelCadastroComponent implements OnInit {
   itemsPerPage: number = 10;
   totalItems: number = 0;
   alternarCores: boolean = true;
-  selectedRow: any;
+  selectedRows: Cliente[] = [];;
   clienteSelecionado: any;
   mostrarPopupEditar: boolean | undefined;
   clienteIdSalvo: any;
+  selectedRow: any;
 
 
   constructor(
@@ -59,36 +60,58 @@ export class PainelCadastroComponent implements OnInit {
     private http: HttpClient,
     private deleteService: DeleteService,
     private modalService: NgbModal,
-    private clienteIdService: ClienteIdService
+    private clienteIdService: ClienteIdService,
+    private toastr: ToastrService
   ) { }
 
-  selecionarLinha(cliente: any) {
-    this.selectedRow = cliente;
-    this.clienteIdService.setClienteSelecionado(cliente); // Define o cliente selecionado no serviço
-    this.clienteIdSalvo = this.clienteIdService.getClienteSelecionado();
-    console.log('Cliente Service (definido no componente):', this.clienteIdService.getClienteSelecionado());
-  }
-
-  removerClienteSelecionado() {
-    if (this.selectedRow) {
-      const idDoCliente = this.selectedRow.id;
-      const confirmarExclusao = window.confirm(`Tem certeza de que deseja remover o cliente ${this.selectedRow.cliente} id: ${idDoCliente}?`);
-
-      if (confirmarExclusao) {
-        this.deleteService.removerCliente(idDoCliente).subscribe(
-          () => {
-            console.log('Cliente removido com sucesso');
-            window.alert('Cliente removido com sucesso');
-            this.carregarClientes();
-            this.selectedRow = null;
-          },
-          (error) => {
-            console.error('Erro ao remover cliente', error);
-          }
-        );
-      }
+  selecionarLinha(cliente: Cliente) {
+    const index = this.selectedRows.findIndex((row) => row.id === cliente.id);
+    if (index === -1) {
+      this.selectedRows.push(cliente);
+      this.clienteIdService.setClienteSelecionado(cliente);
+    } else {
+      this.selectedRows.splice(index, 1);
+      this.clienteIdService.limparClientesSelecionados(cliente);
     }
   }
+
+
+  isClienteSelecionado(cliente: Cliente): boolean {
+    return this.selectedRows.some((row) => row.id === cliente.id);
+  }
+
+
+  removerClienteSelecionado() {
+    if (this.selectedRows.length > 0) {
+      const confirmarExclusao = window.confirm(`Tem certeza de que deseja remover os clientes selecionados?`);
+
+      if (confirmarExclusao) {
+        // Mapeia os IDs dos clientes selecionados
+        const idsDosClientes = this.selectedRows.map(cliente => cliente.id);
+
+        // Remove os clientes selecionados um por um
+        idsDosClientes.forEach(idDoCliente => {
+          this.deleteService.removerCliente(idDoCliente).subscribe(
+            () => {
+              console.log(`Cliente com ID ${idDoCliente} removido com sucesso`);
+              // Remove o cliente da lista de clientes após a exclusão
+              this.clientes = this.clientes.filter(cliente => cliente.id !== idDoCliente);
+            },
+            (error) => {
+              console.error(`Erro ao remover cliente com ID ${idDoCliente}`, error);
+            }
+          );
+        });
+
+        // Limpa a lista de clientes selecionados após a exclusão
+        this.selectedRows = [];
+        window.alert('Clientes removidos com sucesso');
+      }
+    } else {
+      window.alert('Nenhum cliente selecionado para exclusão');
+    }
+  }
+
 
   paginaAlterada(event: any): void {
     this.currentPage = event;
@@ -119,11 +142,10 @@ export class PainelCadastroComponent implements OnInit {
   // Abrindo follow up
 
   abrirPopUp() {
-    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+    if (this.selectedRows.length === 1) {
+      const primeiroClienteSelecionado = this.selectedRows[0]; // Obtém o primeiro cliente do array
 
-    console.log('selecionado ', clienteSelecionado)
-
-    if (clienteSelecionado) {
+      // Extrair os dados do primeiro cliente selecionado
       const {
         id,
         cliente,
@@ -145,8 +167,9 @@ export class PainelCadastroComponent implements OnInit {
         processo,
         status,
         tipoDeCarga
-      } = clienteSelecionado;
+      } = primeiroClienteSelecionado;
 
+      // Criar um objeto de dados iniciais do formulário
       const dadosIniciaisFormulario: DadosIniciaisFormulario = {
         id,
         cliente,
@@ -166,11 +189,17 @@ export class PainelCadastroComponent implements OnInit {
         conferente: conferentes || conferente,
         selectedStatus: status
       };
+
+      // Chamar o método para abrir o modal com os dados do cliente selecionado
       this.abrirModalPopUp(true, dadosIniciaisFormulario);
+    } else if (this.selectedRows.length > 1) {
+      this.toastr.error("Você só pode selecionar um de cada vez!");
     } else {
-      window.alert("Selecione um cliente")
+      window.alert("Nenhum cliente selecionado");
     }
   }
+
+
 
   abrirModalPopUp(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
     const modalRef = this.modalService.open(PopUpModalComponent, { size: 'xl' });
@@ -178,11 +207,9 @@ export class PainelCadastroComponent implements OnInit {
   }
 
   abrirModalEdicao() {
-    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+    if (this.selectedRows.length === 1) {
+      const primeiroClienteSelecionado = this.selectedRows[0];
 
-    console.log('selecionado ', clienteSelecionado)
-
-    if (clienteSelecionado) {
       const {
         id,
         cliente,
@@ -204,7 +231,7 @@ export class PainelCadastroComponent implements OnInit {
         processo,
         status,
         tipoDeCarga
-      } = clienteSelecionado;
+      } = primeiroClienteSelecionado;
 
       const dadosIniciaisFormulario: DadosIniciaisFormulario = {
         id,
@@ -226,8 +253,10 @@ export class PainelCadastroComponent implements OnInit {
         selectedStatus: status
       };
       this.abrirModalFormulario(true, dadosIniciaisFormulario);
+    } else if (this.selectedRows.length > 1) {
+      this.toastr.error("Você só pode selecionar um de cada vez!");
     } else {
-      window.alert("Selecione um cliente")
+      window.alert("Nenhum cliente selecionado");
     }
   }
 
@@ -237,61 +266,48 @@ export class PainelCadastroComponent implements OnInit {
   }
 
 
-  abrirPDF() {
-    const clienteSelecionado: Cliente | undefined = this.clienteIdService.getClienteSelecionado();
+  // Abrir o download pdf. com todos que estiver selecionado.
 
-    console.log('selecionado ', clienteSelecionado)
+  abrirPDF(): void {
+    const clientesSelecionados = this.clienteIdService.getClienteSelecionado();
 
-    if (clienteSelecionado) {
-      const {
-        id,
-        cliente,
-        data,
-        hora,
-        quantidade,
-        ajudantes,
-        conferentes,
-        conferente,
-        destino,
-        di,
-        dta,
-        motorista,
-        origem,
-        pl_carreta,
-        pl_cavalo,
-        plCarreta,
-        plCavalo,
-        processo,
-        status,
-        tipoDeCarga
-      } = clienteSelecionado;
+    console.log('Clientes selecionados:', clientesSelecionados);
 
-      const dadosIniciaisFormulario: DadosIniciaisFormulario = {
-        id,
-        cliente,
-        data,
-        hora,
-        qtd: String(quantidade),
-        di,
-        dta,
-        tipo_de_carga: tipoDeCarga,
-        processo,
-        pl_cavalo: pl_cavalo || plCavalo,
-        pl_carreta: pl_carreta || plCarreta,
-        motorista,
-        origem,
-        destino,
-        ajudantes,
-        conferente: conferentes || conferente,
-        selectedStatus: status
-      };
-      this.abrirModalpdf(true, dadosIniciaisFormulario);
+    if (clientesSelecionados.length > 0) {
+      // Acumula as informações dos clientes selecionados em uma única variável
+      const dadosClientes: DadosIniciaisFormulario[] = clientesSelecionados.map(cliente => {
+        return {
+          id: cliente.id,
+          cliente: cliente.cliente,
+          data: cliente.data,
+          hora: cliente.hora,
+          qtd: String(cliente.quantidade),
+          di: cliente.di,
+          dta: cliente.dta,
+          tipo_de_carga: cliente.tipoDeCarga,
+          processo: cliente.processo,
+          pl_cavalo: cliente.pl_cavalo || cliente.plCavalo,
+          pl_carreta: cliente.pl_carreta || cliente.plCarreta,
+          motorista: cliente.motorista,
+          origem: cliente.origem,
+          destino: cliente.destino,
+          ajudantes: cliente.ajudantes,
+          conferente: cliente.conferentes || cliente.conferente,
+          selectedStatus: cliente.status
+        };
+      });
+
+      // Abre o modal com todas as informações dos clientes selecionados
+      this.abrirModalpdf(true, dadosClientes);
+    } else {
+      window.alert("Nenhum cliente selecionado");
     }
   }
 
-  abrirModalpdf(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
-    const modalRef = this.modalService.open(DownloadModalComponent, { size: 'xl' });
-    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
+
+  abrirModalpdf(isEdit = false, dadosClientes?: DadosIniciaisFormulario[]) {
+    const modalRef = this.modalService.open(PdfComponent, { size: 'xl' });
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosClientes);
   }
 
   abrirJanelaDoPainel() {

@@ -7,6 +7,8 @@ import { EmailService } from 'src/app/services/email.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
+import { SharedService } from 'src/app/services/shared.service';
+import { PainelCadastroComponent } from '../painel-cadastro/painel-cadastro.component';
 
 
 @Component({
@@ -53,9 +55,12 @@ export class PopUpModalComponent implements OnInit {
     private emailService: EmailService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private sharedService: SharedService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+   }
 
   setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario) {
     console.log('chegou: ', dadosIniciais)
@@ -387,7 +392,7 @@ export class PopUpModalComponent implements OnInit {
 
 
   salvarPdf() {
-    this.abrirModalpdf();
+    this.sharedService.abrirPDF()
   }
 
   abrirModalpdf(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {

@@ -83,6 +83,11 @@
       </div>
 
       <div class="form-group">
+        <label for="CNPJ">CNPJ:</label>
+        <input type="number" name="CNPJ" id="CNPJ" [(ngModel)]="cnpj" class="form-control form-control-sm mb-2">
+      </div>
+
+      <div class="form-group">
         <label for="status">STATUS:</label>
         <select class="form-control form-control-sm mb-2" id="status" [(ngModel)]="selectedStatus" name="status">
             <option value="Em andamento">Em andamento</option>

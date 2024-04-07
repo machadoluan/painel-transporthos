@@ -11,11 +11,7 @@ import { ClienteIdService } from 'src/app/services/cliente-id.service';
 export class EditarPopupComponent implements OnInit {
   clienteEditado: any;
 
-
-
   constructor(private clienteIdService: ClienteIdService) {
-    // this.clienteEditado = this.clienteIdService.getClienteSelecionado();
-    // console.log('Cliente Id', this.clienteEditado);
 
   }
 
@@ -27,7 +23,7 @@ export class EditarPopupComponent implements OnInit {
     }, 0);
   }
 
-  // Outros métodos do seu componente...
+
 }
 
 

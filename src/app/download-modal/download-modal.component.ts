@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 import { jsPDF } from "jspdf";
 import { ElementRef, ViewChild } from '@angular/core';
 import html2canvas from 'html2canvas';
-import { EmailService } from 'src/app/services/email.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-download-modal',
@@ -46,11 +43,10 @@ export class DownloadModalComponent implements OnInit {
   processo: string = '';
   // ...
 
+  clientesSelecionados: DadosIniciaisFormulario[] = [];
+
   constructor(
-    private http: HttpClient,
-    public activeModal: NgbActiveModal,
-    private emailService: EmailService,
-    private toastr: ToastrService
+    public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit(): void { }
@@ -127,34 +123,13 @@ export class DownloadModalComponent implements OnInit {
 
   // Salvar PDF
   salvarPdf() {
-
-    const registrationData = {
-      cliente: this.cliente,
-      qtd: this.qtd,
-      tipo_de_carga: this.tipo_de_carga,
-      origem: this.origem,
-      destino: this.destino,
-      selectedStatus: this.selectedStatus,
-      selectedInform: this.selectedInform,
-      processo: this.processo,
-    };
-
-
-
     const pdf = new jsPDF('p', 'pt', 'a4');
 
-    // Seleciona o elemento que contém o conteúdo que você deseja converter
     const content = this.el.nativeElement;
 
-    // Converte o conteúdo para um canvas
     html2canvas(content, { scale: 2 }).then(canvas => {
-      // Obtém a imagem do canvas como um URL de dados
       const imgData = canvas.toDataURL('image/png');
-
-      // Adiciona a imagem ao PDF
       pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
-
-      // Salva o PDF
       pdf.save("cliente.pdf");
     });
   }
