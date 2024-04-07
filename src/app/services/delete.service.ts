@@ -8,7 +8,7 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
   providedIn: 'root'
 })
 export class DeleteService {
-  private apiUrl = 'https://transporthos-painel-backend.vercel.app';
+  private apiUrl = 'https://transporthos-painel-backend.onrender.com';
 
 
   constructor(private http: HttpClient) { }

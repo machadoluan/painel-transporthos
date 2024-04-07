@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiUrl = 'https://transporthos-painel-backend.vercel.app';
+  private apiUrl = 'https://transporthos-painel-backend.onrender.com';
 
   constructor(private http: HttpClient) { }
   obterClientes(): Observable<any[]> {

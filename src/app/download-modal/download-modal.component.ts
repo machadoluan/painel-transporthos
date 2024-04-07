@@ -41,6 +41,7 @@ export class DownloadModalComponent implements OnInit {
   ajudantes: string = '';
   conferente: string = '';
   processo: string = '';
+  cnpj: string = '';
   // ...
 
   clientesSelecionados: DadosIniciaisFormulario[] = [];
@@ -95,7 +96,8 @@ export class DownloadModalComponent implements OnInit {
       destino,
       ajudantes,
       conferente,
-      selectedStatus
+      selectedStatus,
+      cnpj
     } = dadosIniciais || {};
 
     this.id = id;
@@ -115,6 +117,7 @@ export class DownloadModalComponent implements OnInit {
     this.ajudantes = ajudantes || '';
     this.conferente = conferente || '';
     this.selectedStatus = selectedStatus || '';
+    this.cnpj = cnpj || '';
   }
 
   closeModal() {

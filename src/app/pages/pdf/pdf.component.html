@@ -8,20 +8,25 @@
 
     <div class="corpo_preenchi">
       <div class="line_1" *ngIf="isEdit">
-        <span><strong>REF. TRANSPORTHOS</strong>: _________________________________________________________________________________</span>
-        <span><strong>CTE/NFE NR:</strong>__________________________________________________________________________________________</span>
-        <span><strong>REF. CLIENTE</strong>:  </span>
+        <span><strong>REF. TRANSPORTHOS</strong>:
+          _________________________________________________________________________________</span>
+        <span><strong>CTE/NFE
+            NR:</strong>__________________________________________________________________________________________</span>
+        <span><strong>REF. CLIENTE</strong>: </span>
         <span><strong>NOME DO CLIENTE:</strong> </span>
         <span><strong>CNPJ</strong>: </span>
-        <span><strong>CONTRATANTE/PAGADOR DO FRETE:</strong> ___________________________________________________________________</span>
+        <span><strong>CONTRATANTE/PAGADOR DO FRETE:</strong>
+          ___________________________________________________________________</span>
         <span><strong>DOC. TRANSPORTE</strong> (DI/NF/DTA/DTC/DAT): </span>
         <span><strong>LOCAL DE COLETA</strong>: </span>
         <span><strong>REMETENTE/CLIENTE:</strong> </span>
         <span><strong>LOCAL DE ENTREGA:</strong> </span>
-        <span><strong>DESTINATÁRIO:</strong> ______________________________________________________________________________________</span>
+        <span><strong>DESTINATÁRIO:</strong>
+          ______________________________________________________________________________________</span>
         <span><strong>PRODUTO:</strong>___________________________________________________________________________________________</span>
         <span><strong>PESO:</strong>_______________________________________________________________________________________________</span>
-        <span><strong>VALOR CIF. US$ / R$:</strong> __________________________________________________________________________________</span>
+        <span><strong>VALOR CIF. US$ / R$:</strong>
+          __________________________________________________________________________________</span>
 
       </div>
     </div>
@@ -39,6 +44,13 @@
           <span>_______________________</span>
         </div>
         <div class="pt2_colun">
+          <strong>CNPJ</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.cnpj}}</span>
+          </ng-container>
+          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
           <strong>DTA/DI/DTC</strong>
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.di}}</span>
@@ -46,19 +58,19 @@
           <span>_______________________</span>
         </div>
         <div class="pt2_colun">
-            <strong>CONTAINERS</strong>
-            <!-- Iterar sobre cada cliente selecionado -->
-            <ng-container *ngFor="let cliente of clientesSelecionados">
-              <span>{{cliente.tipo_de_carga}}</span>
-            </ng-container>
-            <span>_______________________</span>
+          <strong>CONTAINERS</strong>
+          <!-- Iterar sobre cada cliente selecionado -->
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.tipo_de_carga}}</span>
+          </ng-container>
+          <span>_______________________</span>
         </div>
         <div class="pt2_colun">
-            <strong>MOTORISTA</strong>
-            <ng-container *ngFor="let cliente of clientesSelecionados">
-              <span>{{cliente.motorista}}</span>
-            </ng-container>
-            <span>_______________________</span>
+          <strong>MOTORISTA</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.motorista}}</span>
+          </ng-container>
+          <span>_______________________</span>
         </div>
       </div>
       <div class="titulo2">
@@ -66,13 +78,19 @@
       </div>
       <div class="colunas ultima">
         <div class="line_1">
-          <span><strong>FRETE R$ POR VEICULO:</strong>_______________________________________________________________________________</span>
-          <span><strong>SEGURO R$ </strong>:(_____%)__________________________________________________________________________________</span>
-          <span><strong>IMPOSTOS R$:</strong> (______%) _______________________________________________________________________________</span>
-          <span><strong>PRAZO PARA PAGAMENTO</strong>: _____________________________________________________________________________</span>
-          <span><strong>QUANTIDADE - AJUDANTE</strong> (  ) : </span>
-          <span><strong>OUTROS VALORES R$</strong>: _________________________________________________________________________________</span>
-          <span><strong>ENVIAR E-MAIL DE FATURAMENTO PARA</strong>:_________________________________________________________________</span>
+          <span><strong>FRETE R$ POR
+              VEICULO:</strong>_______________________________________________________________________________</span>
+          <span><strong>SEGURO R$
+            </strong>:(_____%)__________________________________________________________________________________</span>
+          <span><strong>IMPOSTOS R$:</strong> (______%)
+            _______________________________________________________________________________</span>
+          <span><strong>PRAZO PARA PAGAMENTO</strong>:
+            _____________________________________________________________________________</span>
+          <span><strong>QUANTIDADE - AJUDANTE</strong> ( ) : </span>
+          <span><strong>OUTROS VALORES R$</strong>:
+            _________________________________________________________________________________</span>
+          <span><strong>ENVIAR E-MAIL DE FATURAMENTO
+              PARA</strong>:_________________________________________________________________</span>
 
 
         </div>

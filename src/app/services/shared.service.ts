@@ -37,7 +37,8 @@ export class SharedService {
         plCavalo,
         processo,
         status,
-        tipoDeCarga
+        tipoDeCarga,
+        cnpj
       } = clienteSelecionado;
 
       const dadosIniciaisFormulario: DadosIniciaisFormulario = {
@@ -57,7 +58,8 @@ export class SharedService {
         destino,
         ajudantes,
         conferente: conferentes || conferente,
-        selectedStatus: status
+        selectedStatus: status,
+        cnpj
       };
 
       const modalRef = this.modalService.open(DownloadModalComponent, { size: 'xl' });

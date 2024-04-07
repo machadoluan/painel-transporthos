@@ -47,6 +47,7 @@ export class PopUpModalComponent implements OnInit {
   ajudantes: string = '';
   conferente: string = '';
   processo: string = '';
+  cnpj: string = '';
   // ...
 
   constructor(
@@ -60,7 +61,7 @@ export class PopUpModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-   }
+  }
 
   setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario) {
     console.log('chegou: ', dadosIniciais)
@@ -106,7 +107,8 @@ export class PopUpModalComponent implements OnInit {
       destino,
       ajudantes,
       conferente,
-      selectedStatus
+      selectedStatus,
+      cnpj
     } = dadosIniciais || {};
 
     this.id = id;
@@ -126,6 +128,7 @@ export class PopUpModalComponent implements OnInit {
     this.ajudantes = ajudantes || '';
     this.conferente = conferente || '';
     this.selectedStatus = selectedStatus || '';
+    this.cnpj = cnpj || '';
   }
 
   closeModal() {
@@ -162,7 +165,8 @@ export class PopUpModalComponent implements OnInit {
         selectedInform: this.selectedInform,
         processo: this.processo,
         data: this.data,
-        hora: this.hora
+        hora: this.hora,
+        cnpj: this.cnpj
       };
 
 
@@ -306,6 +310,10 @@ export class PopUpModalComponent implements OnInit {
                 <div class="cliente">
                     <div class="inform-descr">Cliente:</div>
                     <div class="inform-cliente">${this.cliente}</div>
+                </div>
+                <div class="cnpj">
+                    <div class="inform-descr">CNPJ:</div>
+                    <div class="inform-cliente">${this.cnpj}</div>
                 </div>
                 <div class="processo">
                     <div class="inform-descr">Processo:</div>
