@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,7 @@ import { PopUpModalComponent } from './pages/follow-up/follow-up.component';
 import { EmailService } from './services/email.service';
 import { DownloadModalComponent } from './download-modal/download-modal.component';
 import { PdfComponent } from './pages/pdf/pdf.component';
-
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -60,7 +60,10 @@ import { PdfComponent } from './pages/pdf/pdf.component';
       timeOut: 3000, // Tempo em milissegundos antes de fechar automaticamente
       positionClass: 'toast-top-right', // Posição da notificação (veja outras opções na documentação)
       preventDuplicates: true, // Evita notificações duplicadas
-    })
+    }),
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    }),
 
   ],
   providers: [

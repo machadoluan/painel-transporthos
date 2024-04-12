@@ -41,7 +41,12 @@
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.data}}</span>
           </ng-container>
-          <span>_______________________</span>
+        </div>
+        <div class="pt2_colun">
+          <strong>CNPJ</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.cnpj}}</span>
+          </ng-container>
         </div>
         <div class="pt2_colun">
           <strong>CNPJ</strong>
@@ -55,7 +60,6 @@
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.di}}</span>
           </ng-container>
-          <span>_______________________</span>
         </div>
         <div class="pt2_colun">
           <strong>CONTAINERS</strong>
@@ -63,14 +67,20 @@
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.tipo_de_carga}}</span>
           </ng-container>
+<<
+==
           <span>_______________________</span>
+>>
         </div>
         <div class="pt2_colun">
           <strong>MOTORISTA</strong>
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.motorista}}</span>
           </ng-container>
+<<
+==
           <span>_______________________</span>
+>>
         </div>
       </div>
       <div class="titulo2">

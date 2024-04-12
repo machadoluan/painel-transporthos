@@ -10,6 +10,7 @@ import { PopUpModalComponent } from 'src/app/pages/follow-up/follow-up.component
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
 import { PdfComponent } from '../pdf/pdf.component';
+import { Console } from 'console';
 
 
 export interface Cliente {
@@ -66,15 +67,27 @@ export class PainelCadastroComponent implements OnInit {
   ) { }
 
   selecionarLinha(cliente: Cliente) {
-    const index = this.selectedRows.findIndex((row) => row.id === cliente.id);
-    if (index === -1) {
-      this.selectedRows.push(cliente);
-      this.clienteIdService.setClienteSelecionado(cliente);
+    if (this.selectedRows.length === 0 || this.selectedRows[0].cliente === cliente.cliente) {
+      const index = this.selectedRows.findIndex(row => row.id === cliente.id);
+      if (index === -1) {
+        this.selectedRows.push(cliente);
+        this.clienteIdService.setClienteSelecionado(cliente);
+      } else {
+        this.selectedRows.splice(index, 1);
+        this.clienteIdService.limparClientesSelecionados(cliente);
+        console.log("Cliente desmarcado");
+      }
     } else {
-      this.selectedRows.splice(index, 1);
-      this.clienteIdService.limparClientesSelecionados(cliente);
+      this.selectedRows = [cliente];
+      this.clienteIdService.limparClientesSelecionados();
+      this.clienteIdService.setClienteSelecionado(cliente);
+      console.log("Troca de cliente:", cliente.cliente);
     }
   }
+
+
+
+
 
 
   isClienteSelecionado(cliente: Cliente): boolean {
