@@ -30,7 +30,7 @@ export class CadastroModalComponent implements OnInit {
   ajudantes: string = '';
   conferente: string = '';
   selectedStatus: string = '';
-  cnpj: string = "";
+  cnpj: string = '';
   // ...
 
   constructor(
@@ -40,11 +40,11 @@ export class CadastroModalComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario){
+  setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario) {
     console.log('chegou: ', dadosIniciais)
 
     function formatDate(date: string) {
-      if(!date) return '';
+      if (!date) return '';
 
       const [day, month, year] = date.split('/');
 
@@ -54,8 +54,8 @@ export class CadastroModalComponent implements OnInit {
       return `${year}-${formattedMonth}-${formattedDay}`
     }
 
-    function formatHour(hour: string){
-      if(!hour) return '';
+    function formatHour(hour: string) {
+      if (!hour) return '';
 
       const [hours, minutes] = hour.split(':')
 
@@ -105,7 +105,7 @@ export class CadastroModalComponent implements OnInit {
     this.ajudantes = ajudantes || '';
     this.conferente = conferente || '';
     this.selectedStatus = selectedStatus || '';
-    this.cnpj = cnpj || "";
+    this.cnpj = cnpj || '';
   }
 
   closeModal() {
@@ -137,16 +137,17 @@ export class CadastroModalComponent implements OnInit {
       destino: this.destino,
       ajudantes: this.ajudantes,
       conferente: this.conferente,
-      status: this.selectedStatus
+      status: this.selectedStatus,
+      cnpj: this.cnpj
       // ...
     };
 
     console.log(data.dataAbreviada)
     console.log(data.horaAbreviada)
 
-    if(!this.isEdit){
+    if (!this.isEdit) {
       // Cadastro
-      this.http.post('https://transporthos-painel-backend.vercel.app/clientes', data)
+      this.http.post('https://transporthos-painel-backend.onrender.com/clientes', data)
         .subscribe(
           (response: any) => {
             const defaultMessage = 'Cadastro enviado com sucesso';
@@ -160,9 +161,9 @@ export class CadastroModalComponent implements OnInit {
             window.alert(error.error.Mensagem || defaultMessage);
           }
         );
-      } else {
-        // Edição
-        this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${this.id}`, data)
+    } else {
+      // Edição
+      this.http.put(`https://transporthos-painel-backend.onrender.com/cliente/${this.id}`, data)
         .subscribe(
           (response: any) => {
             const defaultMessage = 'Alterações salvas com sucesso';
@@ -176,7 +177,7 @@ export class CadastroModalComponent implements OnInit {
             window.alert(error.error.Mensagem || defaultMessage);
           }
         );
-      }
+    }
   }
 
   resetForm() {
@@ -197,6 +198,6 @@ export class CadastroModalComponent implements OnInit {
     this.ajudantes = '';
     this.conferente = '';
     this.selectedStatus = '';
-    this.cnpj = "";
+    this.cnpj = '';
   }
 }

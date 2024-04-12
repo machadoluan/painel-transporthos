@@ -57,6 +57,7 @@ margin: 0 auto;
   width: 90%;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   gap: 1.6rem;
   padding: 40px 0;
 }

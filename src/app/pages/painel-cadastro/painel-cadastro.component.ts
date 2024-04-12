@@ -10,6 +10,7 @@ import { PopUpModalComponent } from 'src/app/pages/follow-up/follow-up.component
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
 import { PdfComponent } from '../pdf/pdf.component';
+import { Console } from 'console';
 
 
 export interface Cliente {
@@ -33,6 +34,7 @@ export interface Cliente {
   quantidade: number;
   status: string;
   tipoDeCarga: string;
+  cnpj: string;
 }
 
 @Component({
@@ -65,15 +67,27 @@ export class PainelCadastroComponent implements OnInit {
   ) { }
 
   selecionarLinha(cliente: Cliente) {
-    const index = this.selectedRows.findIndex((row) => row.id === cliente.id);
-    if (index === -1) {
-      this.selectedRows.push(cliente);
-      this.clienteIdService.setClienteSelecionado(cliente);
+    if (this.selectedRows.length === 0 || this.selectedRows[0].cliente === cliente.cliente) {
+      const index = this.selectedRows.findIndex(row => row.id === cliente.id);
+      if (index === -1) {
+        this.selectedRows.push(cliente);
+        this.clienteIdService.setClienteSelecionado(cliente);
+      } else {
+        this.selectedRows.splice(index, 1);
+        this.clienteIdService.limparClientesSelecionados(cliente);
+        console.log("Cliente desmarcado");
+      }
     } else {
-      this.selectedRows.splice(index, 1);
-      this.clienteIdService.limparClientesSelecionados(cliente);
+      this.selectedRows = [cliente];
+      this.clienteIdService.limparClientesSelecionados();
+      this.clienteIdService.setClienteSelecionado(cliente);
+      console.log("Troca de cliente:", cliente.cliente);
     }
   }
+
+
+
+
 
 
   isClienteSelecionado(cliente: Cliente): boolean {
@@ -126,7 +140,7 @@ export class PainelCadastroComponent implements OnInit {
     };
 
     this.http
-      .get<any[]>('https://transporthos-painel-backend.vercel.app/buscar', { params })
+      .get<any[]>('https://transporthos-painel-backend.onrender.com/buscar', { params })
       .subscribe((response) => {
         this.clientes = response;
         this.totalItems = response.length;
@@ -166,7 +180,8 @@ export class PainelCadastroComponent implements OnInit {
         plCavalo,
         processo,
         status,
-        tipoDeCarga
+        tipoDeCarga,
+        cnpj
       } = primeiroClienteSelecionado;
 
       // Criar um objeto de dados iniciais do formulário
@@ -187,7 +202,8 @@ export class PainelCadastroComponent implements OnInit {
         destino,
         ajudantes,
         conferente: conferentes || conferente,
-        selectedStatus: status
+        selectedStatus: status,
+        cnpj
       };
 
       // Chamar o método para abrir o modal com os dados do cliente selecionado
@@ -230,7 +246,8 @@ export class PainelCadastroComponent implements OnInit {
         plCavalo,
         processo,
         status,
-        tipoDeCarga
+        tipoDeCarga,
+        cnpj
       } = primeiroClienteSelecionado;
 
       const dadosIniciaisFormulario: DadosIniciaisFormulario = {
@@ -250,7 +267,8 @@ export class PainelCadastroComponent implements OnInit {
         destino,
         ajudantes,
         conferente: conferentes || conferente,
-        selectedStatus: status
+        selectedStatus: status,
+        cnpj
       };
       this.abrirModalFormulario(true, dadosIniciaisFormulario);
     } else if (this.selectedRows.length > 1) {
@@ -293,7 +311,8 @@ export class PainelCadastroComponent implements OnInit {
           destino: cliente.destino,
           ajudantes: cliente.ajudantes,
           conferente: cliente.conferentes || cliente.conferente,
-          selectedStatus: cliente.status
+          selectedStatus: cliente.status,
+          cnpj: cliente.cnpj
         };
       });
 
@@ -336,9 +355,9 @@ export class PainelCadastroComponent implements OnInit {
   }
 
   updateStatus(cliente: Cliente, status: string) {
-    const { id, data, hora, tipoDeCarga, pl_cavalo, pl_carreta, plCavalo, plCarreta, conferentes, conferente, ...clienteProps } = cliente;
+    const { id, data, hora, tipoDeCarga, pl_cavalo, pl_carreta, plCavalo, plCarreta, conferentes, cnpj, conferente, ...clienteProps } = cliente;
 
-    this.http.put(`https://transporthos-painel-backend.vercel.app/cliente/${cliente.id}`, {
+    this.http.put(`https://transporthos-painel-backend.onrender.com/cliente/${cliente.id}`, {
       ...clienteProps,
       status,
       dataAbreviada: cliente.data,
@@ -347,6 +366,7 @@ export class PainelCadastroComponent implements OnInit {
       pl_cavalo: cliente.pl_cavalo || cliente.plCavalo,
       pl_carreta: cliente.pl_carreta || cliente.plCarreta,
       conferente: cliente.conferentes || cliente.conferente,
+      cnpj: cliente.cnpj
     })
       .subscribe(
         (response: any) => {

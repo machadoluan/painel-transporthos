@@ -40,6 +40,7 @@ export class PdfComponent implements OnInit {
   ajudantes: string = '';
   conferente: string = '';
   processo: string = '';
+  cnpj: string = '';
   // ...
 
   clientesSelecionados: DadosIniciaisFormulario[] = [];

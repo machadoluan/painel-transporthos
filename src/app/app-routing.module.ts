@@ -34,11 +34,6 @@ const routes: Routes = [
     component: EditarPopupComponent, canActivate: [AuthGuard]
   },
 
-  {
-    path: 'enviar-pdf',
-    component: EnviarPdfComponent, canActivate: [AuthGuard]
-  },
-
 
   {
     path: '**', // Rota padrão
