@@ -337,6 +337,7 @@ export class PainelCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.carregarClientes();
+
   }
 
   carregarClientes() {

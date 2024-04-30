@@ -2,20 +2,22 @@
   color: #000;
   font-family: sans-serif;
 }
-.modal-body{
+
+.modal-body {
   border-radius: 5px;
   background-color: #434243;
 }
-.pdf{
+
+.pdf {
   /* margin: 50px 50px; */
   background-color: white;
   border-radius: 10px;
-  margin-top: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-.header{
+.header {
   width: 100%;
   display: flex;
   align-items: center;
@@ -23,15 +25,17 @@
   padding: 10px 50px;
 }
 
-.header img{
+.header img {
   width: 100px;
 }
-.header h1{
+
+.header h1 {
   font-size: 20px;
   padding-right: 200px;
   font-weight: bold;
 }
-.corpo_preenchi{
+
+.corpo_preenchi {
   width: 100%;
   padding: 30px 50px;
   display: flex;
@@ -39,21 +43,28 @@
   justify-content: center;
   gap: 1rem;
 }
-.line_1{
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
+
+.line_1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+.line_1 span{
+  display: flex;
+}
+
 /* Segunda parte */
-.titulo{
-width: 90%;
-margin: 0 auto;
+.titulo {
+  width: 90%;
+  margin: 0 auto;
 }
-.titulo h1{
+
+.titulo h1 {
   font-size: 16px;
   font-weight: bold;
 }
-.colunas{
+
+.colunas {
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -61,30 +72,33 @@ margin: 0 auto;
   gap: 1.6rem;
   padding: 40px 0;
 }
-.pt2_colun{
+
+.pt2_colun {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 /* .pt2_colun span{
 text-align: center;
 } */
-.titulo2{
+.titulo2 {
   width: 90%;
   margin: 0 auto;
 }
-.titulo2 h5{
+
+.titulo2 h5 {
   font-size: 16px;
   font-weight: bold;
 }
 
-.ultima{
+.ultima {
   padding-bottom: 100px;
 }
 
 /* Buttons */
 
-.buttons{
+.buttons {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -93,7 +107,7 @@ text-align: center;
   margin-bottom: 20px;
 }
 
-button{
+button {
   padding: 5px 10px;
   border: none;
   color: white;
@@ -101,10 +115,16 @@ button{
   border-radius: 9px;
 }
 
-.close{
+.close {
   background-color: gray;
 }
 
-.donwload{
+.donwload {
   background-color: green;
+}
+
+#linha {
+  width: 60%;
+  height: 1px;
+  background-color: #000;
 }
