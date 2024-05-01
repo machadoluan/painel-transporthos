@@ -49,13 +49,15 @@ export class PdfComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+  }
 
   setInitialDatas(isEdit: boolean, dadosClientes?: DadosIniciaisFormulario[]) {
     console.log('chegou: ', dadosClientes)
     this.isEdit = isEdit;
     this.clientesSelecionados = dadosClientes || [];
   }
+  
 
   closeModal() {
     this.activeModal.close();
@@ -68,10 +70,11 @@ export class PdfComponent implements OnInit {
     const pdf = new jsPDF('p', 'pt', 'a4');
     const content = this.el.nativeElement;
 
-    html2canvas(content, { scale: 2 }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+    html2canvas(content, { scale: 3, logging: true }).then(canvas => { // Aumentando a escala para 3
+      const imgData = canvas.toDataURL('image/jpeg', 1.0); // Usando JPEG com alta qualidade (qualidade = 1.0)
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
       pdf.save("cliente.pdf");
     });
   }
+
 }

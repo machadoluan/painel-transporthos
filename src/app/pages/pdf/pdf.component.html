@@ -12,21 +12,22 @@
           _________________________________________________________________________________</span>
         <span><strong>CTE/NFE
             NR:</strong>__________________________________________________________________________________________</span>
-        <span><strong>REF. CLIENTE</strong>: </span>
-        <span><strong>NOME DO CLIENTE:</strong> </span>
-        <span><strong>CNPJ</strong>: </span>
+        <span><strong>REF. CLIENTE</strong>:_________________________________________________________________________________________</span>
+        <span><strong>NOME DO CLIENTE</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cliente : '' }}
+        </span>
+        <span><strong>CNPJ</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cnpj : '' }}
+        </span>
         <span><strong>CONTRATANTE/PAGADOR DO FRETE:</strong>
-          ___________________________________________________________________</span>
-        <span><strong>DOC. TRANSPORTE</strong> (DI/NF/DTA/DTC/DAT): </span>
-        <span><strong>LOCAL DE COLETA</strong>: </span>
-        <span><strong>REMETENTE/CLIENTE:</strong> </span>
-        <span><strong>LOCAL DE ENTREGA:</strong> </span>
+          ____________________________________________________________________</span>
+        <span><strong>DOC. TRANSPORTE</strong>(DI/NF/DTA/DTC/DAT): _________________________________________________________________</span>
+        <span><strong>LOCAL DE COLETA</strong>:____________________________________________________________________________________</span>
+        <span><strong>REMETENTE/CLIENTE:</strong> _________________________________________________________________________________</span>
+        <span><strong>LOCAL DE ENTREGA:</strong> __________________________________________________________________________________</span>
         <span><strong>DESTINATÁRIO:</strong>
-          ______________________________________________________________________________________</span>
-        <span><strong>PRODUTO:</strong>___________________________________________________________________________________________</span>
-        <span><strong>PESO:</strong>_______________________________________________________________________________________________</span>
-        <span><strong>VALOR CIF. US$ / R$:</strong>
-          __________________________________________________________________________________</span>
+          _______________________________________________________________________________________</span>
+        <span><strong>PRODUTO:</strong>____________________________________________________________________________________________</span>
+        <span><strong>PESO:</strong>________________________________________________________________________________________________</span>
+        <span><strong>VALOR CIF. US$ / R$:</strong>___________________________________________________________________________________</span>
 
       </div>
     </div>
@@ -43,19 +44,6 @@
           </ng-container>
         </div>
         <div class="pt2_colun">
-          <strong>CNPJ</strong>
-          <ng-container *ngFor="let cliente of clientesSelecionados">
-            <span>{{cliente.cnpj}}</span>
-          </ng-container>
-        </div>
-        <div class="pt2_colun">
-          <strong>CNPJ</strong>
-          <ng-container *ngFor="let cliente of clientesSelecionados">
-            <span>{{cliente.cnpj}}</span>
-          </ng-container>
-          <span>_______________________</span>
-        </div>
-        <div class="pt2_colun">
           <strong>DTA/DI/DTC</strong>
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.di}}</span>
@@ -67,20 +55,12 @@
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.tipo_de_carga}}</span>
           </ng-container>
-<<
-==
-          <span>_______________________</span>
->>
         </div>
         <div class="pt2_colun">
           <strong>MOTORISTA</strong>
           <ng-container *ngFor="let cliente of clientesSelecionados">
             <span>{{cliente.motorista}}</span>
           </ng-container>
-<<
-==
-          <span>_______________________</span>
->>
         </div>
       </div>
       <div class="titulo2">
@@ -96,13 +76,11 @@
             _______________________________________________________________________________</span>
           <span><strong>PRAZO PARA PAGAMENTO</strong>:
             _____________________________________________________________________________</span>
-          <span><strong>QUANTIDADE - AJUDANTE</strong> ( ) : </span>
+          <span><strong>QUANTIDADE - AJUDANTE</strong> ( ) :___________________________________________________________________________</span>
           <span><strong>OUTROS VALORES R$</strong>:
             _________________________________________________________________________________</span>
           <span><strong>ENVIAR E-MAIL DE FATURAMENTO
               PARA</strong>:_________________________________________________________________</span>
-
-
         </div>
       </div>
     </div>
