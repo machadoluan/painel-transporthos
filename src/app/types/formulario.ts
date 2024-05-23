@@ -17,4 +17,6 @@ export type DadosIniciaisFormulario = {
     conferente?: string;
     selectedStatus?: string;
     cnpj?: string;
+    historicoInformacoes?: string[];
+    informacoes?: string[];
 }

@@ -48,6 +48,8 @@ export class PopUpModalComponent implements OnInit {
   conferente: string = '';
   processo: string = '';
   cnpj: string = '';
+  historicoInformacoes: any[] = [];
+  informacoes: any[] = [];
   // ...
 
   constructor(
@@ -108,7 +110,8 @@ export class PopUpModalComponent implements OnInit {
       ajudantes,
       conferente,
       selectedStatus,
-      cnpj
+      cnpj,
+      informacoes,
     } = dadosIniciais || {};
 
     this.id = id;
@@ -129,16 +132,20 @@ export class PopUpModalComponent implements OnInit {
     this.conferente = conferente || '';
     this.selectedStatus = selectedStatus || '';
     this.cnpj = cnpj || '';
+    this.historicoInformacoes = informacoes || []; // Inclua o campo 'informacoes' aqui
+
   }
 
   closeModal() {
     this.activeModal.close()
   }
 
-  historicoInformacoes: any[] = [];
+
 
   enviarEmail() {
-
+    console.log(this.informacoes)
+    console.log(this.selectedInform)
+    console.log(this.id)
     console.log('Enviando e-mail...');
 
     const dataSplit = this.data.split('-'); // Divide a data em ano, mês e dia
@@ -153,6 +160,9 @@ export class PopUpModalComponent implements OnInit {
 
     if (!this.emailInvalid && !this.selectedInvalid) {
       // Cria um objeto com os dados do cadastro
+
+      this.informacoes.push(this.selectedInform);
+
       const registrationData = {
         ataAbreviada: dataFormatada,
         horaAbreviada: this.hora,
@@ -166,7 +176,8 @@ export class PopUpModalComponent implements OnInit {
         processo: this.processo,
         data: this.data,
         hora: this.hora,
-        cnpj: this.cnpj
+        cnpj: this.cnpj,
+        informacoes: this.informacoes, // Inclua o array informacoes aqui
       };
 
 
@@ -369,6 +380,14 @@ export class PopUpModalComponent implements OnInit {
       <div class="lorem">${this.selectedInform}</div>
     </div>
   </div>
+
+  <div class="continer">
+  <div class="titulo-desc">Histórico de Follow-Up</div>
+  <div class="inform">
+    <div class="lorem">${this.informacoes}</div>
+  </div>
+</div>
+
     </div>
 
 </div>
