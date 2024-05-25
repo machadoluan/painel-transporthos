@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = 'https://transporthos-painel-backend.onrender.com';
+  private apiUrl = 'https://backend-transporter.vercel.app';
+  // private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(recipientEmail: string, additionalData: any, emailBody: string): Observable<any> {
-    const body = { recipientEmail, ...additionalData, emailBody };
+  sendEmail(emails: string[] = [], additionalData: any, ): Observable<any> {
+    const body = { emails, ...additionalData };
     return this.http.post(`${this.apiUrl}/send`, body);
   }
 }

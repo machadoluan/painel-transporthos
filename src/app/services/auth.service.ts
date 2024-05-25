@@ -20,7 +20,7 @@ export class AuthService {
         if (response && response.token) {
           // Exiba a data/hora de expiração do token
           const expirationDate = new Date();
-          expirationDate.setSeconds(expirationDate.getSeconds() + 1800); // Adapte para a expiração real do token (2 minutos)
+          expirationDate.setSeconds(expirationDate.getSeconds() + 180000000); // Adapte para a expiração real do token (2 minutos)
           console.log('Token expira em:', expirationDate);
           localStorage.setItem('token', response.token);
           // Armazene a data/hora de expiração
