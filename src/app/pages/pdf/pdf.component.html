@@ -12,17 +12,17 @@
           _________________________________________________________________________________</span>
         <span><strong>CTE/NFE
             NR:</strong>__________________________________________________________________________________________</span>
-        <span><strong>REF. CLIENTE</strong>:_________________________________________________________________________________________</span>
+        <span><strong>REF. CLIENTE </strong>: {{clientesSelecionados.length > 0 ? clientesSelecionados[0].processo : '' }}</span>
         <span><strong>NOME DO CLIENTE</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cliente : '' }}
         </span>
         <span><strong>CNPJ</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cnpj : '' }}
         </span>
         <span><strong>CONTRATANTE/PAGADOR DO FRETE:</strong>
           ____________________________________________________________________</span>
-        <span><strong>DOC. TRANSPORTE</strong>(DI/NF/DTA/DTC/DAT): _________________________________________________________________</span>
-        <span><strong>LOCAL DE COLETA</strong>:____________________________________________________________________________________</span>
+        <span><strong>DOC. TRANSPORTE</strong>(DI/NF/DTA/DTC/DAT): {{clientesSelecionados.length > 0 ? clientesSelecionados[0].di : '' }}</span>
+        <span><strong>LOCAL DE COLETA</strong>: {{clientesSelecionados.length > 0 ? clientesSelecionados[0].origem : '' }}</span>
         <span><strong>REMETENTE/CLIENTE:</strong> _________________________________________________________________________________</span>
-        <span><strong>LOCAL DE ENTREGA:</strong> __________________________________________________________________________________</span>
+        <span><strong>LOCAL DE ENTREGA: </strong> {{clientesSelecionados.length > 0 ? clientesSelecionados[0].destino : '' }}</span>
         <span><strong>DESTINATÁRIO:</strong>
           _______________________________________________________________________________________</span>
         <span><strong>PRODUTO:</strong>____________________________________________________________________________________________</span>

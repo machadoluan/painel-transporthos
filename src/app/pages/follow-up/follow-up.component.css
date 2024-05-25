@@ -1,6 +1,7 @@
-*{
+* {
   color: #000;
 }
+
 body {
   margin: 10px;
   padding: 0px;
@@ -29,9 +30,11 @@ body {
   justify-content: center;
 
 }
+
 .popup-container h2 {
   color: black;
 }
+
 .popup-container label {
   font-size: 16px;
   margin-left: 7px;
@@ -45,24 +48,28 @@ body {
 .popup-container input {
   margin: 10px;
 }
+
 /* Comecando style */
-#titulo-dados{
+#titulo-dados {
   font-size: 20px;
   color: gray;
   font-weight: 200;
 }
 
-.form-group label{
+.form-group label {
   font-size: 12px;
 }
-.text-danger{
+
+.text-danger {
   font-size: 14px;
 }
-.dados-follow{
+
+.dados-follow {
   margin-top: 20px;
   width: 100%;
 }
-.up-img{
+
+.up-img {
   width: 100%;
   height: 30px;
   background-color: rgb(160, 160, 160);
@@ -75,13 +82,15 @@ body {
   place-content: center;
   cursor: pointer;
 }
-.btn-enviar{
+
+.btn-enviar {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-top: 20px;
 }
-.pdf{
+
+.pdf {
   background-color: green;
   border: none;
 }
@@ -90,39 +99,174 @@ body {
 @media (max-width: 576px) {
 
   .popup-container h2 {
-      color: black;
-      font-size: 27px;
-      margin-bottom: 30px;
-      margin-top: -60px;
+    color: black;
+    font-size: 27px;
+    margin-bottom: 30px;
+    margin-top: -60px;
   }
 
   .popup-container {
-      height: 1443px;
-      width: 279px;
+    height: 1443px;
+    width: 279px;
   }
 
   .home__container {
-      margin: 0px;
-      height: 1541px;
+    margin: 0px;
+    height: 1541px;
   }
 
 
   .popup-container label {
-      font-size: 23px;
-      margin-left: 17px;
+    font-size: 23px;
+    margin-left: 17px;
   }
 
   .popup-container input {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .popup-container button {
-      margin-left: 107px;
-      margin-top: 14px;
-      font-size: 20px;
+    margin-left: 107px;
+    margin-top: 14px;
+    font-size: 20px;
   }
 
 
   /* Suas regras de estilo para dispositivos móveis aqui */
 
+}
+
+.tags {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 14px;
+  padding: 5px 10px;
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-email {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-content: center;
+  background-color: white;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.up-img {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 5px;
+  background-color: rgb(160, 160, 160);
+  color: #fff;
+  /* Cor do texto */
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+/* Estilo para o input de arquivo */
+.up-img input[type="file"] {
+  position: absolute;
+  font-size: 100px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* Estilo para o texto do botão */
+.up-img::before {
+  content: "ADICIONAR IMAGENS";
+}
+
+/* Estilo para quando o botão é clicado */
+.up-img:hover {
+  background-color: rgba(160, 160, 160, 0.719);
+
+}
+
+/* files */
+
+.file-add {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  padding-top: 10px;
+}
+
+.item {
+  position: relative;
+  list-style: none;
+  padding: 5px 10px;
+  display: flex;
+  gap: 1rem;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.item:hover .excluir{
+  display: grid;
+}
+
+.img {
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.name-item {
+  font-size: 14px;
+}
+
+.excluir {
+  display: none;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  place-content: center;
+  background-color: #A0A0A0;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.full-screen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo preto translúcido */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen-image img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+  border: 1px solid white; /* Adicione uma borda branca opcional */
 }

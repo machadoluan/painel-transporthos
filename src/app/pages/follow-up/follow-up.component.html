@@ -49,8 +49,14 @@
       <div class="dados-container row row-cols-1 row-cols-sm-2 row-cols-lg-3">
         <div class="form-group">
           <label for="email">E-MAIL:</label>
-          <input type="email" name="email" id="email" class="form-control form-control-sm mb-2" [(ngModel)]="userEmail">
+          <input type="email" name="email" id="email" class="form-control form-control-sm mb-2" [(ngModel)]="userEmail"
+            (keydown.enter)="$event.preventDefault(); addEmail()">
           <div *ngIf="emailInvalid" class="text-danger">E-mail Invalido. Por favor, insira um e-mail valido!</div>
+          <div class="tags">
+            <div *ngFor="let email of emails" class="tag">{{ email }}
+              <i class="fa-solid fa-x icon-email" (click)="removeEmail(email)"></i>
+            </div>
+          </div>
         </div>
 
 
@@ -86,9 +92,24 @@
         </div>
 
         <div class="form-group">
-          <div class="up-img">ADICIONAR IMAGENS</div>
-        </div>
+          <div class="up-img">
+            <input type="file" id="imagem" name="imagem" accept="image/*" (change)="onFilesSelected($event)" multiple
+              #fileInput>
+          </div>
 
+          <div class="file-add" *ngIf="selectedFiles.length > 0">
+            <li *ngFor="let file of selectedFiles; let i = index" class="item">
+              <!-- Nome do arquivo -->
+              <img [src]="imagePreviews[i]" *ngIf="imagePreviews[i]" alt="Image preview" width="200px" class="img"
+                (click)="openFullScreenImage(imagePreviews[i])">
+              <span class="name-item">{{ shortenFileName(file.name) }}</span>
+              <!-- Pré-visualização da imagem -->
+              <div class="excluir" (click)="removeFile(i)">
+                <span style="color: white; font-size: 10px;">X</span>
+              </div>
+            </li>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -96,7 +117,19 @@
 
     <div class="d-flex justify-content-end btn-enviar">
       <button type="submit" class="btn btn-primary text-white pdf " (click)="salvarPdf()">Salvar PDF</button>
-      <button type="submit" class="btn btn-primary text-white" (click)="enviarEmail()">Enviar</button>
+      <button type="submit" class="btn btn-primary text-white" (click)="enviarEmail()" [disabled]="enviandoEmails">
+        Enviar
+        <span *ngIf="enviandoEmails" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
     </div>
   </form>
+</div>
+
+<div class="full-screen-image" *ngIf="fullScreenImageUrl">
+  <div class="excluir" (click)="closeFullScreenImage()" style="display: grid; top: 10px; right: 10px; width: 30px;
+  height: 30px;">
+    <span style="color: white; font-size: 16px;">X</span>
+
+  </div>
+  <img [src]="fullScreenImageUrl" alt="Full screen image">
 </div>
