@@ -162,6 +162,7 @@ export class PopUpModalComponent implements OnInit {
         reader.onload = () => {
           const base64String = reader.result as string;
           this.imagePreviews.push(base64String);
+          console.log(base64String);
         };
         reader.readAsDataURL(file);
       });
