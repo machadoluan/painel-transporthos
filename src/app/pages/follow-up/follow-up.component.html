@@ -105,7 +105,7 @@
               <span class="name-item">{{ shortenFileName(file.name) }}</span>
               <!-- Pré-visualização da imagem -->
               <div class="excluir" (click)="removeFile(i)">
-                <span style="color: white; font-size: 10px;">X</span>
+                <i class="fa-solid fa-x" style="color: white; font-size: 10px;"></i>
               </div>
             </li>
           </div>
@@ -128,8 +128,7 @@
 <div class="full-screen-image" *ngIf="fullScreenImageUrl">
   <div class="excluir" (click)="closeFullScreenImage()" style="display: grid; top: 10px; right: 10px; width: 30px;
   height: 30px;">
-    <span style="color: white; font-size: 16px;">X</span>
-
+    <i class="fa-solid fa-x" style="color: white; font-size: 16px; "></i>
   </div>
   <img [src]="fullScreenImageUrl" alt="Full screen image">
 </div>

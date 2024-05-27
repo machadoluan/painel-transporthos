@@ -1,4 +1,3 @@
-
 export type DadosIniciaisFormulario = {
     id?: number;
     data?: string;
@@ -19,4 +18,3 @@ export type DadosIniciaisFormulario = {
     selectedStatus?: string;
     cnpj?: string;
 }
-
