@@ -1,0 +1,99 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home__container {
+    margin: 10px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #969EFA, #2537FD);
+}
+
+.popup-container {
+    background-color: #fff;
+    height: 224px;
+    width: 1104px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.select__status {
+    color: black;
+    padding: 1px;
+    margin-right: 8px;
+
+}
+
+.select__status option {
+    color: black;
+}
+
+.popup-container h2 {
+    color: black;
+}
+
+.popup-container label {
+    margin-left: 7px;
+    color: black;
+}
+
+.popup-container button {
+    color: black;
+}
+
+.popup-container input {
+    margin: 10px;
+    color: black;
+}
+
+@media (max-width: 576px) {
+
+    .popup-container h2 {
+        color: black;
+        font-size: 27px;
+        margin-bottom: 30px;
+        margin-top: -60px;
+    }
+
+    .popup-container {
+        height: 1443px;
+        width: 279px;
+    }
+
+    .home__container {
+        margin: 0px;
+        height: 1541px;
+    }
+
+
+    .popup-container label {
+        font-size: 23px;
+        margin-left: 17px;
+    }
+
+    .popup-container input {
+        font-size: 20px;
+    }
+
+    .popup-container button {
+        margin-left: 107px;
+        margin-top: 14px;
+        font-size: 20px;
+    }
+
+
+    /* Suas regras de estilo para dispositivos móveis aqui */
+
+}

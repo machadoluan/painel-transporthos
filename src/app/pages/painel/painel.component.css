@@ -1,0 +1,230 @@
+.painel__title>p,
+.trans {
+    font-size: 25px;
+}
+
+.trans {
+    font-weight: bold;
+}
+
+.painel__table {
+    overflow: auto;
+    /* Adicione uma barra de rolagem horizontal quando necessário */
+}
+
+.painel__title {
+    padding: .5em 0 .5em;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.painel__title>p,
+.painel__title span {
+    color: #FFF;
+    margin: 0;
+}
+
+.painel__container {
+    background-color: #000;
+    height: 100vh;
+}
+
+.painel__table {
+   width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+
+
+.painel-table__descricoes th {
+    text-align: center;
+    padding: 0 15px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* border: 1px solid white; */
+    color: black;
+    border: 1px solid black;
+
+}
+
+.painel-table__resultados td {
+    text-align: center;
+    font-size: 1rem;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    /* border: 1px solid white; */
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 100vh;
+}
+
+td,
+th {
+    background-color: transparent;
+    color: black;
+    padding: 10px;
+    border: 0;
+}
+
+thead tr {
+    height: 50px
+}
+
+.cor {
+    display: flex;
+    gap: .5em;
+    padding-top: 2em;
+}
+
+.cor-verde {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(0, 173, 0);
+}
+
+.cor-vermelho {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: red;
+}
+
+.cor-amarelo {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+}
+
+.cor-roxo {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: purple;
+}
+
+.cor {
+    align-items: center;
+}
+
+.cor>p {
+    font-size: 12px;
+}
+
+/*Mudando a cor da Linha da tabela*/
+
+.linha-azul {
+    background-color: #c4c4c4;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+.linha-azul-escuro {
+    background-color: #d9d9d9;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+
+/*Mudando a cor da celula de acordo com o STATUS */
+
+
+.status-concluido {
+    background-color: green;
+    color: white;
+}
+
+.status-andamento {
+    background-color: rgb(197, 181, 8);
+    color: white;
+}
+
+.status-programado {
+    background-color: rgb(70, 7, 95);
+    color: white;
+}
+
+.status-aguardando {
+    background-color: rgb(149, 30, 6);
+    color: white;
+}
+
+.painel__table .texto-branco {
+    color: white;
+}
+
+/* Btn pdf */
+.btns{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn-panel{
+  padding: 10px 20px;
+  border: none;
+  background-color: rgb(3, 158, 3);
+  margin: 15px 0;
+  border-radius: 5px;
+
+}
+
+/* Estilo para dispositivos móveis com tela menor que 768px */
+@media (max-width: 576px) {
+
+
+
+    .painel__container {
+        margin: auto;
+    }
+
+    .painel__table {
+        margin: auto;
+    }
+
+    /* Suas regras de estilo para dispositivos móveis aqui */
+
+    .painel-table__descricoes {
+        display: flex;
+    }
+
+    .painel-table__resultados {
+        display: flex;
+    }
+
+    .painel__title h1 {
+        font-size: 16px;
+    }
+
+    .painel-table__descricoes th {
+        font-size: 9px;
+        width: 100px;
+        padding: 2px 7px 2px 7px;
+    }
+
+    .painel-table__resultados td {
+        font-size: 7px;
+        width: 100px;
+        text-align: center;
+    }
+
+    /* Tornar as células da descrição fixas na parte superior */
+    .painel-table__descricoes {
+        position: sticky;
+        top: 0;
+        background-color: #f5f5f5;
+    }
+}

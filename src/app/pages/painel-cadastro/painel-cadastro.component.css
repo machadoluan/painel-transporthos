@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+* {
+    color: black;
+}
+.header {
+    background-color: #BEBEBE;
+    height: 4rem;
+    align-items: center;
+    display: flex;
+    padding-left: 2vh;
+    align-items: center;
+    border-bottom: 1px solid #a7a7a7;
+}
+
+.header p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header span {
+    font-weight: bold;
+}
+
+.container__item {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 4rem);
+}
+
+.item {
+    max-width: calc(100vw - 1rem);
+    width: 95%;
+    background-color: #CDCDCD;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+    border: 1px solid #a7a7a7;
+}
+
+.navbar {
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.label__input {
+    text-transform: uppercase;
+    display: flex;
+    padding: 5px;
+}
+
+.busca input {
+    height: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #a7a7a7;
+    outline: none;
+    padding: 0 0.7rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+.busca input:focus {
+  border: 1px solid rgba(0, 136, 255, 1);
+  box-shadow: 0px 0px 0px 2px rgba(0, 136, 255, 0.178);
+}
+
+.crud {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.acoes {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    padding: 0.8rem 1rem;
+    border: 1px solid #a7a7a7;
+    border-radius: 10px;
+    transition: all .5s ease-in-out;
+}
+.acoes:hover{
+  background-color: #ffffff5d;
+}
+.contagem{
+  position: absolute;
+  bottom: 0;
+  right: 23px;
+}
+img {
+    height: 25px;
+}
+
+.cadastro_painel {
+    width: 87%;
+    border-radius: 20px;
+    overflow: auto;
+    border: 1px solid #a7a7a7;
+    background-color: #a7a7a7;
+}
+
+.cadastro_painel table {
+    color: #000;
+    min-height: calc(100% - 49px);
+    width: 100%;
+    background-color: white;
+}
+
+.cadastro_painel th, .cadastro_painel td {
+    border: 1px solid #a7a7a7;
+}
+
+.painel-table__descricoes th {
+    font-size: 14px;
+    padding: 0.2rem;
+    text-align: center;
+}
+
+.painel-table__resultados td {
+    font-size: 12px;
+    text-align: center;
+}
+
+.painel-table__resultados td:not(.td-status) {
+    padding-top: 5px;
+}
+
+.dropdown-check-container{
+    display: inline-block;
+    width: 12px;
+    margin-right: 0.5rem;
+}
+
+.pagination-row {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0.3rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.ngx-pagination {
+    display: inline-block;
+    color: black;
+}
+
+.my-pagination ::ng-deep .ngx-pagination {
+    margin-bottom: 0.2rem;
+}
+.my-pagination ::ng-deep .ng-label {
+  color: #000;
+  background-color: #000;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background-color: black;
+}
+
+.my-pagination ::ng-deep .ngx-pagination li, .my-pagination ::ng-deep .ngx-pagination li a {
+    border-radius: 20px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination li:hover, .my-pagination ::ng-deep .ngx-pagination li a:hover {
+    background-color: #0003;
+    cursor: pointer;
+}
+
+/*Mudando a cor da Linha da tabela*/
+
+.linha-azul {
+    background-color: blue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+.linha-azul-escuro {
+    background-color: darkblue;
+    color: white;
+    /* Cor do texto, se necessário */
+}
+
+/* Quando o cursor passar sobre a linha selecionável */
+.linha-selecionavel:hover {
+    cursor: pointer;
+}
+
+
+.selecionada {
+    background-color: #a6bee2 !important;
+    /* Cor de destaque de sua escolha */
+    color: #fff;
+    /* Cor de texto para a linha selecionada */
+}
+
+/*Mudando a cor conforme o STATUS*/
+.status-concluido {
+    background-color: green;
+    color: white;
+}
+
+.status-andamento {
+    background-color: rgb(197, 181, 8);
+    color: white;
+}
+
+.status-programado {
+    background-color: rgb(70, 7, 95);
+    color: white;
+}
+
+.status-aguardando {
+    background-color: rgb(149, 30, 6);
+    color: white;
+}
+
+@media (max-width: 1300px) {
+    .navbar {
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 1em;
+    align-items: center;
+    }
+
+    .crud {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .acoes{
+        gap: 10px;
+    }
+
+    .busca > input {
+        width: 300px;
+    }
+
+    .label__input{
+        font-size: 10px;
+    }
+
+    .acoes > p{
+        font-size: 10px;
+    }
+
+    .item{
+        flex-direction: column;
+
+    }
+
+    .cadastro_painel{
+        width: 100%;
+    }
+
+    .container__item{
+        height: 145vh;
+
+    }
+  }
+
+@media (max-width: 600px) {
+    .crud {
+        flex-wrap: wrap;
+    }
+}

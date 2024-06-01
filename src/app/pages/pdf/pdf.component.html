@@ -1,0 +1,93 @@
+<div class="modal-body">
+  <div class="pdf" #content>
+    <div class="header">
+      <img src="../../assets/transporthos.png" alt="">
+      <h1>DOSSIÊ OPERACIONAL - TRANSPORTE</h1>
+    </div>
+
+
+    <div class="corpo_preenchi">
+      <div class="line_1" *ngIf="isEdit">
+        <span><strong>REF. TRANSPORTHOS</strong>:
+          _________________________________________________________________________________</span>
+        <span><strong>CTE/NFE
+            NR:</strong>__________________________________________________________________________________________</span>
+        <span><strong>REF. CLIENTE </strong>: {{clientesSelecionados.length > 0 ? clientesSelecionados[0].processo : '' }}</span>
+        <span><strong>NOME DO CLIENTE</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cliente : '' }}
+        </span>
+        <span><strong>CNPJ</strong>: {{ clientesSelecionados.length > 0 ? clientesSelecionados[0].cnpj : '' }}
+        </span>
+        <span><strong>CONTRATANTE/PAGADOR DO FRETE:</strong>
+          ____________________________________________________________________</span>
+        <span><strong>DOC. TRANSPORTE</strong>(DI/NF/DTA/DTC/DAT): {{clientesSelecionados.length > 0 ? clientesSelecionados[0].di : '' }}</span>
+        <span><strong>LOCAL DE COLETA</strong>: {{clientesSelecionados.length > 0 ? clientesSelecionados[0].origem : '' }}</span>
+        <span><strong>REMETENTE/CLIENTE:</strong> _________________________________________________________________________________</span>
+        <span><strong>LOCAL DE ENTREGA: </strong> {{clientesSelecionados.length > 0 ? clientesSelecionados[0].destino : '' }}</span>
+        <span><strong>DESTINATÁRIO:</strong>
+          _______________________________________________________________________________________</span>
+        <span><strong>PRODUTO:</strong>____________________________________________________________________________________________</span>
+        <span><strong>PESO:</strong>________________________________________________________________________________________________</span>
+        <span><strong>VALOR CIF. US$ / R$:</strong>___________________________________________________________________________________</span>
+
+      </div>
+    </div>
+    <div class="segunda_parte">
+      <div class="titulo">
+        <h1>ACOMPANHAMENTO OPERACIONAL</h1>
+      </div>
+      <div class="colunas">
+
+        <div class="pt2_colun">
+          <strong>AGENDAMENTO</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.data}}</span>
+          </ng-container>
+        </div>
+        <div class="pt2_colun">
+          <strong>DTA/DI/DTC</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.di}}</span>
+          </ng-container>
+        </div>
+        <div class="pt2_colun">
+          <strong>CONTAINERS</strong>
+          <!-- Iterar sobre cada cliente selecionado -->
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.tipo_de_carga}}</span>
+          </ng-container>
+        </div>
+        <div class="pt2_colun">
+          <strong>MOTORISTA</strong>
+          <ng-container *ngFor="let cliente of clientesSelecionados">
+            <span>{{cliente.motorista}}</span>
+          </ng-container>
+        </div>
+      </div>
+      <div class="titulo2">
+        <h5>DADOS PARA FAURAMENT</h5>
+      </div>
+      <div class="colunas ultima">
+        <div class="line_1">
+          <span><strong>FRETE R$ POR
+              VEICULO:</strong>_______________________________________________________________________________</span>
+          <span><strong>SEGURO R$
+            </strong>:(_____%)__________________________________________________________________________________</span>
+          <span><strong>IMPOSTOS R$:</strong> (______%)
+            _______________________________________________________________________________</span>
+          <span><strong>PRAZO PARA PAGAMENTO</strong>:
+            _____________________________________________________________________________</span>
+          <span><strong>QUANTIDADE - AJUDANTE</strong> ( ) :___________________________________________________________________________</span>
+          <span><strong>OUTROS VALORES R$</strong>:
+            _________________________________________________________________________________</span>
+          <span><strong>ENVIAR E-MAIL DE FATURAMENTO
+              PARA</strong>:_________________________________________________________________</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="close" (click)="closeModal()">Fechar</button>
+    <button class="donwload" (click)="salvarPdf()">Baixar</button>
+  </div>
+</div>

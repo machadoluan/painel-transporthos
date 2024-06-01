@@ -1,0 +1,269 @@
+* {
+  color: #000;
+}
+
+body {
+  margin: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home__container {
+  margin: 10px;
+  height: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-container {
+  background-color: #fff;
+  height: 224px;
+  width: 1104px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.popup-container h2 {
+  color: black;
+}
+
+.popup-container label {
+  font-size: 16px;
+  margin-left: 7px;
+  color: black;
+}
+
+.popup-container button {
+  color: black;
+}
+
+.popup-container input {
+  margin: 10px;
+}
+
+/* Comecando style */
+#titulo-dados {
+  font-size: 20px;
+  color: gray;
+  font-weight: 200;
+}
+
+.form-group label {
+  font-size: 12px;
+}
+
+.text-danger {
+  font-size: 14px;
+}
+
+.dados-follow {
+  margin-top: 20px;
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.up-img {
+  width: 100%;
+  height: 30px;
+  background-color: rgb(160, 160, 160);
+  border-radius: 5px;
+  margin-top: 23px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.btn-enviar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.pdf {
+  background-color: green;
+  border: none;
+}
+
+
+@media (max-width: 576px) {
+
+  .popup-container h2 {
+    color: black;
+    font-size: 27px;
+    margin-bottom: 30px;
+    margin-top: -60px;
+  }
+
+  .popup-container {
+    height: 1443px;
+    width: 279px;
+  }
+
+  .home__container {
+    margin: 0px;
+    height: 1541px;
+  }
+
+
+  .popup-container label {
+    font-size: 23px;
+    margin-left: 17px;
+  }
+
+  .popup-container input {
+    font-size: 20px;
+  }
+
+  .popup-container button {
+    margin-left: 107px;
+    margin-top: 14px;
+    font-size: 20px;
+  }
+
+
+  /* Suas regras de estilo para dispositivos móveis aqui */
+
+}
+
+.tags {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 14px;
+  padding: 5px 10px;
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-email {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-content: center;
+  background-color: white;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.up-img {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #167ff5;
+  color: #fff;
+  /* Cor do texto */
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Estilo para o input de arquivo */
+.up-img input[type="file"] {
+  position: absolute;
+  font-size: 100px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* Estilo para o texto do botão */
+.up-img::before {
+  content: "ADICIONAR IMAGENS";
+}
+
+/* Estilo para quando o botão é clicado */
+.up-img:hover {
+  background-color: rgba(160, 160, 160, 0.719);
+
+}
+
+/* files */
+
+.file-add {
+  width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 1rem;
+  margin: 10px;
+  flex-grow: 1
+}
+
+.item {
+  position: relative;
+}
+
+.item:hover .excluir{
+  display: grid;
+}
+
+.img {
+  width: 110px;
+  height: 80px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.name-item {
+  font-size: 14px;
+}
+
+.excluir {
+  display: none;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  place-content: center;
+  background-color: #A0A0A0;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.full-screen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo preto translúcido */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen-image img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+  border: 1px solid white; /* Adicione uma borda branca opcional */
+}

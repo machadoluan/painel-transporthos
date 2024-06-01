@@ -1,0 +1,184 @@
+<div class="modal-header">
+  <h4 class="modal-title">Follow Up</h4>
+  <button type="button" class="btn close" aria-label="Fechar" (click)="closeModal()">
+    <span aria-hidden="true" class="close-button">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="container">
+    <h2 id="titulo-dados">Dados Cadastrais</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+
+      <div class="form-group">
+        <label for="cliente">CLIENTE:</label>
+        <input type="text" name="cliente" id="cliente" [(ngModel)]="cliente" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="carga">TIPO DE CARGA:</label>
+        <input type="text" name="carga" id="carga" [(ngModel)]="tipo_de_carga" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="origem">ORIGEM:</label>
+        <input type="text" name="origem" id="origem" [(ngModel)]="origem" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label id="destino">DESTINO:</label>
+        <input type="text" name="destino" id="destino" [(ngModel)]="destino" class="form-control form-control-sm mb-2"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="qtd">QUANTIDADE:</label>
+        <input type="number" name="qtd" id="qtd" [(ngModel)]="qtd" class="form-control form-control-sm mb-2" readonly>
+      </div>
+
+      <!-- Outros campos de cadastro aqui -->
+
+    </div>
+
+    <!-- Dados que vão chegar no email. -->
+
+    <div class="dados-follow">
+      <h2 id="titulo-dados">Dados do Follow Up</h2>
+      <div class="dados-container row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+        <div class="form-group">
+          <label for="email">E-MAIL:</label>
+          <input type="email" name="email" id="email" class="form-control form-control-sm mb-2" [(ngModel)]="userEmail"
+            (keydown.enter)="$event.preventDefault(); addEmail()">
+          <div *ngIf="emailInvalid" class="text-danger">E-mail Invalido. Por favor, insira um e-mail valido!</div>
+          <div class="tags">
+            <div *ngFor="let email of emails" class="tag">{{ email }}
+              <i class="fa-solid fa-x icon-email" (click)="removeEmail(email)"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="up-img">
+            <input type="file" id="imagem" name="imagem" accept="image/*" (change)="onFilesSelected($event)" multiple
+              #fileInput>
+          </div>
+
+          <div class="file-add" *ngIf="selectedFiles.length > 0">
+            <div *ngFor="let file of selectedFiles; let i = index" class="item">
+              <!-- Nome do arquivo -->
+              <img [src]="imagePreviews[i]" *ngIf="imagePreviews[i]" alt="Image preview" width="200px" class="img"
+                (click)="openFullScreenImage(imagePreviews[i])">
+              <!-- Pré-visualização da imagem -->
+              <div class="excluir" (click)="removeFile(i)">
+                <i class="fa-solid fa-x" style="color: white; font-size: 10px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dados-follow">
+      <h2 id="titulo-dados">Informações do Follow UP</h2>
+      <div class="dados-container">
+        <div *ngFor="let cliente of clientesSelecionados; let i = index" class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="container-{{i}}">CONTAINER:</label>
+              <input type="text" class="inform form-control form-control-sm mb-2" name="container-{{i}}"
+                id="container-{{i}}" [(ngModel)]="cliente.tipo_de_carga">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="data-inicio-{{i}}">INICIO PREVISTO:</label>
+              <input type="date" class="inform form-control form-control-sm mb-2" name="data-inicio-{{i}}"
+                id="data-inicio-{{i}}" [(ngModel)]="cliente.inicioPrevisto">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="data-hora-{{i}}">HORA:</label>
+              <input type="text" class="inform form-control form-control-sm mb-2" name="data-hora-{{i}}"
+                id="data-hora-{{i}}" [(ngModel)]="cliente.hora">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="data-concluida-{{i}}">CONCLUSÃO DA OPERAÇÃO:</label>
+              <input type="date" class="inform form-control form-control-sm mb-2" name="data-concluida-{{i}}"
+                id="data-concluida-{{i}}" [(ngModel)]="cliente.conclusaoOperacao">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="status-{{i}}">INFORMAÇÕES:</label>
+              <select [(ngModel)]="cliente.selectedInform" class="form-control form-control-sm mb-2" id="status-{{i}}"
+                name="status-{{i}}" required (ngModelChange)="statusSelected = true">
+                <option value="" disabled selected>Selecione uma opção desejada</option>
+                <option value="Solicitação de transporte recebida">Solicitação de transporte recebida</option>
+                <option value="Aguardando agendamento para o carregamento">Aguardando agendamento para o carregamento
+                </option>
+                <option value="Vaiculo a caminho de coleta">Vaiculo a caminho de coleta</option>
+                <option value="Veiculo no local de coleta, aguardando entrada.">Veiculo no local de coleta, aguardando
+                  entrada.
+                </option>
+                <option value="Veiculo no local de coleta, aguardando carregamento.">Veiculo no local de coleta,
+                  aguardando
+                  carregamento.</option>
+                <option value="Veiculo sendo carregado no local de coleta.">Veiculo sendo carregado no local de coleta.
+                </option>
+                <option value="Carregamento interrompido devido a ocorrencia nos volumes">Carregamento interrompido
+                  devido a
+                  ocorrencia nos volumes</option>
+                <option value="Veiculo carregado, a caminho do local de entrega.">Veiculo carregado, a caminho do local
+                  de
+                  entrega.</option>
+                <option value="Veiculo carregado e seguirá para entrega na data programada">Veiculo carregado e seguirá
+                  para
+                  entrega na data programada</option>
+                <option value="Veiculo chegou no local de entrega">Veiculo chegou no local de entrega</option>
+                <option value="Veiculo aguardando descarga no local de entrega">Veiculo aguardando descarga no local de
+                  entrega
+                </option>
+                <option value="Veiculo sendo descarregado no local de entrega">Veiculo sendo descarregado no local de
+                  entrega
+                </option>
+                <option value="Descarga concluida no local de entrega">Descarga concluida no local de entrega</option>
+              </select>
+              <div *ngIf="selectedInvalid" class="text-danger">Esta opção é obrigatória!</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <!-- Botões de PDF e Enviar o email. -->
+
+    <div class="d-flex justify-content-end btn-enviar">
+      <button type="submit" class="btn btn-primary text-white pdf " (click)="salvarPdf()">Salvar PDF</button>
+      <button type="submit" class="btn btn-primary text-white" (click)="enviarEmail()" [disabled]="enviandoEmails">
+        Enviar
+        <span *ngIf="enviandoEmails" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="full-screen-image" *ngIf="fullScreenImageUrl">
+  <div class="excluir" (click)="closeFullScreenImage()" style="display: grid; top: 10px; right: 10px; width: 30px;
+  height: 30px;">
+    <i class="fa-solid fa-x" style="color: white; font-size: 16px; "></i>
+  </div>
+  <img [src]="fullScreenImageUrl" alt="Full screen image">
+</div>

@@ -1,0 +1,143 @@
+<div class="container__cadastro">
+  <div class="header">
+        <p><span>SOFTWARE</span> PAINEL TRANSPORTHOS</p>
+    </div>
+    <div class="container__item">
+        <div class="item">
+            <nav class="navbar">
+                <div class="busca">
+                    <input type="text" [(ngModel)]="termoDeBusca" (input)="buscarClientes()" placeholder="Buscar">
+                </div>
+                <div class="crud">
+                    <button class="btn acoes" (click)="abrirModalCadastro()">
+                        <img src="../../../assets/adicionar.png" alt="">
+                        <span>Adicionar</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirModalEdicao()">
+                        <img src="../../../assets/editar.png" alt="">
+                        <span>Editar</span>
+                    </button>
+                    <button class="btn acoes" (click)="removerClienteSelecionado()">
+                        <img src="../../../assets/remover.png" alt="">
+                        <span>Remover</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirJanelaDoPainel()">
+                        <img src="../../../assets/Finalizar.png" alt="">
+                        <span>Painel</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirPopUp()"  *ngIf="selectedRows.length >= 1">
+                        <img src="../../../assets/mail.png" alt="">
+                        <span>Follow Up</span>
+                    </button>
+                    <button class="btn acoes" (click)="abrirPDF()"  *ngIf="selectedRows.length >= 2">
+                        <img src="../../../assets/baixar.png" alt="">
+                        <span>Baixar PDF</span>
+                    </button>
+
+                    <div *ngIf="selectedRows && selectedRows.length > 0" class="contagem">
+                      <p>{{ selectedRows.length }}</p>
+                    </div>
+                </div>
+            </nav>
+            <section class="cadastro_painel">
+                <table>
+                    <thead>
+                        <tr class="painel-table__descricoes">
+                            <th class="ref">ID</th>
+                            <th class="ref">DATA</th>
+                            <th class="ref">HORA</th>
+                            <th class="ref">CLIENTE</th>
+                            <th class="ref">QTD</th>
+                            <th class="ref">DI</th>
+                            <th class="ref">DTA</th>
+                            <th class="ref">TIPO DE CARGA</th>
+                            <th class="ref">PROCESSO</th>
+                            <th class="ref">CAVALO</th>
+                            <th class="ref">CARRETA</th>
+                            <th class="ref">MOTORISTA</th>
+                            <th class="ref">ORIGEM</th>
+                            <th class="ref">DESTINO</th>
+                            <th class="ref">AJUDANTES</th>
+                            <th class="ref">CONFERENTE</th>
+                            <th class="ref">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container
+                            *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems } let i = index">
+                            <tr class="painel-table__resultados linha-selecionavel" [ngClass]="{'selecionada': isClienteSelecionado(cliente)}" (click)="selecionarLinha(cliente)">
+
+                                <td>{{cliente.id}}</td>
+                                <td>{{ (cliente.data) }}</td>
+                                <td>{{ (cliente.hora)}}</td>
+                                <td>{{ cliente.cliente }}</td>
+                                <td>{{ cliente.quantidade }}</td>
+                                <td>{{ cliente.di }}</td>
+                                <td>{{ cliente.dta }}</td>
+                                <td>{{ cliente.tipoDeCarga }}</td>
+                                <td>{{ cliente.processo }}</td>
+                                <td>{{ cliente.pl_cavalo || cliente.plCavalo }}</td>
+                                <td>{{ cliente.pl_carreta || cliente.plCarreta }}</td>
+                                <td>{{ cliente.motorista }}</td>
+                                <td>{{ cliente.origem }}</td>
+                                <td>{{ cliente.destino }}</td>
+                                <td>{{ cliente.ajudantes }}</td>
+                                <td>{{ cliente.conferentes || cliente.conferente }}</td>
+                                <td class="td-status" (click)="stopPropagation($event)" [ngClass]="{
+                                    'status-concluido': cliente.status.toLowerCase() === 'concluído',
+                                    'status-andamento': cliente.status.toLowerCase() === 'em andamento',
+                                    'status-programado': cliente.status.toLowerCase() === 'programado',
+                                    'status-aguardando': cliente.status.toLowerCase() === 'aguardando programação'
+                                }">
+                                    <div ngbDropdown class="d-inline-block w-100 h-100">
+                                        <button type="button" class="btn btn-ghost w-100 h-100" id="updateStatus"
+                                            ngbDropdownToggle>
+                                            {{ cliente.status }}
+                                        </button>
+                                        <div ngbDropdownMenu aria-labelledby="updateStatus">
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Em andamento')">
+                                                <div class="dropdown-check-container">
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'em andamento'">&#10003;</span>
+                                                </div>
+                                                <span>Em andamento</span>
+                                            </button>
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Concluído')">
+                                                <div class="dropdown-check-container">
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'concluído'">&#10003;</span>
+                                                </div>
+                                                <span>Concluído</span>
+                                            </button>
+                                            <button ngbDropdownItem (click)="updateStatus(cliente, 'Programado')">
+                                                <div class="dropdown-check-container">
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'programado'">&#10003;</span>
+                                                </div>
+                                                <span>Programado</span>
+                                            </button>
+                                            <button ngbDropdownItem
+                                                (click)="updateStatus(cliente, 'Aguardando Programação')">
+                                                <div class="dropdown-check-container">
+                                                    <span
+                                                        *ngIf="cliente.status.toLowerCase() === 'aguardando Programação'">&#10003;</span>
+                                                </div>
+                                                <span>Aguardando Programação</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+
+                </table>
+                <div class="pagination-row">
+                    <pagination-controls (pageChange)="paginaAlterada($event)" nextLabel="Próximo"
+                        previousLabel="Anterior" class="my-pagination"></pagination-controls>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
