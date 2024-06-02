@@ -44,6 +44,10 @@ export interface Cliente {
 })
 
 export class PainelCadastroComponent implements OnInit {
+  sidebarWidth: string = '10%';
+  descButton: boolean = false;
+
+
   clientes: any[] = [];
   termoDeBusca: string = '';
   currentPage: number = 1;
@@ -156,60 +160,37 @@ export class PainelCadastroComponent implements OnInit {
   // Abrindo follow up
 
   abrirPopUp() {
-    if (this.selectedRows.length === 1) {
-      const primeiroClienteSelecionado = this.selectedRows[0]; // Obtém o primeiro cliente do array
+    const clientesSelecionados = this.clienteIdService.getClienteSelecionado();
 
-      // Extrair os dados do primeiro cliente selecionado
-      const {
-        id,
-        cliente,
-        data,
-        hora,
-        quantidade,
-        ajudantes,
-        conferentes,
-        conferente,
-        destino,
-        di,
-        dta,
-        motorista,
-        origem,
-        pl_carreta,
-        pl_cavalo,
-        plCarreta,
-        plCavalo,
-        processo,
-        status,
-        tipoDeCarga,
-        cnpj
-      } = primeiroClienteSelecionado;
+    console.log(clientesSelecionados)
 
-      // Criar um objeto de dados iniciais do formulário
-      const dadosIniciaisFormulario: DadosIniciaisFormulario = {
-        id,
-        cliente,
-        data,
-        hora,
-        qtd: String(quantidade),
-        di,
-        dta,
-        tipo_de_carga: tipoDeCarga,
-        processo,
-        pl_cavalo: pl_cavalo || plCavalo,
-        pl_carreta: pl_carreta || plCarreta,
-        motorista,
-        origem,
-        destino,
-        ajudantes,
-        conferente: conferentes || conferente,
-        selectedStatus: status,
-        cnpj
-      };
+    if (clientesSelecionados.length > 0) {
+      // Acumula as informações dos clientes selecionados em uma única variável
+      const dadosClientes: DadosIniciaisFormulario[] = clientesSelecionados.map(cliente => {
+        return {
+          id: cliente.id,
+          cliente: cliente.cliente,
+          data: cliente.data,
+          hora: cliente.hora,
+          qtd: String(cliente.quantidade),
+          di: cliente.di,
+          dta: cliente.dta,
+          tipo_de_carga: cliente.tipoDeCarga,
+          processo: cliente.processo,
+          pl_cavalo: cliente.pl_cavalo || cliente.plCavalo,
+          pl_carreta: cliente.pl_carreta || cliente.plCarreta,
+          motorista: cliente.motorista,
+          origem: cliente.origem,
+          destino: cliente.destino,
+          ajudantes: cliente.ajudantes,
+          conferente: cliente.conferentes || cliente.conferente,
+          selectedStatus: cliente.status,
+          cnpj: cliente.cnpj
+        };
+      });
 
-      // Chamar o método para abrir o modal com os dados do cliente selecionado
-      this.abrirModalPopUp(true, dadosIniciaisFormulario);
-    } else if (this.selectedRows.length > 1) {
-      this.toastr.error("Você só pode selecionar um de cada vez!");
+      // Abre o modal com todas as informações dos clientes selecionados
+      this.abrirModalPopUp(true, dadosClientes);
     } else {
       window.alert("Nenhum cliente selecionado");
     }
@@ -217,9 +198,9 @@ export class PainelCadastroComponent implements OnInit {
 
 
 
-  abrirModalPopUp(isEdit = false, dadosIniciais?: DadosIniciaisFormulario) {
+  abrirModalPopUp(isEdit = false, dadosClientes?: DadosIniciaisFormulario[]) {
     const modalRef = this.modalService.open(PopUpModalComponent, { size: 'xl' });
-    modalRef.componentInstance.setInitialDatas(isEdit, dadosIniciais)
+    modalRef.componentInstance.setInitialDatas(isEdit, dadosClientes)
   }
 
   abrirModalEdicao() {
@@ -337,6 +318,7 @@ export class PainelCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.carregarClientes();
+    // this.abrirModalPopUp(true);
 
   }
 
@@ -382,5 +364,12 @@ export class PainelCadastroComponent implements OnInit {
           window.alert(error.error.Mensagem || defaultMessage);
         }
       );
+  }
+
+
+  toggleSidebar() {
+    // Alterna entre 10% e 20% de largura da barra lateral
+    this.sidebarWidth = this.sidebarWidth === '10%' ? '20%' : '10%';
+    this.descButton = !this.descButton
   }
 }

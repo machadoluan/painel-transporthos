@@ -9,12 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class EmailService {
   private apiUrl = 'https://backend-transporter.vercel.app';
- // private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(emails: string[] = [], additionalData: any, ): Observable<any> {
-    const body = { emails, ...additionalData };
+  sendEmail(emails: string[] = [], additionalData: any): Observable<any> {
+    const body = { recipientEmail: emails, ...additionalData };
     return this.http.post(`${this.apiUrl}/send`, body);
   }
 }

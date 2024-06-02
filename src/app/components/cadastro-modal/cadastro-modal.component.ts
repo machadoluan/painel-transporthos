@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 
 @Component({
@@ -12,7 +13,6 @@ export class CadastroModalComponent implements OnInit {
 
   isEdit: boolean = false;
 
-  // Propriedades para armazenar os dados do formulário
   id?: number;
   data: string = '';
   hora: string = '';
@@ -35,7 +35,9 @@ export class CadastroModalComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void { }
@@ -114,12 +116,11 @@ export class CadastroModalComponent implements OnInit {
 
   enviar() {
 
-    const dataSplit = this.data.split('-'); // Divide a data em ano, mês e dia
+    const dataSplit = this.data.split('-');
     const dd = dataSplit[2];
     const mm = dataSplit[1];
     const aaaa = dataSplit[0];
     const dataFormatada = `${dd}/${mm}/${aaaa}`;
-
 
     const data = {
       dataAbreviada: dataFormatada,
@@ -152,8 +153,12 @@ export class CadastroModalComponent implements OnInit {
           (response: any) => {
             const defaultMessage = 'Cadastro enviado com sucesso';
             console.log(defaultMessage, response);
-            window.alert(response.Mensagem || defaultMessage);
-            location.reload();
+            // window.alert(response.Mensagem || defaultMessage);
+            this.toastr.success("Cadastro concluido!");
+
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
           },
           (error: any) => {
             const defaultMessage = 'Erro ao enviar cadastro';
@@ -180,8 +185,61 @@ export class CadastroModalComponent implements OnInit {
     }
   }
 
+  duplicarCadastro() {
+    const dataSplit = this.data.split('-');
+    const dd = dataSplit[2];
+    const mm = dataSplit[1];
+    const aaaa = dataSplit[0];
+    const dataFormatada = `${dd}/${mm}/${aaaa}`;
+
+    const data = {
+      dataAbreviada: dataFormatada,
+      horaAbreviada: this.hora,
+      cliente: this.cliente,
+      quantidade: this.qtd,
+      di: this.di,
+      dta: this.dta,
+      tipo_de_carga: this.tipo_de_carga,
+      processo: this.processo,
+      pl_cavalo: this.pl_cavalo,
+      pl_carreta: this.pl_carreta,
+      motorista: this.motorista,
+      origem: this.origem,
+      destino: this.destino,
+      ajudantes: this.ajudantes,
+      conferente: this.conferente,
+      status: this.selectedStatus,
+      cnpj: this.cnpj
+      // ...
+    };
+
+    // Duplicando os dados
+    const duplicatedData = [data, data]; // Criar duas cópias dos dados
+
+    duplicatedData.forEach(duplicatedItem => {
+      this.http.post('https://transporthos-painel-backend.onrender.com/clientes', duplicatedItem)
+        .subscribe(
+          (response: any) => {
+            const defaultMessage = 'Cadastro duplicado com sucesso';
+            console.log(defaultMessage, response);
+            // window.alert(response.Mensagem || defaultMessage);
+            this.toastr.success("Cadastro concluido - Duplicado!");
+
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          },
+          (error: any) => {
+            const defaultMessage = 'Erro ao duplicar cadastro';
+            console.error(defaultMessage, error.error);
+            window.alert(error.error.Mensagem || defaultMessage);
+          }
+        );
+    });
+  }
+
+
   resetForm() {
-    // Método para limpar os campos do formulário
     this.data = '';
     this.hora = '';
     this.cliente = '';
