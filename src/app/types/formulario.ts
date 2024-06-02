@@ -17,4 +17,8 @@ export type DadosIniciaisFormulario = {
     conferente?: string;
     selectedStatus?: string;
     cnpj?: string;
+    inicioPrevisto?: string;
+    conclusaoOperacao?: string;
+    selectedInform?: string
+
 }

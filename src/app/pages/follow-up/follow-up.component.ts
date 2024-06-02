@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +13,7 @@ import { response } from 'express';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-follow-up',
   templateUrl: './follow-up.component.html',
   styleUrls: ['./follow-up.component.css']
 })
@@ -57,6 +56,9 @@ export class PopUpModalComponent implements OnInit {
   fullScreenImageUrl: string | null = null;
   enviandoEmails: boolean = false;
   selectedFile: File[] = [];
+  clientesSelecionados: DadosIniciaisFormulario[] = [];
+  inicioPrevisto: string = "";
+  conclusaoOperacao: string = "";
 
   // ...
 
@@ -73,8 +75,8 @@ export class PopUpModalComponent implements OnInit {
 
   }
 
-  setInitialDatas(isEdit: boolean, dadosIniciais?: DadosIniciaisFormulario) {
-    console.log('chegou: ', dadosIniciais)
+  setInitialDatas(isEdit: boolean, dadosClientes?: DadosIniciaisFormulario[]) {
+    console.log('chegou: ', dadosClientes)
 
     function formatDate(date: string) {
       if (!date) return '';
@@ -99,46 +101,28 @@ export class PopUpModalComponent implements OnInit {
     }
 
     this.isEdit = isEdit;
+    this.clientesSelecionados = dadosClientes || [];
 
-    const {
-      id,
-      data,
-      hora,
-      cliente,
-      qtd,
-      di,
-      dta,
-      tipo_de_carga,
-      processo,
-      pl_cavalo,
-      pl_carreta,
-      motorista,
-      origem,
-      destino,
-      ajudantes,
-      conferente,
-      selectedStatus,
-      cnpj
-    } = dadosIniciais || {};
+    if (this.clientesSelecionados.length > 0) {
+      const firstClient = this.clientesSelecionados[0];
+      this.cliente = firstClient.cliente || '';
+      this.tipo_de_carga = firstClient.tipo_de_carga || '';
+      this.origem = firstClient.origem || '';
+      this.cnpj = firstClient.cnpj || '';
+      this.processo = firstClient.processo || '';
+      this.di = firstClient.di || '';
+      this.destino = firstClient.destino || '';
+      this.qtd = firstClient.qtd || '';
+    }
 
-    this.id = id;
-    this.data = formatDate(data || '');
-    this.hora = formatHour(hora || '');
-    this.cliente = cliente || '';
-    this.qtd = qtd || '';
-    this.di = di || '';
-    this.dta = dta || '';
-    this.tipo_de_carga = tipo_de_carga || '';
-    this.processo = processo || '';
-    this.pl_cavalo = pl_cavalo || '';
-    this.pl_carreta = pl_carreta || '';
-    this.motorista = motorista || '';
-    this.origem = origem || '';
-    this.destino = destino || '';
-    this.ajudantes = ajudantes || '';
-    this.conferente = conferente || '';
-    this.selectedStatus = selectedStatus || '';
-    this.cnpj = cnpj || '';
+    this.clientesSelecionados = dadosClientes ? dadosClientes.map(cliente => ({
+      ...cliente,
+      tipo_de_carga: cliente.tipo_de_carga || '',
+      inicioPrevisto: formatDate(cliente.data || ''),
+      conclusaoOperacao: formatDate(cliente.data || ''),
+      selectedInform: cliente.selectedInform || '',
+      hora: formatHour(cliente.hora || '')
+    })) : [];
   }
 
   closeModal() {
@@ -162,7 +146,6 @@ export class PopUpModalComponent implements OnInit {
         reader.onload = () => {
           const base64String = reader.result as string;
           this.imagePreviews.push(base64String);
-          console.log(base64String);
         };
         reader.readAsDataURL(file);
       });
@@ -176,7 +159,7 @@ export class PopUpModalComponent implements OnInit {
     this.emailInvalid = this.emails.some(email => !this.validateEmail(email));
 
     // Verifica se nenhuma opção do select está selecionada
-    this.selectedInvalid = !this.selectedInform;
+    this.selectedInvalid = this.clientesSelecionados.some(cliente => !cliente.selectedInform);
 
     if (this.emails.length === 0) {
       this.toastr.error('Não tem nenhum email a quem mandar.');
@@ -188,22 +171,27 @@ export class PopUpModalComponent implements OnInit {
       this.toastr.error('Por favor, verifique os campos inválidos.');
       return;
     }
+    const clientesSelecionadosData = this.clientesSelecionados.map(cliente => ({
+      tipo_de_carga: cliente.tipo_de_carga,
+      id: cliente.id,
+      data: cliente.data,
+      hora: cliente.hora,
+      conclusaoOperacao: cliente.conclusaoOperacao,
+      inicioPrevisto: cliente.inicioPrevisto,
+      selectedInform: cliente.selectedInform
+    }));
 
     const emailData = {
-      id: this.id,
       cliente: this.cliente,
       cnpj: this.cnpj,
       processo: this.processo,
       di: this.di,
-      data: this.data,
-      hora: this.hora,
-      tipo_de_carga: this.tipo_de_carga,
       origem: this.origem,
       destino: this.destino,
-      selectedInform: this.selectedInform,
       recipientEmail: this.emails,
       imagePreviews: this.imagePreviews,
-      selectedFiles: this.selectedFiles
+      selectedFiles: this.selectedFiles,
+      clientesSelecionados: clientesSelecionadosData,
     };
 
     this.enviandoEmails = true;
