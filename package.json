@@ -32,6 +32,7 @@
     "html2canvas": "^1.4.1",
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "mongoose": "^8.2.2",
     "mysql": "^2.18.1",
     "ng": "^0.0.0",

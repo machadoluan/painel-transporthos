@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Dado } from 'src/app/dataBase/dados';
 import { DataApiService } from 'src/app/services/data-api.service';
 import { DataService } from 'src/app/services/data.service';
+import jsPDF from 'jspdf';
+const autoTable = require('jspdf-autotable');
 
 
 @Component({
@@ -46,8 +48,8 @@ export class PainelComponent implements OnInit {
 
     this.obterNumeroDeClientesPorPagina();
 
-    if(clientesPorPaginaAntigo !== this.clientesPorPagina) {
-      if(this.timeoutId) clearTimeout(this.timeoutId);
+    if (clientesPorPaginaAntigo !== this.clientesPorPagina) {
+      if (this.timeoutId) clearTimeout(this.timeoutId);
 
       this.iniciarPainel()
     };
@@ -88,70 +90,64 @@ export class PainelComponent implements OnInit {
     return altura > alturaMaxima ? alturaMaxima : altura
   }
 
+  //GERAR PDF
 
-  // onInputChange(): void {
-  //   // this.usuariosFiltrados = this.dados.filter(usuario =>
-  //   //   usuario.cliente.toLowerCase().includes(this.termoDeBusca.toLowerCase())
-  //   // );
-  //   // this.filtrarEOrdenarDados()
+  gerarPDF() {
+    const doc = new jsPDF('landscape');
+    console.log("autoTable function: ", (doc as any).autoTable);
 
+    const columns = [
+      { title: "DATA", dataKey: "data" },
+      { title: "HORA", dataKey: "hora" },
+      { title: "CLIENTE", dataKey: "cliente" },
+      { title: "QTD", dataKey: "quantidade" },
+      { title: "DI", dataKey: "di" },
+      { title: "DTA", dataKey: "dta" },
+      { title: "TIPO DE CARGA", dataKey: "tipoDeCarga" },
+      { title: "PROCESSO", dataKey: "processo" },
+      { title: "CAVALO", dataKey: "pl_Cavalo" },
+      { title: "CARRETA", dataKey: "pl_Carreta" },
+      { title: "MOTORISTA", dataKey: "motorista" },
+      { title: "ORIGEM", dataKey: "origem" },
+      { title: "DESTINO", dataKey: "destino" },
+      { title: "AJUDANTES", dataKey: "ajudantes" },
+      { title: "CONFERENTE", dataKey: "conferentes" },
+      { title: "STATUS", dataKey: "status" }
+    ];
 
+    console.log("clientesPaginado: ", this.clientes);
 
+    const rows = this.clientes.map(cliente => ({
+      data: cliente.data,
+      hora: cliente.hora,
+      cliente: cliente.cliente,
+      quantidade: cliente.quantidade,
+      di: cliente.di,
+      dta: cliente.dta,
+      tipoDeCarga: cliente.tipoDeCarga,
+      processo: cliente.processo,
+      pl_Cavalo: cliente.pl_Cavalo,
+      pl_Carreta: cliente.pl_Carreta,
+      motorista: cliente.motorista,
+      origem: cliente.origem,
+      destino: cliente.destino,
+      ajudantes: cliente.ajudantes,
+      conferentes: cliente.conferentes,
+      status: cliente.status
+    }));
 
-  // }
+    console.log("rows: ", rows);
+    rows.forEach(row => console.log(Object.values(row)));
 
+    (doc as any).autoTable({
+      head: [columns.map(col => col.title)],
+      body: rows.map(row => Object.values(row)),
+      styles: { fontSize: 8 },
+      theme: 'striped'
+    });
 
-  // formatarData(data: Date): string {
-  //   if (!data) {
-  //     return ''; // Tratar casos em que a data está ausente ou inválida
-  //   }
-
-  //   const options: Intl.DateTimeFormatOptions = {
-  //     day: 'numeric',
-  //     month: 'short',
-  //     year: 'numeric',
-  //   };
-
-  //   return new Intl.DateTimeFormat('pt-BR', options).format(data);
-  // }
-
-  // formatarHora(hora: Date): string {
-  //   if (!hora) {
-  //     return ''; // Tratar casos em que a hora está ausente ou inválida
-  //   }
-
-  //   const options: Intl.DateTimeFormatOptions = {
-  //     hour: '2-digit',
-  //     minute: '2-digit',
-  //   };
-
-  //   return new Intl.DateTimeFormat('pt-BR', options).format(hora);
-  // }
-
-
-
-  // filtrarEOrdenarDados(): void {
-  //   // Aplicar filtragem aqui com base no termo de busca, se necessário
-  //   // ...
-
-  //   // Ordenar os dados por data e hora
-  //   this.usuariosFiltrados.sort((a, b) => {
-  //     const dataHoraA = new Date(a.data);
-  //     dataHoraA.setHours(a.hora.getHours(), a.hora.getMinutes(), 0, 0);
-  //     const dataHoraB = new Date(b.data);
-  //     dataHoraB.setHours(b.hora.getHours(), b.hora.getMinutes(), 0, 0);
-  //     return dataHoraA.getTime() - dataHoraB.getTime();
-  //   });
-
-
-  //   // Formatar as datas e horas
-  //   this.usuariosFiltrados.forEach(item => {
-  //     item.dataFormatada = this.formatarData(item.data);
-  //     item.horaFormatada = this.formatarHora(item.hora);
-  //   });
+    doc.save('painel_transporthos.pdf');
+  }
 
 
-
-
-  // }
 }

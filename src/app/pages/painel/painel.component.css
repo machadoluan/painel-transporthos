@@ -31,7 +31,7 @@
 }
 
 .painel__table {
-   width: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,18 +168,53 @@ thead tr {
 }
 
 /* Btn pdf */
-.btns{
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
-.btn-panel{
-  padding: 10px 20px;
-  border: none;
-  background-color: rgb(3, 158, 3);
-  margin: 15px 0;
-  border-radius: 5px;
 
+.btn-panel {
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(3, 158, 3);
+    margin: 15px 0;
+    border-radius: 5px;
+
+}
+
+/* Estilo do botão de download de PDF */
+
+.botao-pdf {
+    border-radius: 10px;
+    /* Deixa os cantos arredondados */
+    border: 2px solid #2a2298;
+    /* Cor da borda */
+    color: #ffffff;
+    /* Cor do texto */
+    background-color: #2a2298;
+    /* Cor de fundo do botão */
+    font-weight: bold;
+    /* Deixa o texto em negrito */
+    padding: 10px 20px;
+    /* Espaçamento interno do botão */
+    cursor: pointer;
+    /* Mudança do cursor ao passar sobre o botão */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transição suave */
+}
+
+.botao-pdf:hover {
+    background-color: #0a40ef;
+    /* Cor de fundo ao passar o mouse */
+    color: #fff;
+    /* Cor do texto ao passar o mouse */
+}
+
+/* Para garantir que o botão pareça um botão e não um link */
+.botao-pdf:focus {
+    outline: none;
+    /* Remove o contorno ao focar no botão */
 }
 
 /* Estilo para dispositivos móveis com tela menor que 768px */
