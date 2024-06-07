@@ -11,6 +11,10 @@ import { DadosIniciaisFormulario } from 'src/app/types/formulario';
 import { DownloadModalComponent } from 'src/app/download-modal/download-modal.component';
 import { PdfComponent } from '../pdf/pdf.component';
 import { Console } from 'console';
+import jsPDF from 'jspdf';
+import { DataApiService } from 'src/app/services/data-api.service';
+const autoTable = require('jspdf-autotable');
+
 
 
 export interface Cliente {
@@ -47,6 +51,8 @@ export class PainelCadastroComponent implements OnInit {
   sidebarWidth: string = '10%';
   descButton: boolean = false;
 
+  clientesPDF: any[] = [];
+
 
   clientes: any[] = [];
   termoDeBusca: string = '';
@@ -67,8 +73,13 @@ export class PainelCadastroComponent implements OnInit {
     private deleteService: DeleteService,
     private modalService: NgbModal,
     private clienteIdService: ClienteIdService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private clienteService: DataApiService
   ) { }
+
+
+
+
 
   selecionarLinha(cliente: Cliente) {
     if (this.selectedRows.length === 0 || this.selectedRows[0].cliente === cliente.cliente) {
@@ -265,6 +276,82 @@ export class PainelCadastroComponent implements OnInit {
   }
 
 
+  //Download em pdf do painel
+
+
+
+  iniciarPainel() {
+    this.clienteService.listarClientes().subscribe((data: any) => {
+      this.clientesPDF = data || [];
+
+      console.log("clientes PDF: ", this.clientesPDF);
+
+
+    });
+  }
+
+  pdfDoPainel() {
+
+
+
+    const doc = new jsPDF('landscape');
+    console.log("autoTable function: ", (doc as any).autoTable);
+
+    const columns = [
+      { title: "DATA", dataKey: "data" },
+      { title: "HORA", dataKey: "hora" },
+      { title: "CLIENTE", dataKey: "cliente" },
+      { title: "QTD", dataKey: "quantidade" },
+      { title: "DI", dataKey: "di" },
+      { title: "DTA", dataKey: "dta" },
+      { title: "TIPO DE CARGA", dataKey: "tipoDeCarga" },
+      { title: "PROCESSO", dataKey: "processo" },
+      { title: "CAVALO", dataKey: "pl_Cavalo" },
+      { title: "CARRETA", dataKey: "pl_Carreta" },
+      { title: "MOTORISTA", dataKey: "motorista" },
+      { title: "ORIGEM", dataKey: "origem" },
+      { title: "DESTINO", dataKey: "destino" },
+      { title: "AJUDANTES", dataKey: "ajudantes" },
+      { title: "CONFERENTE", dataKey: "conferentes" },
+      { title: "STATUS", dataKey: "status" }
+    ];
+
+    console.log("clientesPaginado: ", this.clientesPDF);
+
+    const rows = this.clientesPDF.map(cliente => ({
+      data: cliente.data,
+      hora: cliente.hora,
+      cliente: cliente.cliente,
+      quantidade: cliente.quantidade,
+      di: cliente.di,
+      dta: cliente.dta,
+      tipoDeCarga: cliente.tipoDeCarga,
+      processo: cliente.processo,
+      pl_Cavalo: cliente.pl_Cavalo,
+      pl_Carreta: cliente.pl_Carreta,
+      motorista: cliente.motorista,
+      origem: cliente.origem,
+      destino: cliente.destino,
+      ajudantes: cliente.ajudantes,
+      conferentes: cliente.conferentes,
+      status: cliente.status
+    }));
+
+    console.log("rows: ", rows);
+    rows.forEach(row => console.log(Object.values(row)));
+
+    (doc as any).autoTable({
+      head: [columns.map(col => col.title)],
+      body: rows.map(row => Object.values(row)),
+      styles: { fontSize: 8 },
+      theme: 'striped'
+    });
+
+    doc.save('painel_transporthos.pdf');
+
+  }
+
+
   // Abrir o download pdf. com todos que estiver selecionado.
 
   abrirPDF(): void {
@@ -318,6 +405,7 @@ export class PainelCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.carregarClientes();
+    this.iniciarPainel()
     // this.abrirModalPopUp(true);
 
   }
